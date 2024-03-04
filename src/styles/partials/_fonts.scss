@@ -1,0 +1,21 @@
+// Font face Avenir in various weights
+@font-face {
+    font-family: "AvenirNextLTPro";
+    src: url("../../assets/fonts/AvenirNextLTPro-Bold.otf") format("opentype");
+    font-style: bold;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "AvenirNextLTPro";
+    src: url("../../assets/fonts/AvenirNextLTPro-Demi.otf") format("opentype"); 
+    font-style: medium;  
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "AvenirNextLTPro";
+    src: url("../../assets/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
+    font-style: normal;
+    font-weight: 400;
+}

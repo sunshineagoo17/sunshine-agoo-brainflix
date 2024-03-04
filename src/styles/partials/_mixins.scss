@@ -1,0 +1,53 @@
+@use 'variables' as *;
+@use 'colors' as *;
+@use 'fonts' as *;
+
+@mixin mobile {
+  @media screen and (min-width: #{$mobile-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: #{$tablet-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: #{$desktop-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media screen and (min-width: #{$large-desktop-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin block-item($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin body-copy-style {
+  font-family: "AvenirNextLTPro";
+  font-weight: 400;
+}
+
+@mixin heading-style {
+  font-family: "AvenirNextLTPro";
+  font-weight: 600;
+}
+
+@mixin button-style($width, $height) {
+  background-color: $secondary;
+  color: $quaternary;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  border: $secondary;
+  font-size: .8rem;
+  width: $width;
+  height: $height;
+}

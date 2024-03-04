@@ -1,0 +1,110 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/colors";
+@import "../../styles/partials/fonts";
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 1rem;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+
+    &__logo {
+        width: 7.2rem;
+        height: auto;
+    }
+
+    &__search-list {
+        display: flex;
+        width: auto;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+    }
+
+    &__search-container {
+        height: auto;
+        margin: 1rem 1rem 1rem 0;
+        display: flex;
+        position: relative;
+    }
+
+    &__search-icon {
+        position: absolute;
+        left: 7%;
+        top: 30%;
+        transform: translateX(-45%);
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    &__search-bar {
+        @include block-item(13rem, .8rem);
+        @include heading-style;
+        padding: .78rem;
+        background-color: $octonary;
+        border: .063rem solid $septenary;
+        border-radius: .25rem;
+    
+        &::placeholder {
+            @include body-copy-style;
+            font-size: .78rem;
+            color: $quinary;
+            padding-left: 1.25rem;
+        }
+    
+        &:active,
+        &:focus {
+            @include block-item(13rem, .8rem);
+            @include body-copy-style;
+            outline: none;
+            padding: .78rem;
+            border: .063rem solid $secondary;
+            border-radius: .25rem;  
+        }
+    }
+
+    &__avatar-container {
+        margin: 0;
+        width: auto;
+        display: flex;
+    }
+    
+    &__avatar {
+        @include block-item(2.3rem, 2.3rem);
+        border-radius: 50%;
+        background-color: $septenary;
+        flex-shrink: 0;
+        object-fit: cover;
+        object-position: left center;
+    }
+
+    &__upload-button {
+        @include heading-style;
+        @include button-style(18rem, 2.5rem);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        &:hover {
+            background-color: $senary;
+        }
+    }
+
+    &__upload-copy {
+        flex-grow: 1;
+        text-align: center;
+    }
+    
+    &__upload-icon {
+        width: 1.3rem;
+        height: auto;
+    }
+
+    &__upload-icon-contaner {
+        margin-right: 1rem;
+    }
+}
