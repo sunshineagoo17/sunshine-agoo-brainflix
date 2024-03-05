@@ -1,10 +1,18 @@
 import React from "react";
 import "./SideVideos.scss";
 
-const SideVideos = () => {
+const SideVideos = ({ sideVideos, handleVideoClick }) => {
     return (
-        <div>
-            {/* SideVideos component content */}
+        <div className="side-videos">
+            {sideVideos.map((video) => (
+                <img
+                    key={video.id}
+                    src={video.image}
+                    alt={video.title}
+                    className="side-video-thumbnail"
+                    onClick={() => handleVideoClick(video)}
+                />
+            ))}
         </div>
     );
 };

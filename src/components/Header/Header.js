@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Nav.scss";
+import "./Header.scss";
 import BrainFlixLogo from "../../assets/images/logo/BrainFlix-logo.svg";
 import SearchIcon from "../../assets/images/icons/search.svg";
 import UploadIcon from "../../assets/images/icons/upload.svg";
