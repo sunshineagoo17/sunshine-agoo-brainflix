@@ -1,3 +1,170 @@
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/colors";
 @import "../../styles/partials/fonts";
+
+.hero {
+    width: auto;
+
+    &__main-video {
+        background-color: $quinary;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    &__main-video-image {
+        @include block-item(auto, 11.2rem); 
+        justify-items: center;
+
+        @include tablet {
+            @include block-item(auto, 24.5rem);
+
+            @include desktop {
+                @include block-item(auto, 29.6rem);
+            }
+        }
+    }
+
+    &__video-title {
+        color: $quinary;
+    }
+
+    &__overlay-container {
+        @include block-item(auto, .938rem); 
+        position: absolute;
+        top: 91%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        gap: .3rem;
+        justify-content: space-between;
+        align-items: center;
+
+        @include tablet {
+            @include block-item(auto, 10rem);
+            top: 91.5%;
+            gap: .5rem;
+
+            @include desktop {
+                @include block-item(auto, 10rem);
+                top: 93%;
+                gap: 1.15rem;
+            }
+        }
+    }
+
+    &__play-overlay {
+        @include block-item(1.375rem, .938rem); 
+        background-color: rgba($quinary, 0.5);
+        border-radius: .25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include tablet {
+            @include block-item(2.75rem, 2.25rem);
+        }
+    }
+
+    &__play-button {
+        @include block-item(.6rem, .6rem); 
+            
+        @include tablet {
+            @include block-item(.85rem, .85rem); 
+
+            @include desktop {
+                @include block-item(.9rem, .9rem); 
+            }
+        }
+    }
+
+    &__scrub-overlay {
+        @include block-item(12.438rem, .938rem); 
+        background-color: rgba($quinary, 0.5);
+        border-radius: .25rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 .5rem;
+        align-items: center;
+
+        @include tablet {
+            @include block-item(32rem, 2.25rem); 
+            padding: 0 .85rem;
+
+            @include desktop {
+                @include block-item(39rem, 2.25rem); 
+                padding: 0 .95rem;
+            }
+        }
+    }
+
+    &__scrub-duration {
+        @include heading-style;
+        font-size: .45rem;
+        color: $quaternary;
+
+        @include tablet {
+            font-size: .5rem;
+        }
+    }
+
+    &__scrub-divider {
+        width: 9.5rem;
+        border: none;
+        border-top: .125rem solid $quinary;
+
+        @include tablet {
+            width: 28.5rem;
+            border-top: .15rem solid $quinary;
+
+            @include desktop {
+                width: 35.5rem;
+                border-top: .25rem solid $quinary;
+            }
+        }
+    }
+
+    &__video-buttons-container-overlay {
+        @include block-item(2.188rem, .938rem); 
+        background-color: rgba($quinary, 0.5);
+        border-radius: .25rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 .25rem;
+        align-items: center;
+
+        @include tablet {
+            justify-content: space-around;
+            @include block-item(4.5rem, 2.25rem);
+
+            @include tablet {
+                justify-content: space-evenly;
+            }
+        }
+    }
+
+    &__volume-up-button {
+        @include block-item(.875rem, .875rem); 
+
+        @include tablet {
+            @include block-item(1.5rem, 1.5rem);
+
+            @include desktop {
+                @include block-item(1.75rem, 1.75rem);
+            }
+        }
+    }
+
+    &__fullscreen-button {
+        @include block-item(.875rem, .875rem); 
+
+        @include tablet {
+            @include block-item(1.25rem, 1.25rem);
+
+            @include desktop {
+                @include block-item(1.4rem, 1.4rem);
+            }
+        }
+    }
+}

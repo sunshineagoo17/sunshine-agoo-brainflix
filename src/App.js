@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Hero from './components/Hero/Hero';
-import SideVideos from './components/SideVideos/SideVideos';
+// import SideVideos from './components/SideVideos/SideVideos';
 import Comments from './components/Comments/Comments';
 import videoData from "./data/video-details.json";
 import './App.css';
@@ -21,7 +21,7 @@ const App = () => {
     <div>
       <Header />
       <Hero selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
-      <SideVideos sideVideos={sideVideos} handleVideoClick={handleVideoClick} />
+      {/* <SideVideos sideVideos={sideVideos} handleVideoClick={handleVideoClick} /> */}
       <Comments />
     </div>
   );
