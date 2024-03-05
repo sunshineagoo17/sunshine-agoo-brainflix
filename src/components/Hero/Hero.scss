@@ -42,12 +42,11 @@
         align-items: center;
 
         @include tablet {
-            @include block-item(auto, 10rem);
+            @include block-item(auto, auto);
             top: 91.5%;
             gap: .5rem;
 
             @include desktop {
-                @include block-item(auto, 10rem);
                 top: 93%;
                 gap: 1.15rem;
             }
@@ -166,5 +165,93 @@
                 @include block-item(1.4rem, 1.4rem);
             }
         }
+    }
+    
+    &__video-details-container {
+        margin: -0.5rem 1rem 1rem 1rem;
+    }
+
+    &__video-title-container {
+        width: auto;
+        margin-top: 0;
+    }
+
+    &__video-title {
+        @include heading-style;
+        font-size: 1.5rem;
+        color: $primary;
+        line-height: 2rem;
+        letter-spacing: .015rem;
+    }
+
+    &__video-info-divider--bottom,
+    &__video-info-divider--top {
+        width: auto;
+        border: none;
+        border-top: .1rem solid $septenary;    
+    }
+
+    &__video-info--top{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 4rem;
+    }
+
+    &__video-views-container,
+    &__video-likes-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__channel {
+        @include heading-style; 
+        font-size: .85rem;
+    }
+
+    &__timestamp,
+    &__views,
+    &__likes {
+        @include body-copy-style;
+        font-size: .85rem;
+        color: $tertiary;
+    }
+
+    &__views,
+    &__likes {
+        padding: 0 3rem 0 .5rem;
+    }
+
+    &__likes {
+        margin-top: 0;
+    }
+
+    &__likes-icon,
+    &__views-icon {
+        @include block-item(auto, 1rem);
+    }
+ 
+    &__video-likes-container {
+        display: flex;
+        align-content: center;
+    }
+
+    &__video-views-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    &__description {
+        @include body-copy-style;
+        color: $quinary;
+        font-size: .8rem;
+        padding-right: .1rem;
+    }
+
+    &__comments-counter {
+        @include heading-style;
+        font-size: .85rem;
     }
 }
