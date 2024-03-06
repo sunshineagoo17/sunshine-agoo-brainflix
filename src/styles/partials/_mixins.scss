@@ -41,6 +41,11 @@
   font-weight: 600;
 }
 
+@mixin bold-heading-style {
+  font-family: "AvenirNextLTPro";
+  font-weight: 700;
+}
+
 @mixin button-style($width, $height) {
   background-color: $secondary;
   color: $quaternary;

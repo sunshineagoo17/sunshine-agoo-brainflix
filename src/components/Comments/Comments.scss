@@ -1,3 +1,195 @@
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/colors";
 @import "../../styles/partials/fonts";
+
+.comments {
+    display: flex;
+    flex-direction: column;
+
+    &__form-container {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        margin: 0 1rem;
+    }
+
+    &__avatar-container {
+        margin-top: 1.5rem;
+        width: auto;
+        display: flex;
+    }
+
+    &__avatar-img {
+        @include block-item(2.3rem, 2.3rem);
+        border-radius: 50%;
+        background-color: $septenary;
+        flex-shrink: 0;
+        object-fit: cover;
+        object-position: left center;
+
+        @include tablet {
+            @include block-item(2.5rem, 2.5rem);
+        
+            @include desktop {
+                margin-left: 1.75rem;
+            }
+        }
+    }
+
+    &__form {
+        margin-left: 1rem;
+    }
+
+    &__label {
+        @include heading-style; 
+        color: $tertiary;
+        font-size: .75rem;
+        text-transform: uppercase;
+    }
+
+    &__textarea {
+        @include block-item(13.5rem, 5rem);
+        @include heading-style;
+        background-color: $octonary;
+        border: .063rem solid $septenary;
+        border-radius: .25rem;
+        padding: .6rem;
+        margin-top: .3rem;
+        margin-bottom: .75rem;
+        resize: none;
+    
+        &::placeholder {
+            @include body-copy-style;
+            font-size: .78rem;
+            color: $quinary;
+        }
+    
+        &:active,
+        &:focus {
+            @include block-item(13.5rem, 5rem);
+            @include body-copy-style;
+            outline: none;
+            border: .063rem solid $secondary;
+            border-radius: .25rem;  
+        }
+    }
+
+    &__button-container--bottom {
+        display: block;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    &__button--bottom {
+        @include heading-style;
+        @include button-style(14.75rem, 2.25rem);
+        align-items: center;
+    
+        &:hover {
+            background-color: $senary;
+        }
+    }
+
+    &__copy {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__spacer {
+        margin-left: auto;
+    }
+    
+    &__icon {
+        @include block-item(1.1rem, auto);
+        padding: .3rem 0 0 .2rem;
+    }
+
+    &__list {
+        width: auto;
+        padding: .5rem 1rem 0 1rem;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    &__item {
+        @include block-item(auto, auto);
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    &__list-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__username,
+    &__timestamp {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    &__username {
+        @include heading-style;
+        font-size: .85rem;
+        color: $quinary;
+    }
+
+    &__timestamp {
+        @include body-copy-style;
+        font-size: .8rem;
+        color: $tertiary;
+    }
+
+    &__text {
+        @include body-copy-style;
+        color: $quinary;
+        font-size: .803rem;
+
+    }
+
+    &__avatar {
+        @include block-item(2.3rem, 2.3rem);
+        border-radius: 50%;
+        background-color: $septenary;
+        margin-right: .25rem;
+        flex-shrink: 0;
+    }
+
+    &__divider-container {
+        @include block-item(100%, auto);
+        overflow: hidden;
+    }
+
+    &__divider {
+        width: 100%;
+        border: none;
+        border-top: .1rem solid $septenary; 
+        padding-bottom: .25rem;
+    }
+
+    &__commenter-info-container {
+        width: 100%;
+    }
+
+    &__commenter-info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    &__commenter-name-container {
+        width: 7rem;
+        padding-left: .7rem;
+    }
+
+    &__single-container {
+        padding-left: .7rem;
+    }
+}

@@ -39,14 +39,27 @@ BrainFlix-Black - primary text colour*/
   font-weight: 400;
 }
 .nav {
+  width: auto;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1rem 1rem;
   flex-wrap: wrap;
   flex-direction: column;
-  width: auto;
-  height: auto;
+}
+@media screen and (min-width: 768px) {
+  .nav {
+    width: auto;
+    margin: 0 2.25rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 768px) and (min-width: 1280px) {
+  .nav {
+    margin: 0 8.8rem 0 8.1rem;
+  }
 }
 .nav__logo {
   width: 7.2rem;
@@ -59,19 +72,46 @@ BrainFlix-Black - primary text colour*/
   align-items: center;
   margin: 0;
 }
+@media screen and (min-width: 768px) {
+  .nav__search-list {
+    width: 30rem;
+  }
+}
+@media screen and (min-width: 768px) and (min-width: 1280px) {
+  .nav__search-list {
+    width: 30.5rem;
+  }
+}
 .nav__search-container {
   height: auto;
   margin: 1rem 1rem 1rem 0;
   display: flex;
   position: relative;
 }
+@media screen and (min-width: 768px) {
+  .nav__search-container {
+    margin: 1rem 0;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .nav__search-container {
+    margin: 1rem 1rem 1rem 0;
+  }
+}
 .nav__search-icon {
+  width: 1rem;
+  height: 1rem;
   position: absolute;
   left: 7%;
   top: 30%;
   transform: translateX(-45%);
-  width: 1rem;
-  height: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .nav__search-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    left: 10%;
+  }
 }
 .nav__search-bar {
   width: 13rem;
@@ -96,6 +136,14 @@ BrainFlix-Black - primary text colour*/
   font-size: 0.78rem;
   color: #000000;
   padding-left: 1.25rem;
+}
+@media screen and (min-width: 768px) {
+  .nav__search-bar::-moz-placeholder {
+    padding-left: 1.75rem;
+  }
+  .nav__search-bar::placeholder {
+    padding-left: 1.75rem;
+  }
 }
 .nav__search-bar:active, .nav__search-bar:focus {
   width: 13rem;
@@ -123,7 +171,70 @@ BrainFlix-Black - primary text colour*/
   -o-object-position: left center;
      object-position: left center;
 }
-.nav__upload-button {
+@media screen and (min-width: 768px) {
+  .nav__avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+@media screen and (min-width: 768px) and (min-width: 1280px) {
+  .nav__avatar {
+    margin-left: 1.75rem;
+  }
+}
+.nav__upload-button-container--left {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .nav__upload-button-container--left {
+    display: block;
+  }
+}
+.nav__upload-button-container--right {
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .nav__upload-button-container--right {
+    display: none;
+  }
+}
+.nav__upload-button--left {
+  font-family: "AvenirNextLTPro";
+  font-weight: 600;
+  background-color: #0095FF;
+  color: #FFFFFF;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  border: #0095FF;
+  font-size: 0.8rem;
+  width: 9.85rem;
+  height: 2.5rem;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+}
+@media screen and (min-width: 1280px) {
+  .nav__upload-button--left {
+    background-color: #0095FF;
+    color: #FFFFFF;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+    border: #0095FF;
+    font-size: 0.8rem;
+    width: 9.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+    margin-left: 0.3rem;
+  }
+}
+.nav__upload-button--left:hover {
+  background-color: #0065AD;
+}
+.nav__upload-button--right {
   font-family: "AvenirNextLTPro";
   font-weight: 600;
   background-color: #0095FF;
@@ -135,20 +246,22 @@ BrainFlix-Black - primary text colour*/
   width: 18rem;
   height: 2.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-items: center;
   align-items: center;
+  position: relative;
 }
-.nav__upload-button:hover {
+.nav__upload-button--right:hover {
   background-color: #0065AD;
 }
 .nav__upload-copy {
-  flex-grow: 1;
-  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav__spacer {
+  margin-left: auto;
 }
 .nav__upload-icon {
   width: 1.3rem;
   height: auto;
-}
-.nav__upload-icon-contaner {
-  margin-right: 1rem;
-}/*# sourceMappingURL=Nav.css.map */
+}/*# sourceMappingURL=Header.css.map */

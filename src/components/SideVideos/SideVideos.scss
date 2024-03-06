@@ -1,3 +1,69 @@
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/colors";
 @import "../../styles/partials/fonts";
+
+.sideVideos {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+
+    &__videos-container {
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    &__thumbnail-image {
+        @include block-item(6.3rem, 3.75rem);
+        object-fit: cover;
+        object-position: center 50%;
+        border-radius: .25rem;   
+        color: $septenary;
+        margin-bottom: .5rem;
+    }
+
+    &__thumbnail-info {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__divider {
+        margin-top: 0;
+        width: 100%;
+        border: none;
+        border-top: .1rem solid $septenary;
+    }
+
+    &__header-title {
+        @include heading-style;
+        color: $tertiary;
+        font-size: .75rem;
+        text-transform: uppercase;
+        padding: .5rem 0;
+    }
+
+    &__info {
+        padding: 0 0 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: auto;
+    }
+
+    &__title {
+        @include heading-style;
+        font-size: .83rem;
+        color: $quinary;
+        margin-bottom: .4rem;
+        margin-top: 0;
+    }
+
+    &__channel {
+        @include body-copy-style;
+        font-size: .803rem;
+        color: $quinary; 
+        margin: 0;
+    }
+
+    &__thumbnail-container {
+        padding-bottom: 1rem;
+    }
+}
