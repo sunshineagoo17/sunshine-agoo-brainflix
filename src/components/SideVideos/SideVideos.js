@@ -3,13 +3,13 @@ import "./SideVideos.scss";
 
 const SideVideos = ({ sideVideos, handleVideoClick }) => {
     return (
-        <div className="side-videos">
+        <div className="sideVideos">
             {sideVideos.map((video) => (
                 <img
                     key={video.id}
                     src={video.image}
                     alt={video.title}
-                    className="side-video-thumbnail"
+                    className="sideVideos__thumbnail"
                     onClick={() => handleVideoClick(video)}
                 />
             ))}
