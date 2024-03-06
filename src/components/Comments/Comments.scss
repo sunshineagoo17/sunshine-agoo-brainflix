@@ -109,10 +109,90 @@
 
     &__list {
         width: auto;
+        padding: .5rem 1rem 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
     }
 
     &__item {
-        width: 10rem;
-        height: 15rem;
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    &__list-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__username,
+    &__timestamp {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    &__username {
+        @include heading-style;
+        font-size: .85rem;
+        color: $quinary;
+    }
+
+    &__timestamp {
+        @include body-copy-style;
+        font-size: .8rem;
+        color: $tertiary;
+    }
+
+    &__text {
+        @include body-copy-style;
+        color: $quinary;
+        font-size: .803rem;
+
+    }
+
+    &__avatar {
+        @include block-item(2.3rem, 2.3rem);
+        border-radius: 50%;
+        background-color: $septenary;
+        margin-right: .25rem;
+        flex-shrink: 0;
+    }
+
+    &__divider-container {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    &__divider {
+        width: 100%;
+        border: none;
+        border-top: .1rem solid $septenary; 
+        padding-bottom: .25rem;
+        flex-shrink: 0;
+    }
+
+    &__commenter-info-container {
+        width: 100%;
+    }
+
+    &__commenter-info {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    &__commenter-name-container {
+        width: 7rem;
+        padding-left: .7rem;
+    }
+
+    &__single-container {
+        padding-left: .7rem;
     }
 }

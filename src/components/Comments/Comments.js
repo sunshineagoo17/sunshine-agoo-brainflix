@@ -32,15 +32,31 @@ const Comments = ({ comments }) => {
             <div className="comments__list">
                 {comments.map ((comment) => (
                     <div key={comment.timestamp} className="comments__item">
-                        <p className="comments__username">{comment.name}</p>
-                        <p className="comments__timestamp">
-                            {new Date(comment.timestamp).toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "2-digit",
-                                day: "2-digit",
-                            })}
-                        </p>
-                        <p className="comments__text">{comment.comment}</p>
+                        <div className="comments__divider-container">
+                            <hr className="comments__divider" />
+                        </div>
+                        <div className="comments__list-container">
+                            <div className="comments__avatar" />
+                            <div className="comments__commenter-info-container">
+                                <div className="comments__commenter-info">
+                                    <div className="comments__commenter-name-container">
+                                        <p className="comments__username">{comment.name}</p>
+                                    </div>
+                                    <div className="comments__commenter-timestamp-container">
+                                        <p className="comments__timestamp">
+                                            {new Date(comment.timestamp).toLocaleDateString("en-US", {
+                                                year: "numeric",
+                                                month: "2-digit",
+                                                day: "2-digit",
+                                            })}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="comments__single-container">
+                                    <p className="comments__text">{comment.comment}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>

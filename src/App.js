@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Comments from "./components/Comments/Comments";
 import Header from "./components/Header/Header";
 import Hero from './components/Hero/Hero';
+import Comments from "./components/Comments/Comments";
 // import SideVideos from './components/SideVideos/SideVideos';
 import VideoData from "./data/video-details.json";
 import './App.css';
