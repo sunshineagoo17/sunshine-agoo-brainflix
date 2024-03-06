@@ -7,7 +7,6 @@ const truncateText = (text, maxLength) => {
         : text;    
 };
 
-
 const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
     const handleSideVideoClick = (sideVideo) => {
         if (sideVideo.id === selectedVideo.id) {
