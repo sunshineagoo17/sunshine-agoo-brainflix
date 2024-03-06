@@ -3,7 +3,7 @@ import "./SideVideos.scss";
 
 const truncateText = (text, maxLength) => {
     return text.length > maxLength
-        ? text.substring(0, text.lastIndexOf(" ", maxLength)).trim() + "..."
+        ? text.substr(0, text.lastIndexOf(" ", maxLength)).trim() + "..."
         : text;    
 };
 
@@ -38,7 +38,7 @@ const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
                                 <img src={video.image} alt={video.title} className="sideVideos__thumbnail-image"/>
                             </div>
                             <div className="sideVideos__info">
-                                <h3 className="sideVideos__title">{index && truncateText(video.title, 40) || video.title}</h3>
+                                <h3 className="sideVideos__title">{(index && truncateText(video.title, 40)) || video.title}</h3>
                                 <p className="sideVideos__channel">{video.channel}</p>
                             </div>
                         </div>

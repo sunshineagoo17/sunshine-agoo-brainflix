@@ -12,13 +12,17 @@
     }
 
     &__thumbnail-image {
-        width: 6rem;
-        height: auto;
+        @include block-item(6.3rem, 3.75rem);
+        object-fit: cover;
+        object-position: center 50%;
+        border-radius: .25rem;   
+        color: $septenary;
+        margin-bottom: .5rem;
     }
 
     &__thumbnail-info {
         display: flex;
-        flex: row;
+        flex-direction: row;
     }
 
     &__divider {
@@ -37,14 +41,19 @@
     }
 
     &__info {
-        padding-left: 1rem;
+        padding: 0 0 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: auto;
     }
 
     &__title {
         @include heading-style;
-        font-size: .85rem;
+        font-size: .83rem;
         color: $quinary;
         margin-bottom: .4rem;
+        margin-top: 0;
     }
 
     &__channel {
@@ -52,5 +61,9 @@
         font-size: .803rem;
         color: $quinary; 
         margin: 0;
+    }
+
+    &__thumbnail-container {
+        padding-bottom: 1rem;
     }
 }
