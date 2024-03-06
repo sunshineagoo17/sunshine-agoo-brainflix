@@ -37,4 +37,66 @@ BrainFlix-Black - primary text colour*/
   src: url("../../assets/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
   font-style: normal;
   font-weight: 400;
+}
+.sideVideos {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+.sideVideos__videos-container {
+  padding: 0 1rem 1rem 1rem;
+}
+.sideVideos__thumbnail-image {
+  width: 6.3rem;
+  height: 3.75rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center 50%;
+     object-position: center 50%;
+  border-radius: 0.25rem;
+  color: #E1E1E1;
+  margin-bottom: 0.5rem;
+}
+.sideVideos__thumbnail-info {
+  display: flex;
+  flex-direction: row;
+}
+.sideVideos__divider {
+  margin-top: 0;
+  width: 100%;
+  border: none;
+  border-top: 0.1rem solid #E1E1E1;
+}
+.sideVideos__header-title {
+  font-family: "AvenirNextLTPro";
+  font-weight: 600;
+  color: #AFAFAF;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+}
+.sideVideos__info {
+  padding: 0 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+}
+.sideVideos__title {
+  font-family: "AvenirNextLTPro";
+  font-weight: 600;
+  font-size: 0.83rem;
+  color: #000000;
+  margin-bottom: 0.4rem;
+  margin-top: 0;
+}
+.sideVideos__channel {
+  font-family: "AvenirNextLTPro";
+  font-weight: 400;
+  font-size: 0.803rem;
+  color: #000000;
+  margin: 0;
+}
+.sideVideos__thumbnail-container {
+  padding-bottom: 1rem;
 }/*# sourceMappingURL=SideVideos.css.map */
