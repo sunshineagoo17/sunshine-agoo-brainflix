@@ -109,15 +109,14 @@
 
     &__list {
         width: auto;
-        padding: .5rem 1rem 1rem 1rem;
+        padding: .5rem 1rem 0 1rem;
         display: flex;
         flex-direction: column;
         overflow: hidden;
     }
 
     &__item {
-        width: auto;
-        height: auto;
+        @include block-item(auto, auto);
         display: flex;
         align-items: flex-start;
         flex-direction: column;
@@ -162,8 +161,7 @@
     }
 
     &__divider-container {
-        width: 100%;
-        height: auto;
+        @include block-item(100%, auto);
         overflow: hidden;
     }
 
@@ -172,7 +170,6 @@
         border: none;
         border-top: .1rem solid $septenary; 
         padding-bottom: .25rem;
-        flex-shrink: 0;
     }
 
     &__commenter-info-container {

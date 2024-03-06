@@ -5,9 +5,52 @@
 .sideVideos {
     display: flex;
     flex-direction: column;
+    width: auto;
 
-    &__thumbnail {
-        width: 5rem;
+    &__videos-container {
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    &__thumbnail-image {
+        width: 6rem;
         height: auto;
+    }
+
+    &__thumbnail-info {
+        display: flex;
+        flex: row;
+    }
+
+    &__divider {
+        margin-top: 0;
+        width: 100%;
+        border: none;
+        border-top: .1rem solid $septenary;
+    }
+
+    &__header-title {
+        @include heading-style;
+        color: $tertiary;
+        font-size: .75rem;
+        text-transform: uppercase;
+        padding: .5rem 0;
+    }
+
+    &__info {
+        padding-left: 1rem;
+    }
+
+    &__title {
+        @include heading-style;
+        font-size: .85rem;
+        color: $quinary;
+        margin-bottom: .4rem;
+    }
+
+    &__channel {
+        @include body-copy-style;
+        font-size: .803rem;
+        color: $quinary; 
+        margin: 0;
     }
 }

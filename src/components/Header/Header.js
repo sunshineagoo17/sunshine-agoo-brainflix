@@ -14,7 +14,7 @@ const Nav = () => {
     };
 
     return (
-        <nav className="nav">
+        <header className="nav">
             <img src={BrainFlixLogo} alt="BrainFlix logo" className="nav__logo" />
             <div className="nav__search-list">
                 <div className="nav__search-container">
@@ -47,7 +47,7 @@ const Nav = () => {
                     </div>
                 </button>
             </div>
-        </nav>
+        </header>
     );
 };
 
