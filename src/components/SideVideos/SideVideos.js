@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./SideVideos.scss";
 
-const truncateText = (text, maxLength) => {
+const truncateText = (text, maxLength, screenWidth) => {
+    if (screenWidth > 767) {
+        return text;
+    }
+
     return text.length > maxLength
         ? text.substr(0, text.lastIndexOf(" ", maxLength)).trim() + "..."
         : text;    
 };
 
 const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
+    const [screenWidth, setScreenWidth] = useState(
+        window.innerWidth || document.documentElement.clientWidth
+    );
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth || document.documentElement.clientWidth);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };       
+    }, []);
+
     const handleSideVideoClick = (sideVideo) => {
         if (sideVideo.id === selectedVideo.id) {
             return;
@@ -37,7 +57,9 @@ const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
                                 <img src={video.image} alt={video.title} className="sideVideos__thumbnail-image"/>
                             </div>
                             <div className="sideVideos__info">
-                                <h3 className="sideVideos__title">{(index && truncateText(video.title, 40)) || video.title}</h3>
+                                <h3 className={`sideVideos__title`}>
+                                    {truncateText(video.title, 40, screenWidth)}
+                                </h3>
                                 <p className="sideVideos__channel">{video.channel}</p>
                             </div>
                         </div>
