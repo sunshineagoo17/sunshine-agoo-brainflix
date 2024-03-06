@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Hero from './components/Hero/Hero';
 import Comments from "./components/Comments/Comments";
@@ -38,7 +38,7 @@ const App = () => {
       {/* Display comments for the selected video */}
       <Comments comments={selectedVideo.comments} />
       {/* Display a list of videos on the side */}
-      <SideVideos sideVideos={videos.filter(video => video.id !== selectedVideo.id)} handleVideoClick={handleVideoClick} />
+      <SideVideos videos={videos} selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
     </div>
   );
 }
