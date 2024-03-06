@@ -1,10 +1,10 @@
 import React from "react";
 import "./Hero.scss";
-import playButton from "../../assets/images/icons/play.svg";
-import fullscreenButton from "../../assets/images/icons/fullscreen.svg";
-import volumeUpButton from "../../assets/images/icons/volume_up.svg";
-import viewsIcon from "../../assets/images/icons/views.svg";
-import likesIcon from "../../assets/images/icons/likes.svg";
+import PlayButton from "../../assets/images/icons/play.svg";
+import FullscreenButton from "../../assets/images/icons/fullscreen.svg";
+import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
+import ViewsIcon from "../../assets/images/icons/views.svg";
+import LikesIcon from "../../assets/images/icons/likes.svg";
 
 
 const Hero = ( {selectedVideo} ) => {
@@ -35,7 +35,7 @@ const Hero = ( {selectedVideo} ) => {
             <div className="hero__main-video">
                 <div className="hero__overlay-container">
                     <div className="hero__play-overlay">
-                        <img className="hero__play-button" src={playButton} alt="Play Button" />
+                        <img className="hero__play-button" src={PlayButton} alt="Play Button" />
                     </div>
                     <div className="hero__scrub-overlay">
                         <div className="hero__scrub-line-container">
@@ -48,8 +48,8 @@ const Hero = ( {selectedVideo} ) => {
                         </div>
                     </div>
                     <div className="hero__video-buttons-container-overlay">
-                        <img className="hero__fullscreen-button" src={fullscreenButton} alt="Fullscreen Button" />
-                        <img className="hero__volume-up-button" src={volumeUpButton} alt="Volume Up Button" />                       
+                        <img className="hero__fullscreen-button" src={FullscreenButton} alt="Fullscreen Button" />
+                        <img className="hero__volume-up-button" src={VolumeUpButton} alt="Volume Up Button" />                       
                     </div>
                 </div>
                 <video 
@@ -73,11 +73,11 @@ const Hero = ( {selectedVideo} ) => {
                     </div>
                     <div className="hero__video-info--right">
                         <div className="hero__video-views-container">
-                            <img src={viewsIcon} alt="Views Icon" className="hero__views-icon"/>
+                            <img src={ViewsIcon} alt="Views Icon" className="hero__views-icon"/>
                             <p className="hero__views">{selectedVideo.views}</p>
                         </div>
                         <div className="hero__video-likes-container">
-                            <img src={likesIcon} alt="Likes Icon" className="hero__likes-icon"/>
+                            <img src={LikesIcon} alt="Likes Icon" className="hero__likes-icon"/>
                             <p className="hero__likes">{selectedVideo.likes}</p>
                         </div>
                     </div>

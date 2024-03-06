@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import Comments from "./components/Comments/Comments";
 import Header from "./components/Header/Header";
 import Hero from './components/Hero/Hero';
 // import SideVideos from './components/SideVideos/SideVideos';
-import Comments from './components/Comments/Comments';
-import videoData from "./data/video-details.json";
+import VideoData from "./data/video-details.json";
 import './App.css';
 
 const App = () => {
-  const [selectedVideo, setSelectedVideo] = useState(videoData[0]);
-  const [sideVideos, setSideVideos] = useState(videoData.slice(1));
+  const [selectedVideo, setSelectedVideo] = useState(VideoData[0]);
+  const [sideVideos, setSideVideos] = useState(VideoData.slice(1));
 
   // Handles video click function
   const handleVideoClick = (video) => {
@@ -22,7 +22,7 @@ const App = () => {
       <Header />
       <Hero selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
       {/* <SideVideos sideVideos={sideVideos} handleVideoClick={handleVideoClick} /> */}
-      <Comments />
+      <Comments comments={selectedVideo.comments} />
     </div>
   );
 }

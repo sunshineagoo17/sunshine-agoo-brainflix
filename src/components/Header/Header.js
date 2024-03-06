@@ -3,7 +3,7 @@ import "./Header.scss";
 import BrainFlixLogo from "../../assets/images/logo/BrainFlix-logo.svg";
 import SearchIcon from "../../assets/images/icons/search.svg";
 import UploadIcon from "../../assets/images/icons/upload.svg";
-import avatarImg from "../../assets/images/Mohan-muruge.jpg";
+import AvatarImg from "../../assets/images/Mohan-muruge.jpg";
 
 const Nav = () => {
     const [userIsTyping, updateTypingStatus] = useState(false);
@@ -19,7 +19,7 @@ const Nav = () => {
             <div className="nav__search-list">
                 <div className="nav__search-container">
                     {!userIsTyping && <img src={SearchIcon} alt="search icon" className="nav__search-icon" />}
-                    <input type="text" placeholder="Search" className="nav__search-bar" onChange={handleSearchInputChange}/>
+                    <input type="text" placeholder="Search" id="header-search" className="nav__search-bar" onChange={handleSearchInputChange}/>
                 </div>
                 <div className="nav__upload-button-container--left">
                 <button className="nav__upload-button--left">
@@ -33,7 +33,7 @@ const Nav = () => {
                 </button>
                 </div>
                 <div className="nav__avatar-container">
-                    <img src={avatarImg} className="nav__avatar" alt="Mohan Muruge" />
+                    <img src={AvatarImg} className="nav__avatar" alt="Mohan Muruge" />
                 </div>
             </div>
             <div className="nav__upload-button-container--right">
