@@ -18,16 +18,12 @@
         justify-items: center;
 
         @include tablet {
-            @include block-item(auto, 24.5rem);
+            @include block-item(auto, 24.25rem);
 
             @include desktop {
                 @include block-item(auto, 29.6rem);
             }
         }
-    }
-
-    &__video-title {
-        color: $quinary;
     }
 
     &__overlay-container {
@@ -147,7 +143,7 @@
         @include block-item(.875rem, .875rem); 
 
         @include tablet {
-            @include block-item(1.5rem, 1.5rem);
+            @include block-item(1.7rem, 1.7rem);
 
             @include desktop {
                 @include block-item(1.75rem, 1.75rem);
@@ -159,7 +155,7 @@
         @include block-item(.875rem, .875rem); 
 
         @include tablet {
-            @include block-item(1.25rem, 1.25rem);
+            @include block-item(1.5rem, 1.5rem);
 
             @include desktop {
                 @include block-item(1.4rem, 1.4rem);
@@ -169,6 +165,11 @@
     
     &__video-details-container {
         margin: -0.5rem 1rem 1rem 1rem;
+
+        @include tablet {
+            margin-left: 2.25rem;
+            margin-right: 2.25rem;
+        }
     }
 
     &__video-title-container {
@@ -180,8 +181,16 @@
         @include heading-style;
         font-size: 1.5rem;
         color: $primary;
-        line-height: 2rem;
+        line-height: 1.85rem;
         letter-spacing: .015rem;
+        margin-bottom: 1rem;
+
+        @include tablet {
+            @include bold-heading-style;
+            font-size: 1.925rem;
+            margin-top: 2.5rem;
+            margin-bottom: .25rem;
+        }
     }
 
     &__video-info-divider--bottom,
@@ -191,12 +200,69 @@
         border-top: .1rem solid $septenary;    
     }
 
+    &__video-info--left {
+        @include tablet {
+            display: flex; 
+            flex-direction: row;
+            width: 12rem;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+    }
+
+    &__video-info--right {
+        @include tablet {
+            display: flex; 
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: baseline;
+        }
+    }
+
+    &__video-info-divider--top {
+        display: block;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
     &__video-info--top{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         height: 4rem;
+
+        @include tablet {
+            height: 2rem;
+            padding-bottom: .25rem;
+            align-items: last baseline;
+        }
+    }
+
+    &__channel {
+        @include heading-style; 
+        font-size: .85rem;
+
+        @include tablet {
+            @include bold-heading-style;
+            font-size: .88rem;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+    }
+
+    &__timestamp {
+        @include body-copy-style;
+            font-size: .85rem;
+            color: $tertiary;
+        
+        @include tablet {
+            font-size: .75rem;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
     }
 
     &__video-views-container,
@@ -205,42 +271,61 @@
         flex-direction: row;
     }
 
-    &__channel {
-        @include heading-style; 
-        font-size: .85rem;
+    &__video-views-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+
+        @include tablet {
+            align-items: center;
+        }
     }
 
-    &__timestamp,
+    &__video-likes-container {
+        display: flex;
+        align-content: center;
+
+        @include tablet {
+            align-items: center;
+            padding-left: 2rem;
+        }
+    }
+
     &__views,
     &__likes {
         @include body-copy-style;
         font-size: .85rem;
         color: $tertiary;
+        padding: 0 3rem 0 .5rem;
+
+        @include tablet {
+            padding: 0 0rem 0 .5rem;
+            font-size: .75rem;
+        }
     }
 
-    &__views,
-    &__likes {
-        padding: 0 3rem 0 .5rem;
+    &__views {
+        @include tablet {
+            margin-bottom: 0;
+            margin-top: 0;
+        }
     }
 
     &__likes {
         margin-top: 0;
+
+        @include tablet {
+            margin: 0;
+        }
     }
 
-    &__likes-icon,
-    &__views-icon {
+    &__views-icon,
+    &__likes-icon {
         @include block-item(auto, 1rem);
-    }
- 
-    &__video-likes-container {
-        display: flex;
-        align-content: center;
-    }
 
-    &__video-views-container {
-        display: flex;
-        align-items: center;
-        margin-bottom: 0;
+        @include tablet {
+            margin: 0;
+        }
     }
 
     &__description {
@@ -248,10 +333,22 @@
         color: $quinary;
         font-size: .8rem;
         padding-right: .1rem;
+
+        @include tablet {
+            font-size: .89rem;
+            line-height: 1.37rem;
+            padding-top: .5rem;
+            padding-bottom: 1.1rem;
+        }
     }
 
     &__comments-counter {
         @include heading-style;
         font-size: .85rem;
+
+        @include tablet {
+            @include bold-heading-style;
+            font-size: .88rem;
+        }
     }
 }
