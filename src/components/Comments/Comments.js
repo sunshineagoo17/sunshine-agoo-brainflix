@@ -25,7 +25,18 @@ const Comments = ({ comments }) => {
                                 Comment
                             </div>
                         </button>
-                    </div>
+                    </div>                   
+                </div>
+                <div className="comments__button-container--right">
+                    <button className="comments__button--right">
+                        <div className="comments__button-icon-container">
+                            <img src={CommentIcon} alt="Comment Icon" className="comments__icon" />
+                        </div>
+                        <div className="comments__button-spacer" />
+                        <div className="comments__copy">
+                            Comment
+                        </div>
+                    </button>
                 </div>
             </div>
             {/* Comments section */}
