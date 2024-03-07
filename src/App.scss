@@ -28,8 +28,7 @@
 
     &__video-details-thumbnails-container {
         @include desktop {
-            width: 35%;
-            height: auto;
+            @include block-item(35%, auto);
             flex: 1;
             display: flex;
             justify-items: flex-start;
@@ -44,9 +43,7 @@
     }
 
     &__divider {
-        @include mobile {
-            display: none;
-        }
+        display: none;
 
         @include tablet {
             display: none;
