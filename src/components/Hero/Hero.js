@@ -9,6 +9,13 @@ const Hero = ( {selectedVideo} ) => {
         <section className="hero">
             {/* Render Main Video */}
             <div className="hero__main-video">
+                <video 
+                    className="hero__main-video-image"
+                    poster={selectedVideo.image}
+                    alt={selectedVideo.title}
+                    // controls - Added default controls since it's part of the requirements and was commented out since it doesn't match the mockup 
+                />
+                {/* Custom controls added to match the mockup - it's non-functional */}
                 <div className="hero__overlay-container">
                     <div className="hero__play-overlay">
                         <img className="hero__play-button" src={PlayButton} alt="Play Button" />
@@ -28,11 +35,6 @@ const Hero = ( {selectedVideo} ) => {
                         <img className="hero__volume-up-button" src={VolumeUpButton} alt="Volume Up Button" />                       
                     </div>
                 </div>
-                <video 
-                    className="hero__main-video-image"
-                    poster={selectedVideo.image}
-                    alt={selectedVideo.title}
-                />
             </div>
         </section>
     );
