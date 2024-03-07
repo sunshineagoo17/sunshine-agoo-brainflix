@@ -238,8 +238,13 @@
         font-size: .803rem;
 
         @include tablet {
-            font-size: .88rem;
+            font-size: .875rem;
             line-height: 1.35rem;
+        }
+
+        @include desktop {
+            margin-top: .5rem;
+            font-size: .88rem;
         }
     }
 
@@ -307,7 +312,6 @@
         @include desktop {
             margin-right: 1rem;
             margin-left: 1.2rem;
-            margin-top: -.35rem;
         }
     }
 
