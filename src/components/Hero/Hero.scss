@@ -334,9 +334,11 @@
         color: $quinary;
         font-size: .803rem;
         padding-bottom: .5rem;
+        line-height: 1.2rem;
 
         @include tablet {
-            font-size: .89rem;
+            font-size: .85rem;
+            letter-spacing: .02rem;
             line-height: 1.37rem;
             padding-top: .5rem;
             padding-bottom: 1.1rem;
