@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { timeAgo } from "../../App";
 import "./Comments.scss";
 import AvatarImg from "../../assets/images/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
 
 const Comments = ({ comments }) => {
+    // State for handling hover and empty comment
     const [isHovered, setIsHovered] = useState(false);
     const [isCommentEmpty, setIsCommentEmpty] = useState(false);
 
+    // Event handlers for mouse enter, mouse leave and comment button click
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
@@ -25,6 +28,7 @@ const Comments = ({ comments }) => {
     
     return (
         <section className="comments">
+            {/* Comment form */}
             <div className="comments__form-container">
                 <div className="comments__avatar-container">
                     <img src={AvatarImg} alt="Mohan Muruge" className="comments__avatar-img"/>
@@ -39,6 +43,7 @@ const Comments = ({ comments }) => {
                         placeholder="Add a new comment"
                         autoComplete="off" 
                     />
+                    {/* Comment button - for mobile */}
                     <div className="comments__button-container--bottom">
                         <button
                             className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
@@ -56,6 +61,7 @@ const Comments = ({ comments }) => {
                         </button>
                     </div>                   
                 </div>
+                {/* Comment button - for tablet and desktop */}
                 <div className="comments__button-container--right">
                     <button
                         className={`comments__button--right ${isHovered ? "hover" : ""}`}
@@ -77,9 +83,11 @@ const Comments = ({ comments }) => {
             <div className="comments__list">
                 {comments.map ((comment) => (
                     <div key={comment.timestamp} className="comments__item">
+                        {/* Divider between comments */}
                         <div className="comments__divider-container">
                             <hr className="comments__divider" />
                         </div>
+                        {/* Commenter info and timestamp */}
                         <div className="comments__list-container">
                             <div className="comments__avatar" />
                             <div className="comments__commenter-info-container">
@@ -87,16 +95,14 @@ const Comments = ({ comments }) => {
                                     <div className="comments__commenter-name-container">
                                         <p className="comments__username">{comment.name}</p>
                                     </div>
+                                    {/* Displaying the formatted timestamp using the timeAgo function */}
                                     <div className="comments__commenter-timestamp-container">
                                         <p className="comments__timestamp">
-                                            {new Date(comment.timestamp).toLocaleDateString("en-US", {
-                                                year: "numeric",
-                                                month: "2-digit",
-                                                day: "2-digit",
-                                            })}
+                                            {timeAgo(comment.timestamp)}
                                         </p>
                                     </div>
                                 </div>
+                                {/* Displays the comment text */}
                                 <div className="comments__single-container">
                                     <p className="comments__text">{comment.comment}</p>
                                 </div>
