@@ -31,17 +31,28 @@ const App = () => {
 
   // JSX for rendering the App component
   return (
-    <div>
+    <div className="app">
       {/* Displays Nav component */}
       <Header />
       {/* Display the main video component */}
       <Hero selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
-      {/* Display main video description */}
-      <VideoDetails selectedVideo={selectedVideo} />
-      {/* Display comments for the selected video */}
-      <Comments comments={selectedVideo.comments} />
-      {/* Display a list of videos on the side */}
-      <SideVideos videos={videos} selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
+      <div className="app__video-details-container">
+        <div className="app__video-details-text">
+          {/* Display main video description */}
+          <VideoDetails selectedVideo={selectedVideo} />
+          {/* Display comments for the selected video */}
+          <Comments comments={selectedVideo.comments} />
+        </div>
+        <div className="app__video-details-thumbnails-container">
+          <div className="app__divider-container">
+              <hr className="app__divider" />
+          </div>
+          <div className="app__video-details-thumbnails">
+            {/* Display a list of videos on the side */}
+          <SideVideos videos={videos} selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -34,6 +34,14 @@
         flex-direction: row;
     }
 
+    &__divider-container {
+        display: block;
+
+        @include desktop {
+            display: none;
+        }
+    }
+
     &__divider {
         margin-top: 0;
         width: 100%;
