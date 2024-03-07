@@ -1,4 +1,6 @@
-@import "./components/Nav/Nav.scss";
-@import "./components/MainVideo/MainVideo.scss";
-@import "./components/SideVideos/SideVideos.scss";
+// Import component styles
+@import "./components/Header/Header.scss";
+@import "./components/Hero/Hero.scss";
+@import "./components/VideoDetails/VideoDetails.scss";
 @import "./components/Comments/Comments.scss";
+@import "./components/SideVideos/SideVideos.scss";

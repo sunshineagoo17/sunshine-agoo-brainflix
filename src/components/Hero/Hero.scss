@@ -1,6 +1,6 @@
-@import "../../styles/partials/mixins";
-@import "../../styles/partials/colors";
-@import "../../styles/partials/fonts";
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
 
 .hero {
     width: auto;
