@@ -11,7 +11,7 @@
     }
 
     @include desktop {
-        margin-left: 6.635rem;
+        margin-left: 6.623rem;
         margin-right: 0;
     }
 
@@ -142,7 +142,7 @@
         padding: 0 3rem 0 .5rem;
 
         @include tablet {
-            padding: 0 0rem 0 .5rem;
+            padding: 0 0 0 .5rem;
             font-size: .75rem;
         }
     }
@@ -194,7 +194,7 @@
         }
 
         @include desktop {
-            margin-right: 2.5rem;
+            margin-right: 1.25rem;
             margin-bottom: 1.75rem;
             padding-right: 0;
         }

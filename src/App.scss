@@ -15,7 +15,7 @@
         @include desktop {
             display: flex;
             flex-direction: row;
-            margin: 0 1.5rem;
+            margin: 0 3.25rem 0 1.5rem;
         }
     }
 
@@ -50,8 +50,7 @@
         }
 
         @include desktop {
-            width: auto;
-            height: 100%;
+            @include block-item(auto, 100%);
             border: .063rem solid $septenary;   
             margin-top: 0;
             display: block;

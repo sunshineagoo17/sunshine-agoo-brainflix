@@ -13,6 +13,11 @@
         @include tablet {
             padding: 0.25rem 2.25rem 1rem 2.25rem;
         }
+
+        @include desktop {
+            padding-left: 1.5rem;
+            padding-right: 3.25rem;
+        }
     }
 
     &__thumbnail-image {
@@ -68,6 +73,10 @@
             @include block-item(11.2rem, 3.9rem);
             padding-right: 1rem;
         }
+
+        @include desktop {
+            padding-right: 1.5rem;
+        }
     }
 
     &__title {
@@ -79,6 +88,10 @@
 
         @include tablet {
             font-size: .89rem;
+        }
+
+        @include desktop {
+            margin-right: .25rem;
         }
     }
 
