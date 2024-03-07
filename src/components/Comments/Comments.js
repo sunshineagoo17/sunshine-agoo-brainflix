@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Comments.scss";
 import AvatarImg from "../../assets/images/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
 
 const Comments = ({ comments }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    
     return (
         <section className="comments">
             <div className="comments__form-container">
@@ -16,7 +18,9 @@ const Comments = ({ comments }) => {
                     </label>
                     <textarea id="input-comment" className="comments__textarea" placeholder="Add a new comment" autoComplete="off" />
                     <div className="comments__button-container--bottom">
-                        <button className="comments__button--bottom">
+                        <button className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
+                                    onMouseEnter={() => setIsHovered(true)}
+                                    onMouseLeave={() => setIsHovered(false)}>
                             <div className="comments__button-icon-container">
                                 <img src={CommentIcon} alt="Comment Icon" className="comments__icon" />
                             </div>
@@ -28,7 +32,9 @@ const Comments = ({ comments }) => {
                     </div>                   
                 </div>
                 <div className="comments__button-container--right">
-                    <button className="comments__button--right">
+                    <button className={`comments__button--right ${isHovered ? "hover" : ""}`}
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}>
                         <div className="comments__button-icon-container">
                             <img src={CommentIcon} alt="Comment Icon" className="comments__icon" />
                         </div>
