@@ -10,6 +10,11 @@
         margin-right: 2.25rem;
     }
 
+    @include desktop {
+        margin-left: 6.635rem;
+        margin-right: 0;
+    }
+
     &__video-title-container {
         width: auto;
         margin-top: 0;
@@ -28,6 +33,10 @@
             font-size: 1.925rem;
             margin-top: 2.5rem;
             margin-bottom: .25rem;
+        }
+
+        @include desktop {
+            font-size: 2rem;
         }
     }
 
@@ -93,6 +102,10 @@
             flex-direction: row;
             flex-wrap: wrap;
             align-content: baseline;
+        }
+
+        @include desktop {
+            margin-right: 1.5rem;
         }
     }
 
@@ -178,6 +191,12 @@
             font-size: .87rem;
             line-height: 1.37rem;
             padding: .5rem 1.25rem 1.1rem 0;
+        }
+
+        @include desktop {
+            margin-right: 2.5rem;
+            margin-bottom: 1.75rem;
+            padding-right: 0;
         }
     }
 
