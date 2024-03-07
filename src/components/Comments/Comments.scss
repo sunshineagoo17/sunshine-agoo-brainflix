@@ -204,6 +204,10 @@
         @include desktop {
             margin: .675rem 1.4rem 0 .5rem;
         }
+
+        @include large-desktop {
+            width: 100%;
+        }
     }
 
     &__username,
@@ -246,6 +250,11 @@
             margin-top: .5rem;
             font-size: .88rem;
         }
+
+        @include large-desktop {
+            font-size: .9rem;
+            letter-spacing: .02rem;
+        }
     }
 
     &__avatar {
@@ -274,6 +283,10 @@
 
     &__commenter-info-container {
         width: 100%;
+
+        @include large-desktop {
+            margin-right: 2rem;
+        }
     }
 
     &__commenter-info {
