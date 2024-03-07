@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Hero from './components/Hero/Hero';
+import VideoDetails from "./components/VideoDetails/VideoDetails";
 import Comments from "./components/Comments/Comments";
 import SideVideos from './components/SideVideos/SideVideos';
 import VideoData from "./data/video-details.json";
@@ -35,6 +36,8 @@ const App = () => {
       <Header />
       {/* Display the main video component */}
       <Hero selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
+      {/* Display main video description */}
+      <VideoDetails selectedVideo={selectedVideo} />
       {/* Display comments for the selected video */}
       <Comments comments={selectedVideo.comments} />
       {/* Display a list of videos on the side */}
