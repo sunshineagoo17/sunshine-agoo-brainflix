@@ -5,7 +5,7 @@ import VideoDetails from "./components/VideoDetails/VideoDetails";
 import Comments from "./components/Comments/Comments";
 import SideVideos from './components/SideVideos/SideVideos';
 import VideoData from "./data/video-details.json";
-import './App.css';
+import './App.scss';
 
 const App = () => {
   // State to keep track of the list of videos
