@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore all files with .css.map extension
+*.css.map*
+
+# Ignore README.md
+README.md
