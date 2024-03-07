@@ -51,9 +51,9 @@ const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
                     </h3>
                 </div>
                 {initialSideVideos.map((video, index) => (
-                    <div key={video.id} className="sideVideos__thumbnail" onClick={() => handleSideVideoClick(video)}>
+                    <div key={video.id} className="sideVideos__thumbnail">
                         <div className="sideVideos__thumbnail-info">
-                            <div className="sideVIdeos__thumbnail-container">
+                            <div className="sideVIdeos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>
                                 <img src={video.image} alt={video.title} className="sideVideos__thumbnail-image"/>
                             </div>
                             <div className="sideVideos__info">
