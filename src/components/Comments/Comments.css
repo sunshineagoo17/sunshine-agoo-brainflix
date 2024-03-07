@@ -48,10 +48,21 @@ BrainFlix-Black - primary text colour*/
   width: auto;
   margin: 0 1rem;
 }
+@media screen and (min-width: 768px) {
+  .comments__form-container {
+    margin: 0 2.25rem;
+    align-items: center;
+  }
+}
 .comments__avatar-container {
   margin-top: 1.5rem;
   width: auto;
   display: flex;
+}
+@media screen and (min-width: 768px) {
+  .comments__avatar-container {
+    margin-top: 0.5rem;
+  }
 }
 .comments__avatar-img {
   width: 2.3rem;
@@ -78,6 +89,12 @@ BrainFlix-Black - primary text colour*/
 .comments__form {
   margin-left: 1rem;
 }
+@media screen and (min-width: 768px) {
+  .comments__form {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .comments__label {
   font-family: "AvenirNextLTPro";
   font-weight: 600;
@@ -98,6 +115,12 @@ BrainFlix-Black - primary text colour*/
   margin-bottom: 0.75rem;
   resize: none;
 }
+@media screen and (min-width: 768px) {
+  .comments__textarea {
+    width: 27.25rem;
+    height: 1.25rem;
+  }
+}
 .comments__textarea::-moz-placeholder {
   font-family: "AvenirNextLTPro";
   font-weight: 400;
@@ -116,8 +139,14 @@ BrainFlix-Black - primary text colour*/
   font-family: "AvenirNextLTPro";
   font-weight: 400;
   outline: none;
-  border: 0.063rem solid #0095FF;
+  border: 0.125rem solid #0095FF;
   border-radius: 0.25rem;
+}
+@media screen and (min-width: 768px) {
+  .comments__textarea:active, .comments__textarea:focus {
+    width: 27.25rem;
+    height: 1.25rem;
+  }
 }
 .comments__button-container--bottom {
   display: block;
@@ -147,6 +176,36 @@ BrainFlix-Black - primary text colour*/
 .comments__button--bottom:hover {
   background-color: #0065AD;
 }
+.comments__button-container--right {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .comments__button-container--right {
+    display: block;
+    margin-top: 0.4rem;
+    margin-left: 1.45rem;
+  }
+}
+.comments__button--right {
+  font-family: "AvenirNextLTPro";
+  font-weight: 600;
+  background-color: #0095FF;
+  color: #FFFFFF;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  border: #0095FF;
+  font-size: 0.8rem;
+  width: 10rem;
+  height: 2.5rem;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  align-items: center;
+}
+.comments__button--right:hover {
+  background-color: #0065AD;
+}
 .comments__copy {
   position: absolute;
   left: 50%;
@@ -167,6 +226,11 @@ BrainFlix-Black - primary text colour*/
   flex-direction: column;
   overflow: hidden;
 }
+@media screen and (min-width: 768px) {
+  .comments__list {
+    padding: 0.5rem 2.25rem 0.25rem 2.25rem;
+  }
+}
 .comments__item {
   width: auto;
   height: auto;
@@ -177,6 +241,8 @@ BrainFlix-Black - primary text colour*/
 .comments__list-container {
   display: flex;
   flex-direction: row;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 .comments__username, .comments__timestamp {
   margin-top: 0;
@@ -188,17 +254,33 @@ BrainFlix-Black - primary text colour*/
   font-size: 0.85rem;
   color: #000000;
 }
+@media screen and (min-width: 768px) {
+  .comments__username {
+    font-size: 0.89rem;
+  }
+}
 .comments__timestamp {
   font-family: "AvenirNextLTPro";
   font-weight: 400;
   font-size: 0.8rem;
   color: #AFAFAF;
 }
+@media screen and (min-width: 768px) {
+  .comments__timestamp {
+    font-size: 0.85rem;
+  }
+}
 .comments__text {
   font-family: "AvenirNextLTPro";
   font-weight: 400;
   color: #000000;
   font-size: 0.803rem;
+}
+@media screen and (min-width: 768px) {
+  .comments__text {
+    font-size: 0.88rem;
+    line-height: 1.35rem;
+  }
 }
 .comments__avatar {
   width: 2.3rem;
@@ -233,6 +315,20 @@ BrainFlix-Black - primary text colour*/
   width: 7rem;
   padding-left: 0.7rem;
 }
+@media screen and (min-width: 768px) {
+  .comments__commenter-name-container {
+    width: 10rem;
+    padding-left: 0.9rem;
+  }
+}
 .comments__single-container {
   padding-left: 0.7rem;
+}
+@media screen and (min-width: 768px) {
+  .comments__single-container {
+    padding-left: 0.9rem;
+  }
+}
+.comments__error {
+  border: 0.125rem solid #D22D2D;
 }/*# sourceMappingURL=Comments.css.map */

@@ -152,7 +152,7 @@ BrainFlix-Black - primary text colour*/
   font-weight: 400;
   outline: none;
   padding: 0.78rem;
-  border: 0.063rem solid #0095FF;
+  border: 0.125rem solid #0095FF;
   border-radius: 0.25rem;
 }
 .nav__avatar-container {

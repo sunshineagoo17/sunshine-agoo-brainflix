@@ -46,6 +46,11 @@ BrainFlix-Black - primary text colour*/
 .sideVideos__videos-container {
   padding: 0 1rem 1rem 1rem;
 }
+@media screen and (min-width: 768px) {
+  .sideVideos__videos-container {
+    padding: 0.25rem 2.25rem 1rem 2.25rem;
+  }
+}
 .sideVideos__thumbnail-image {
   width: 6.3rem;
   height: 3.75rem;
@@ -56,6 +61,15 @@ BrainFlix-Black - primary text colour*/
   border-radius: 0.25rem;
   color: #E1E1E1;
   margin-bottom: 0.5rem;
+}
+@media screen and (min-width: 768px) {
+  .sideVideos__thumbnail-image {
+    width: 6.6rem;
+    height: 4rem;
+    margin-bottom: 1.25rem;
+    -o-object-position: center 50%;
+       object-position: center 50%;
+  }
 }
 .sideVideos__thumbnail-info {
   display: flex;
@@ -73,7 +87,7 @@ BrainFlix-Black - primary text colour*/
   color: #AFAFAF;
   font-size: 0.75rem;
   text-transform: uppercase;
-  padding: 0.5rem 0;
+  padding: 0.75rem 0;
 }
 .sideVideos__info {
   padding: 0 0 1rem 1rem;
@@ -81,6 +95,13 @@ BrainFlix-Black - primary text colour*/
   flex-direction: column;
   justify-content: space-between;
   height: auto;
+}
+@media screen and (min-width: 768px) {
+  .sideVideos__info {
+    width: 11.2rem;
+    height: 3.9rem;
+    padding-right: 1rem;
+  }
 }
 .sideVideos__title {
   font-family: "AvenirNextLTPro";
@@ -90,12 +111,22 @@ BrainFlix-Black - primary text colour*/
   margin-bottom: 0.4rem;
   margin-top: 0;
 }
+@media screen and (min-width: 768px) {
+  .sideVideos__title {
+    font-size: 0.89rem;
+  }
+}
 .sideVideos__channel {
   font-family: "AvenirNextLTPro";
   font-weight: 400;
   font-size: 0.803rem;
   color: #000000;
   margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .sideVideos__channel {
+    font-size: 0.88rem;
+  }
 }
 .sideVideos__thumbnail-container {
   padding-bottom: 1rem;
