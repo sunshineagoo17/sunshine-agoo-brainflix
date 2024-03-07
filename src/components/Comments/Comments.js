@@ -5,6 +5,23 @@ import CommentIcon from "../../assets/images/icons/add_comment.svg";
 
 const Comments = ({ comments }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [isCommentEmpty, setIsCommentEmpty] = useState(false);
+
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
+
+    const handleCommentButtonClick = () => {
+        const commentInput = document.getElementById("input-comment");
+        if (commentInput && commentInput.value.trim() === "") {
+            setIsCommentEmpty(true);
+            console.log("You gotta add a comment.")
+        } else {
+            setIsCommentEmpty(false);
+            if (commentInput) {
+                commentInput.value = "";
+            }
+        }
+    };
     
     return (
         <section className="comments">
@@ -16,11 +33,19 @@ const Comments = ({ comments }) => {
                     <label htmlFor="input-comment" className="comments__label">
                         Join the conversation
                     </label>
-                    <textarea id="input-comment" className="comments__textarea" placeholder="Add a new comment" autoComplete="off" />
+                    <textarea 
+                        id="input-comment"
+                        className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""}`}
+                        placeholder="Add a new comment"
+                        autoComplete="off" 
+                    />
                     <div className="comments__button-container--bottom">
-                        <button className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
-                                    onMouseEnter={() => setIsHovered(true)}
-                                    onMouseLeave={() => setIsHovered(false)}>
+                        <button
+                            className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={handleCommentButtonClick}
+                        >
                             <div className="comments__button-icon-container">
                                 <img src={CommentIcon} alt="Comment Icon" className="comments__icon" />
                             </div>
@@ -32,9 +57,12 @@ const Comments = ({ comments }) => {
                     </div>                   
                 </div>
                 <div className="comments__button-container--right">
-                    <button className={`comments__button--right ${isHovered ? "hover" : ""}`}
-                                onMouseEnter={() => setIsHovered(true)}
-                                onMouseLeave={() => setIsHovered(false)}>
+                    <button
+                        className={`comments__button--right ${isHovered ? "hover" : ""}`}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={handleCommentButtonClick}
+                    >
                         <div className="comments__button-icon-container">
                             <img src={CommentIcon} alt="Comment Icon" className="comments__icon" />
                         </div>

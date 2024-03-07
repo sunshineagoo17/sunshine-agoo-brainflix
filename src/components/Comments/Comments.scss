@@ -262,4 +262,8 @@
             padding-left: .9rem;
         }
     }
+
+    &__error {
+        border: .125rem solid $nonary;
+    }
 }
