@@ -188,7 +188,11 @@
         @include desktop {
             padding-right: 0;
             padding-left: 0;
-            margin-left: 6.75rem;
+            margin-left: 6.65rem;
+        }
+
+        @include large-desktop {
+            margin-left: 6.7rem;
         }
     }
 
@@ -212,11 +216,12 @@
         margin-bottom: .25rem;
 
         @include desktop {
-            margin: .675rem 1.4rem 0 .5rem;
+            margin: .675rem 1.4rem 0 .65rem;
         }
 
         @include large-desktop {
             width: 100%;
+            margin-left: .55rem;
         }
     }
 
@@ -258,7 +263,7 @@
 
         @include desktop {
             margin-top: .5rem;
-            font-size: .88rem;
+            font-size: .86rem;
         }
 
         @include large-desktop {
