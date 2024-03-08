@@ -3,7 +3,7 @@ import "./Header.scss";
 import BrainFlixLogo from "../../assets/images/logo/BrainFlix-logo.svg";
 import SearchIcon from "../../assets/images/icons/search.svg";
 import UploadIcon from "../../assets/images/icons/upload.svg";
-import AvatarImg from "../../assets/images/Mohan-muruge.jpg";
+import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 
 const Nav = () => {
     // State for tracking user typing status and hover status

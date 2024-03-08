@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { timeAgo } from "../../App";
 import "./Comments.scss";
-import AvatarImg from "../../assets/images/Mohan-muruge.jpg";
+import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
 
 const Comments = ({ comments }) => {
