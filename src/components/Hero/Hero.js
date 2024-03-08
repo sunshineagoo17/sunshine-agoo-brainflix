@@ -4,7 +4,7 @@ import PlayButton from "../../assets/images/icons/play.svg";
 import FullscreenButton from "../../assets/images/icons/fullscreen.svg";
 import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
 
-const Hero = ( {selectedVideo} ) => {
+const Hero = ({ mainVideo }) => {
     return (
         <section className="hero">
             {/* Render Main Video */}
@@ -12,8 +12,8 @@ const Hero = ( {selectedVideo} ) => {
                 {/* Video with custom controls */}
                 <video 
                     className="hero__main-video-image"
-                    poster={selectedVideo.image}
-                    alt={selectedVideo.title}
+                    poster={mainVideo.image}
+                    alt={mainVideo.title}
                     // controls - Added default controls since it's part of the requirements and was commented out since it doesn't match the mockup 
                 />
                 {/* Custom controls added to match the mockup - it's non-functional */}

@@ -28,20 +28,20 @@ const App = () => {
   // State to keep track of the list of videos
   const [videos, setVideos] = useState(VideoData);
   // State to track the selected video
-  const [selectedVideo, setSelectedVideo] = useState(VideoData[0]);
+  const [mainVideo, setMainVideo] = useState(VideoData[0]);
 
   // Function that handles a video click event
   const handleVideoClick = (video) => {
     // Check if the clicked videos is already selected
-    if (video.id === selectedVideo.id) {
+    if (video.id === mainVideo.id) {
       return;
     }
 
     setVideos(prevVideos => {
       // Ensure each video in the list is unique
-      const uniqueVideos = Array.from(new Set([selectedVideo, ...prevVideos.filter(v => v.id !== video.id)]));
+      const uniqueVideos = Array.from(new Set([mainVideo, ...prevVideos.filter(v => v.id !== video.id)]));
       // Update the currently selected video
-      setSelectedVideo(video);
+      setMainVideo(video);
       return uniqueVideos;
     });
   };
@@ -52,13 +52,13 @@ const App = () => {
       {/* Displays Nav component */}
       <Header />
       {/* Display the main video component */}
-      <Hero selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
+      <Hero mainVideo={mainVideo} handleVideoClick={handleVideoClick} />
       <div className="app__video-details-container">
         <div className="app__video-details-text">
           {/* Display main video description */}
-          <VideoDetails selectedVideo={selectedVideo} />
+          <VideoDetails mainVideo={mainVideo} />
           {/* Display comments for the selected video */}
-          <Comments comments={selectedVideo.comments} />
+          <Comments comments={mainVideo.comments} />
         </div>
         <div className="app__video-details-thumbnails-container">
           <div className="app__divider-container">
@@ -66,7 +66,7 @@ const App = () => {
           </div>
           <div className="app__video-details-thumbnails">
             {/* Display a list of videos on the side */}
-          <SideVideos videos={videos} selectedVideo={selectedVideo} handleVideoClick={handleVideoClick} />
+          <SideVideos videos={videos} mainVideo={mainVideo} handleVideoClick={handleVideoClick} />
           </div>
         </div>
       </div>

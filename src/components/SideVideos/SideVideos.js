@@ -14,7 +14,7 @@ const truncateText = (text, maxLength, screenWidth) => {
         : text;    
 };
 
-const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
+const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
     const [screenWidth, setScreenWidth] = useState(
         window.innerWidth || document.documentElement.clientWidth
     );
@@ -36,7 +36,7 @@ const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
 
     // Function that  handles click on a side video thumbnail
     const handleSideVideoClick = (sideVideo) => {
-        if (sideVideo.id === selectedVideo.id) {
+        if (sideVideo.id === mainVideo.id) {
             return;
         }
         
@@ -44,7 +44,7 @@ const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
     };
 
     // Filter out the selected video from the initial side video list
-    const initialSideVideos = videos.filter(video => video.id !== selectedVideo.id);
+    const initialSideVideos = videos.filter(video => video.id !== mainVideo.id);
 
     return (
         <div className="sideVideos">
@@ -58,7 +58,7 @@ const SideVideos = ({ videos, selectedVideo, handleVideoClick }) => {
                     </h3>
                 </div>
                 {/* Map through the initial side videos and render thumbnails */}
-                {initialSideVideos.map((video, index) => (
+                {initialSideVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
                         <div className="sideVideos__thumbnail-info">
                             <div className="sideVIdeos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>

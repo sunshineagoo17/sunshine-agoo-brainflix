@@ -5,7 +5,7 @@ import SearchIcon from "../../assets/images/icons/search.svg";
 import UploadIcon from "../../assets/images/icons/upload.svg";
 import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 
-const Nav = () => {
+const Header = () => {
     // State for tracking user typing status and hover status
     const [userIsTyping, updateTypingStatus] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
@@ -68,4 +68,4 @@ const Nav = () => {
     );
 };
 
-export default Nav;
+export default Header;
