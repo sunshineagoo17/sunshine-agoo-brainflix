@@ -32,17 +32,24 @@
         color: $septenary;
         margin-bottom: .5rem;
 
+        // Style for second image from the side videos
         &.special-thumbnail-zoomed-image {
-            @include block-item(6.3rem, 3.75rem);
+            @include block-item(5.57rem, 3.75rem);
             object-fit: cover;
-
-            transform: scale(1);
+            object-position: center center;
+            margin-left: .34rem;
+            margin-right: .35rem;
+            transform: scaleX(1.115);
 
             @include tablet {
-                @include block-item(6.8rem, 4rem);
+                @include block-item(5.6rem, 3.75rem);
+                margin-left: .6rem;
+                margin-right: .6rem;
+                transform: scaleX(1.22);
             }
         }
 
+        // Style for last image from the side videos - to match the mockup
         &.unique-thumbnail-image {
             @include block-item(6rem, 3.75rem);
             object-fit: cover;

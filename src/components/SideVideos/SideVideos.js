@@ -62,11 +62,13 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
                     <div key={video.id} className="sideVideos__thumbnail">
                         <div className="sideVideos__thumbnail-info">
                             <div className="sideVIdeos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>
-                                <img
-                                src={video.image}
-                                alt={video.title}
-                                className={`sideVideos__thumbnail-image ${index === 1 ? "special-thumbnail-zoomed-image" : (index === 7 ? "unique-thumbnail-image" : "")}`}
-                                />
+                                <div className="sideVideos__thumbnail-image-wrapper">
+                                    <img
+                                        src={video.image}
+                                        alt={video.title}
+                                        className={`sideVideos__thumbnail-image ${index === 1 ? "special-thumbnail-zoomed-image" : (index === 7 ? "unique-thumbnail-image" : "")}`}
+                                    />
+                                </div>
                             </div>
                             <div className="sideVideos__info">
                                 <h3 className={`sideVideos__title`}>

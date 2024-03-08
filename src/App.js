@@ -66,7 +66,7 @@ const App = () => {
           </div>
           <div className="app__video-details-thumbnails">
             {/* Display a list of videos on the side */}
-          <SideVideos videos={videos} mainVideo={mainVideo} handleVideoClick={handleVideoClick} />
+            <SideVideos videos={videos} mainVideo={mainVideo} handleVideoClick={handleVideoClick} />
           </div>
         </div>
       </div>
