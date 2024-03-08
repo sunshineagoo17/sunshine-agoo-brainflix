@@ -32,8 +32,29 @@
         color: $septenary;
         margin-bottom: .5rem;
 
+        &.special-thumbnail-zoomed-image {
+            @include block-item(6.3rem, 3.75rem);
+            object-fit: cover;
+
+            transform: scale(1);
+
+            @include tablet {
+                @include block-item(6.8rem, 4rem);
+            }
+        }
+
+        &.unique-thumbnail-image {
+            @include block-item(6rem, 3.75rem);
+            object-fit: cover;
+            object-position: center 55%;
+
+            @include tablet {
+                @include block-item(6.8rem, 4rem);
+            }
+        }
+
         @include tablet {
-            @include block-item(6.6rem, 4rem);
+            @include block-item(6.8rem, 4rem);
             margin-bottom: 1.25rem;
         }
     }
@@ -64,6 +85,11 @@
         font-size: .75rem;
         text-transform: uppercase;
         padding: .75rem 0;
+
+        @include desktop {
+            padding-top: 1rem;
+            padding-bottom: .4rem;
+        }
     }
 
     &__info {
