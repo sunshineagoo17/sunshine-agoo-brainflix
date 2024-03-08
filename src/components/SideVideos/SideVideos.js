@@ -58,7 +58,7 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
                     </h3>
                 </div>
                 {/* Map through the initial side videos and render thumbnails */}
-                {initialSideVideos.map((video, index) => (
+                {initialSideVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
                         <div className="sideVideos__thumbnail-info">
                             <div className="sideVIdeos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>
@@ -66,7 +66,7 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
                                     <img
                                         src={video.image}
                                         alt={video.title}
-                                        className={`sideVideos__thumbnail-image ${index === 1 ? "special-thumbnail-zoomed-image" : (index === 7 ? "unique-thumbnail-image" : "")}`}
+                                        className={`sideVideos__thumbnail-image ${video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? "sideVideos__unique-thumbnail-zoomed-image" : (video.id === "76ca28c0-7dea-4553-887f-8e5129a80fc3" ? "sideVideos__unique-thumbnail-last-image" : "")}`}
                                     />
                                 </div>
                             </div>
