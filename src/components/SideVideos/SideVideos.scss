@@ -27,7 +27,7 @@
     &__thumbnail-image {
         @include block-item(6.3rem, 3.75rem);
         object-fit: cover;
-        object-position: center 30%;
+        object-position: center 37%;
         border-radius: .25rem;   
         color: $septenary;
         margin-bottom: .5rem;
@@ -57,6 +57,7 @@
 
             @include tablet {
                 @include block-item(6.8rem, 4rem);
+                object-position: center 15%;
             }
         }
 

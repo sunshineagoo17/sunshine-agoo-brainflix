@@ -18,8 +18,10 @@ const Header = () => {
 
     return (
         <header className="nav">
-            <img src={BrainFlixLogo} alt="BrainFlix logo" className="nav__logo" />
-
+            <a href="/">
+                <img src={BrainFlixLogo} alt="BrainFlix logo" className="nav__logo" />
+            </a>
+            
             {/* Search bar and icons */}
             <div className="nav__search-list">
                 <div className="nav__search-container">
