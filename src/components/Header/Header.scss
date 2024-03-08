@@ -72,7 +72,7 @@
     
     &__search-bar {
         @include block-item(13rem, .8rem);
-        @include heading-style;
+        @include body-copy-style;
         padding: .78rem;
         background-color: $octonary;
         border: .063rem solid $septenary;

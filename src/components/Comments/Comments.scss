@@ -71,7 +71,7 @@
 
     &__textarea {
         @include block-item(13.5rem, 5rem);
-        @include heading-style;
+        @include body-copy-style;
         background-color: $octonary;
         border: .063rem solid $septenary;
         border-radius: .25rem;
@@ -104,6 +104,10 @@
             
             @include tablet {
                 @include block-item(27.25rem, 1.25rem); 
+            }
+            
+            @include desktop {
+                @include block-item(24.4rem, 1.25rem);
             }
         }
     }
