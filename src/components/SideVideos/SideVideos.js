@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import "./SideVideos.scss";
 
 // Function to truncate text for mobile only
@@ -15,26 +15,28 @@ const truncateText = (text, maxLength, screenWidth) => {
 };
 
 const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
+    // State to store the screen width
     const [screenWidth, setScreenWidth] = useState(
         window.innerWidth || document.documentElement.clientWidth
     );
-
-    useEffect(() => {
+    
+    // Effect that dynamically updates the screen width state on window resize
+    useLayoutEffect(() => {
         // Function that handles window resize and updates screen width state
         const handleResize = () => {
             setScreenWidth(window.innerWidth || document.documentElement.clientWidth);
         };
 
-        // Add event listener for window resize
-        window.addEventListener("resize", handleResize);
+        // Attach the resize handler to the window's resize event
+        window.onresize = handleResize;
 
-        // Remove this event listener when the component is not in use
+        // Remove the resize handler when the component is not in use
         return () => {
-            window.removeEventListener("resize", handleResize);
+            window.onresize = null;
         };       
     }, []);
 
-    // Function that  handles click on a side video thumbnail
+    // Function that handles click on a side video thumbnail
     const handleSideVideoClick = (sideVideo) => {
         if (sideVideo.id === mainVideo.id) {
             return;
