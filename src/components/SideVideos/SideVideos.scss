@@ -40,12 +40,11 @@
 
     // Style for second image from the side videos
     &__unique-thumbnail-zoomed-image {
-        @include block-item(5.65rem, 3.75rem);
+        @include block-item(5.3rem, 3.75rem);
         object-fit: cover;
-        object-position: center center;
-        margin-left: .32rem;
-        margin-right: .35rem;
-        transform: scaleX(1.115);
+        margin-left: .5rem;
+        margin-right: .5rem;
+        transform: scaleX(1.2);
 
         @include tablet {
             @include block-item(5.6rem, 4rem);
