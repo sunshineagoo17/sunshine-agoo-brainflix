@@ -26,6 +26,9 @@ const Comments = ({ comments }) => {
         }
     };
     
+    // Function updates the isCommentEmpty based on whether the comment input is empty
+    const handleCommentChange = (event) => setIsCommentEmpty(event.target.value.trim() === "");
+
     return (
         <section className="comments">
             {/* Comment form */}
@@ -41,7 +44,8 @@ const Comments = ({ comments }) => {
                         id="input-comment"
                         className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""}`}
                         placeholder="Add a new comment"
-                        autoComplete="off" 
+                        autoComplete="off"
+                        onChange={handleCommentChange} 
                     />
                     {/* Comment button - for mobile */}
                     <div className="comments__button-container--bottom">

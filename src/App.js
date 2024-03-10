@@ -21,7 +21,6 @@ export function timeAgo(timestamp) {
   if (timeDifference < 31536000) return `${Math.floor(timeDifference / 2592000)} months ago`;
   
   return `${Math.floor(timeDifference / 31536000)} years ago`;
-
 }
 
 const App = () => {
