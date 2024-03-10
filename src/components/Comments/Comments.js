@@ -46,6 +46,7 @@ const Comments = ({ comments }) => {
                         placeholder="Add a new comment"
                         autoComplete="off"
                         onChange={handleCommentChange} 
+                        onBlur={() => setIsCommentEmpty(false)} 
                     />
                     {/* Comment button - for mobile */}
                     <div className="comments__button-container--bottom">
