@@ -1,12 +1,12 @@
 import React from "react";
-import { timeAgo } from "../../App";
+import { TimeAgo } from "../../App";
 import "./VideoDetails.scss";
 import ViewsIcon from "../../assets/images/icons/views.svg";
 import LikesIcon from "../../assets/images/icons/likes.svg";
 
 const VideoDetails = ({ mainVideo }) => {
     // Format timestamp with timeAgo function
-    const formattedTimestamp = timeAgo(mainVideo.timestamp);
+    const formattedTimestamp = TimeAgo(mainVideo.timestamp);
 
     // Selected video's number of comments for the selected video
     const numOfComments = mainVideo.comments.length;

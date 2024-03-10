@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { timeAgo } from "../../App";
+import { TimeAgo } from "../../App";
 import "./Comments.scss";
 import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
@@ -81,8 +81,8 @@ const Comments = ({ comments }) => {
             </div>
             {/* Comments section */}
             <div className="comments__list">
-                {comments.map ((comment) => (
-                    <div key={comment.timestamp} className="comments__item">
+                {comments.map (({ comment, timestamp, name }) => (
+                    <div key={timestamp} className="comments__item">
                         {/* Divider between comments */}
                         <div className="comments__divider-container">
                             <hr className="comments__divider" />
@@ -93,18 +93,18 @@ const Comments = ({ comments }) => {
                             <div className="comments__commenter-info-container">
                                 <div className="comments__commenter-info">
                                     <div className="comments__commenter-name-container">
-                                        <p className="comments__username">{comment.name}</p>
+                                        <p className="comments__username">{name}</p>
                                     </div>
-                                    {/* Displaying the formatted timestamp using the timeAgo function */}
+                                    {/* Displaying the formatted timestamp using the TimeAgo function */}
                                     <div className="comments__commenter-timestamp-container">
                                         <p className="comments__timestamp">
-                                            {timeAgo(comment.timestamp)}
+                                            {TimeAgo(timestamp)}
                                         </p>
                                     </div>
                                 </div>
                                 {/* Displays the comment text */}
                                 <div className="comments__single-container">
-                                    <p className="comments__text">{comment.comment}</p>
+                                    <p className="comments__text">{comment}</p>
                                 </div>
                             </div>
                         </div>

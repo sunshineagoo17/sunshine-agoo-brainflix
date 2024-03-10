@@ -8,7 +8,7 @@ import VideoData from "./data/video-details.json";
 import './App.scss';
 
 // Function that formats dynamic timestamp - used in Comments and VideoDetails components
-export function timeAgo(timestamp) {
+export function TimeAgo(timestamp) {
   const commentDate = new Date(timestamp);
   const now = new Date();
   const timeDifference = Math.floor((now - commentDate) / 1000);
