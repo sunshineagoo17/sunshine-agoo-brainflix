@@ -167,10 +167,6 @@
         left: 50%;
         transform: translateX(-50%);
     }
-
-    &__spacer {
-        margin-left: auto;
-    }
     
     &__upload-icon {
         @include block-item(1.3rem, auto);
