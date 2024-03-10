@@ -39,18 +39,27 @@
     }
 
     // Style for second image from the side videos
-    &__unique-thumbnail-zoomed-image {
-        @include block-item(5.3rem, 3.75rem);
-        object-fit: cover;
-        margin-left: .5rem;
-        margin-right: .5rem;
-        transform: scaleX(1.2);
+    &__unique-thumbnail-umbrellas-image {
+        @include block-item(7.7rem, 3.75rem);
+        margin-left: -.5rem;
+        clip-path: polygon(7% 0, 100% 0, 100% 100%, 7% 100%);
 
         @include tablet {
-            @include block-item(5.6rem, 4rem);
-            margin-left: .6rem;
-            margin-right: .6rem;
-            transform: scaleX(1.22);
+            @include block-item(8.45rem, 4rem);
+            margin-left: -.625rem;
+            clip-path: polygon(7% 0, 90% 0, 90% 100%, 7% 100%);
+        }
+    }
+    
+    &__unique-wrapper {
+        @include block-item(8.8rem, 3.75rem);
+        overflow: hidden;
+        border-radius: .35rem .25rem .25rem .35rem;
+
+        @include tablet {
+            @include block-item(6.8rem, 4rem);
+            margin-bottom: 1.5rem;
+            border-radius: .25rem;
         }
     }
 

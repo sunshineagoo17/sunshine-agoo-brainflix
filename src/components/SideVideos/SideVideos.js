@@ -63,13 +63,23 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
                 {initialSideVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
                         <div className="sideVideos__thumbnail-info">
+                        {video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? (
+                            <div className="sideVideos__unique-wrapper" onClick={() =>  handleSideVideoClick(video)}>
+                                <img 
+                                    src={video.image}
+                                    alt={video.title}
+                                    className={`sideVideos__thumbnail-image sideVideos__unique-thumbnail-umbrellas-image`}
+                                />
+                            </div>
+                        ) : (
                             <div className="sideVideos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>
                                 <img
                                     src={video.image}
                                     alt={video.title}
-                                    className={`sideVideos__thumbnail-image ${video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? "sideVideos__unique-thumbnail-zoomed-image" : (video.id === "76ca28c0-7dea-4553-887f-8e5129a80fc3" ? "sideVideos__unique-thumbnail-last-image" : "")}`}
+                                    className={`sideVideos__thumbnail-image ${video.id === "76ca28c0-7dea-4553-887f-8e5129a80fc3" ? "sideVideos__unique-thumbnail-last-image" : ""}`}
                                 />
                             </div>
+                        )}
                             <div className="sideVideos__info">
                                 <h3 className={`sideVideos__title`}>
                                     {/* Truncate video title based on screen width */}
