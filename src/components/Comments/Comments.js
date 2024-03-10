@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TimeAgo } from "../../App";
+import { timeAgo } from "../../App";
 import "./Comments.scss";
 import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
@@ -95,10 +95,10 @@ const Comments = ({ comments }) => {
                                     <div className="comments__commenter-name-container">
                                         <p className="comments__username">{name}</p>
                                     </div>
-                                    {/* Displaying the formatted timestamp using the TimeAgo function */}
+                                    {/* Displaying the formatted timestamp using the timeAgo function */}
                                     <div className="comments__commenter-timestamp-container">
                                         <p className="comments__timestamp">
-                                            {TimeAgo(timestamp)}
+                                            {timeAgo(timestamp)}
                                         </p>
                                     </div>
                                 </div>
