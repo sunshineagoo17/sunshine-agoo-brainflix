@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 import "./SideVideos.scss";
 
 // Function to truncate text for mobile only
-const truncateText = (text, maxLength, screenWidth) => {
+const TruncateText = (text, maxLength, screenWidth) => {
     // If the screen width is larger than a tablet, it returns the full text
     if (screenWidth > 767) {
         return text;
@@ -83,7 +83,7 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
                             <div className="sideVideos__info">
                                 <h3 className={`sideVideos__title`}>
                                     {/* Truncate video title based on screen width */}
-                                    {truncateText(video.title, 40, screenWidth)}
+                                    {TruncateText(video.title, 40, screenWidth)}
                                 </h3>
                                 <p className="sideVideos__channel">{video.channel}</p>
                             </div>
