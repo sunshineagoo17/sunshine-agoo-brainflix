@@ -183,5 +183,10 @@
     
     &__upload-icon {
         @include block-item(1.3rem, auto);
+        margin-top: .1rem;
+
+        @include tablet {
+            margin-top: .175rem;
+        }
     }
 }
