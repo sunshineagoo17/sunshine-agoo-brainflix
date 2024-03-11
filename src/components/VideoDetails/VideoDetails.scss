@@ -32,10 +32,12 @@
             font-size: 1.925rem;
             margin-top: 2.1rem;
             margin-bottom: .25rem;
+            letter-spacing: .04rem;
         }
 
         @include desktop {
             font-size: 2rem;
+            letter-spacing: 0;
         }
     }
 
@@ -64,7 +66,7 @@
         @include tablet {
             display: flex; 
             flex-direction: row;
-            width: 12rem;
+            width: 11.4rem;
             align-items: baseline;
             justify-content: space-between;
         }
@@ -168,6 +170,10 @@
         @include tablet {
             align-items: center;
             padding-left: 2rem;
+        }
+
+        @include desktop {
+            padding-left: 1.45rem;
         }
     }
 
