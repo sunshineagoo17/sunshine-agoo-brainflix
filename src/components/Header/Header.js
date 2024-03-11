@@ -37,9 +37,9 @@ const Header = () => {
                 </div>
 
                 {/* Upload button - for mobile only */}
-                <div className="nav__upload-button-container--left">
+                <div className="nav__upload-button-container--right">
                     {/* Hover effect applied */}
-                    <button className={`nav__upload-button--left ${isHovered ? "hover" : ""}`}
+                    <button className={`nav__upload-button--right ${isHovered ? "hover" : ""}`}
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}>
                         <div className="nav__upload-icon-container">
@@ -60,9 +60,9 @@ const Header = () => {
             </div>
 
             {/* Upload button - for tablet and desktop  */}
-            <div className="nav__upload-button-container--right">
+            <div className="nav__upload-button-container--bottom">
                 {/* Hover effect applied */}
-                <button className={`nav__upload-button--right ${isHovered ? "hover" : ""}`}
+                <button className={`nav__upload-button--bottom ${isHovered ? "hover" : ""}`}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}>
                     <div className="nav__upload-icon-container">
