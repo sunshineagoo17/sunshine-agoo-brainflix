@@ -1,31 +1,34 @@
 import React, { useState } from "react";
 
-// Importing necessary components that support the App component
+// Imports necessary components that support the App component
 import Header from "./components/Header/Header";
 import Hero from './components/Hero/Hero';
 import VideoDetails from "./components/VideoDetails/VideoDetails";
 import Comments from "./components/Comments/Comments";
 import SideVideos from './components/SideVideos/SideVideos';
 
-// Importing video data from the JSON file
+// Imports video data from the JSON file
 import VideoData from "./data/video-details.json";
 
-// Importing the main stylesheet for the App component
+// Imports the main stylesheet for the App component
 import './App.scss';
 
 // Function that formats dynamic timestamp - used in Comments and VideoDetails components
 export function TimeAgo(timestamp) {
+  // Converts the timestamp to a date object for the comment date
   const commentDate = new Date(timestamp);
+  // Gets the current date and time
   const now = new Date();
-  const timeDifference = Math.floor((now - commentDate) / 1000);
   
-  // Calculate time difference
+  // Calculates the time difference in seconds between the current time and the comment time
+  const timeDifference = Math.floor((now - commentDate) / 1000);
+  // Calculates the time difference 
   if (timeDifference < 60) return "Just now";
   if (timeDifference < 3600) return `${Math.floor(timeDifference / 60)} minutes ago`;
   if (timeDifference < 86400) return `${Math.floor(timeDifference / 3600)} hours ago`;
   if (timeDifference < 2592000) return `${Math.floor(timeDifference / 86400)} days ago`;
   if (timeDifference < 31536000) return `${Math.floor(timeDifference / 2592000)} months ago`;
-  
+
   // Calculates and formats the time difference in years and append "years ago"
   return `${Math.floor(timeDifference / 31536000)} years ago`;
 }
@@ -38,17 +41,18 @@ const App = () => {
 
   // Function that handles a video click event
   const handleVideoClick = (video) => {
-    // Check if the clicked videos is already selected
+    // Checks if the clicked videos is already selected
     if (video.id === mainVideo.id) {
       return;
     }
 
-    // Update the currently selected video
+    // Updates the currently selected video
     setMainVideo(video);
 
-    setVideos(prevVideos => {
-      // Ensure each video in the list is unique
-      const uniqueVideos = Array.from(new Set([mainVideo, ...prevVideos.filter(v => v.id !== video.id)]));
+    // The initialVideos parameter represents the original state of the videos
+    setVideos(initialVideos => {
+      // Updates the 'videos' state, ensuring each video in the list is unique
+      const uniqueVideos = Array.from(new Set([mainVideo, ...initialVideos.filter(v => v.id !== video.id)]));
       return uniqueVideos;
     });
   };
