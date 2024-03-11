@@ -1,5 +1,9 @@
 import { TimeAgo } from "../../App";
+
+// Imports the stylesheet for the VideoDetails component
 import "./VideoDetails.scss";
+
+// Imported icons
 import ViewsIcon from "../../assets/images/icons/views.svg";
 import LikesIcon from "../../assets/images/icons/likes.svg";
 
@@ -7,7 +11,7 @@ const VideoDetails = ({ mainVideo }) => {
     // Format timestamp with TimeAgo function
     const formattedTimestamp = TimeAgo(mainVideo.timestamp);
 
-    // Selected video's number of comments for the selected video
+    // Get the number of comments for the selected video
     const numOfComments = mainVideo.comments.length;
 
     return (

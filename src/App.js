@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+
+// Importing necessary components that support the App component
 import Header from "./components/Header/Header";
 import Hero from './components/Hero/Hero';
 import VideoDetails from "./components/VideoDetails/VideoDetails";
 import Comments from "./components/Comments/Comments";
 import SideVideos from './components/SideVideos/SideVideos';
+
+// Importing video data from the JSON file
 import VideoData from "./data/video-details.json";
+
+// Importing the main stylesheet for the App component
 import './App.scss';
 
 // Function that formats dynamic timestamp - used in Comments and VideoDetails components
@@ -20,6 +26,7 @@ export function TimeAgo(timestamp) {
   if (timeDifference < 2592000) return `${Math.floor(timeDifference / 86400)} days ago`;
   if (timeDifference < 31536000) return `${Math.floor(timeDifference / 2592000)} months ago`;
   
+  // Calculates and formats the time difference in years and append "years ago"
   return `${Math.floor(timeDifference / 31536000)} years ago`;
 }
 

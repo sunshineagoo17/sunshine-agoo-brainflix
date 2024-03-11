@@ -1,4 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
+
+// Imports the stylesheet for the SideVideos component
 import "./SideVideos.scss";
 
 const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
@@ -63,16 +65,18 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
                 {initialSideVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
                         <div className="sideVideos__thumbnail-info">
-                        {/* Created and added an inner wrapper and className for this unique video - to match the mockup */}
+                        {/* Created and added an inner wrapper for this unique video - to match the mockup */}
                         {video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? (
                             <div className="sideVideos__unique-wrapper" onClick={() =>  handleSideVideoClick(video)}>
                                 <img 
                                     src={video.image}
                                     alt={video.title}
+                                    // Added a unique className for this specific video - to match the mockup
                                     className={`sideVideos__thumbnail-image sideVideos__unique-thumbnail-umbrellas-image`}
                                 />
                             </div>
                         ) : (
+                            // Container for defaul side video thumbnail
                             <div className="sideVideos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>
                                 <img
                                     src={video.image}

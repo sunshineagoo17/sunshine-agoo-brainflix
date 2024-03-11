@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+
+// Imports the stylesheet for the Header component
 import "./Header.scss";
+
+// Imported icons and images for Header component
 import BrainFlixLogo from "../../assets/images/logo/BrainFlix-logo.svg";
 import SearchIcon from "../../assets/images/icons/search.svg";
 import UploadIcon from "../../assets/images/icons/upload.svg";
@@ -18,6 +22,7 @@ const Header = () => {
 
     return (
         <header className="nav">
+            {/* BrainFlix logo */}
             <a href="/">
                 <img src={BrainFlixLogo} alt="BrainFlix logo" className="nav__logo" />
             </a>
@@ -33,10 +38,12 @@ const Header = () => {
 
                 {/* Upload button - for mobile only */}
                 <div className="nav__upload-button-container--left">
+                    {/* Hover effect applied */}
                     <button className={`nav__upload-button--left ${isHovered ? "hover" : ""}`}
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}>
                         <div className="nav__upload-icon-container">
+                            {/* Upload icon */}
                             <img src={UploadIcon} alt="upload icon" className="nav__upload-icon" />
                         </div>
                         <div className="nav__upload-copy">
@@ -47,16 +54,19 @@ const Header = () => {
 
                 {/* User Avatar */}
                 <div className="nav__avatar-container">
+                    {/* User avatar image */}
                     <img src={AvatarImg} className="nav__avatar" alt="Mohan Muruge" />
                 </div>
             </div>
 
             {/* Upload button - for tablet and desktop  */}
             <div className="nav__upload-button-container--right">
+                {/* Hover effect applied */}
                 <button className={`nav__upload-button--right ${isHovered ? "hover" : ""}`}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}>
                     <div className="nav__upload-icon-container">
+                        {/* Upload icon */}
                         <img src={UploadIcon} alt="upload icon" className="nav__upload-icon" />
                     </div>
                     <div className="nav__upload-copy">

@@ -1,7 +1,9 @@
+// Import partials
 @use 'variables' as *;
 @use 'colors' as *;
 @use 'fonts' as *;
 
+// Breakpoints mixins
 @mixin mobile {
   @media screen and (min-width: #{$mobile-breakpoint}) {
     @content;
@@ -32,11 +34,13 @@
   }
 }
 
+// Block item mixin
 @mixin block-item($width, $height) {
     width: $width;
     height: $height;
 }
 
+// Font mixins
 @mixin body-copy-style {
   font-family: "AvenirNextLTPro";
   font-weight: 400;
@@ -52,6 +56,7 @@
   font-weight: 700;
 }
 
+// Button mixin
 @mixin button-style($width, $height) {
   background-color: $secondary;
   color: $quaternary;
