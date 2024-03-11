@@ -24,6 +24,7 @@
         }
     }
 
+    // Style for default thumbnails
     &__thumbnail-image {
         @include block-item(6.3rem, 3.75rem);
         background-color: $septenary;
@@ -48,18 +49,27 @@
 
         @include tablet {
             @include block-item(8.45rem, 4rem);
+            min-width: 8.45rem;
             margin-left: -.625rem;
             clip-path: polygon(7% 0, 90% 0, 90% 100%, 7% 100%);
         }
     }
     
+    // Unique wrapper for the second image from the side videos
     &__unique-wrapper {
-        @include block-item(8.8rem, 3.75rem);
+        height: 3.75rem;
         overflow: hidden;
-        border-radius: .35rem .25rem .25rem .35rem;
+        min-width: 6.3rem;
+        max-width: 6.3rem;
+        border-radius: .25rem;
+
+        @include large-mobile {
+            margin-bottom: .75rem;
+        }
 
         @include tablet {
             @include block-item(6.8rem, 4rem);
+            min-width: 6.8rem;
             margin-bottom: 1.5rem;
             border-radius: .25rem;
         }
