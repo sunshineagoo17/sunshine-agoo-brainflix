@@ -27,7 +27,7 @@ const App = () => {
   // State to keep track of the list of videos
   const [videos, setVideos] = useState(VideoData);
   // State to track the selected video
-  const [mainVideo, setMainVideo] = useState(VideoData[0]);
+  const [mainVideo, setMainVideo] = useState(videos[0]);
 
   // Function that handles a video click event
   const handleVideoClick = (video) => {
@@ -36,11 +36,12 @@ const App = () => {
       return;
     }
 
+    // Update the currently selected video
+    setMainVideo(video);
+
     setVideos(prevVideos => {
       // Ensure each video in the list is unique
       const uniqueVideos = Array.from(new Set([mainVideo, ...prevVideos.filter(v => v.id !== video.id)]));
-      // Update the currently selected video
-      setMainVideo(video);
       return uniqueVideos;
     });
   };
