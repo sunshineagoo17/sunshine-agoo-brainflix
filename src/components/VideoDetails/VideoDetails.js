@@ -1,4 +1,3 @@
-import React from "react";
 import { TimeAgo } from "../../App";
 import "./VideoDetails.scss";
 import ViewsIcon from "../../assets/images/icons/views.svg";

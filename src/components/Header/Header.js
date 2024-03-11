@@ -39,10 +39,10 @@ const Header = () => {
                         <div className="nav__upload-icon-container">
                             <img src={UploadIcon} alt="upload icon" className="nav__upload-icon" />
                         </div>
-                    <div className="nav__upload-copy">
-                        Upload
-                    </div>
-                </button>
+                        <div className="nav__upload-copy">
+                            Upload
+                        </div>
+                    </button>
                 </div>
 
                 {/* User Avatar */}

@@ -15,19 +15,19 @@ const Comments = ({ comments }) => {
 
     const handleCommentButtonClick = () => {
         const commentInput = document.getElementById("input-comment");
-        if (commentInput && commentInput.value.trim() === "") {
-            setIsCommentEmpty(true);
-            console.log("You gotta add a comment.")
-        } else {
-            setIsCommentEmpty(false);
-            if (commentInput) {
-                commentInput.value = "";
-            }
+        const isEmpty = commentInput && commentInput.value.trim() === "";
+        
+        setIsCommentEmpty(isEmpty);
+        console.log("You gotta add a comment.")
+        
+        if (!isEmpty && commentInput) {
+            commentInput.value = "";  
         }
     };
     
     // Function updates the isCommentEmpty based on whether the comment input is empty
-    const handleCommentChange = (event) => setIsCommentEmpty(event.target.value.trim() === "");
+    const handleCommentChange = (event) => 
+        setIsCommentEmpty(event.target.value.trim() === "");
 
     return (
         <section className="comments">
@@ -82,6 +82,7 @@ const Comments = ({ comments }) => {
                     </button>
                 </div>
             </div>
+
             {/* Comments section */}
             <div className="comments__list">
                 {comments.map (({ comment, timestamp, name }) => (

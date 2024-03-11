@@ -1,4 +1,3 @@
-import React from "react";
 import "./Hero.scss";
 import PlayButton from "../../assets/images/icons/play.svg";
 import FullscreenButton from "../../assets/images/icons/fullscreen.svg";
@@ -29,7 +28,7 @@ const Hero = ({ mainVideo }) => {
                         </div>
                         <div className="hero__scrub-duration-container">
                             <p className="hero__scrub-duration">
-                                0:00 / 4:01
+                                0:00 / 4:01 {/* hard-coded for now since it's non-functional*/}
                             </p>
                         </div>
                     </div>

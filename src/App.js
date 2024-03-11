@@ -48,15 +48,15 @@ const App = () => {
   // JSX for rendering the App component
   return (
     <div className="app">
-      {/* Displays Nav component */}
+      {/* Displays Header component */}
       <Header />
-      {/* Display the main video component */}
+      {/* Displays Hero component */}
       <Hero mainVideo={mainVideo} handleVideoClick={handleVideoClick} />
       <div className="app__video-details-container">
         <div className="app__video-details-text">
-          {/* Display main video description */}
+          {/* Displays main video description */}
           <VideoDetails mainVideo={mainVideo} />
-          {/* Display comments for the selected video */}
+          {/* Displays comments for the selected video */}
           <Comments comments={mainVideo.comments} />
         </div>
         <div className="app__video-details-thumbnails-container">
@@ -64,7 +64,7 @@ const App = () => {
               <hr className="app__divider" />
           </div>
           <div className="app__video-details-thumbnails">
-            {/* Display a list of videos on the side */}
+            {/* Displays a separate list of video thumbails */}
             <SideVideos videos={videos} mainVideo={mainVideo} handleVideoClick={handleVideoClick} />
           </div>
         </div>
