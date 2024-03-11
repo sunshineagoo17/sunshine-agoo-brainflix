@@ -44,10 +44,10 @@
 
     &__search-container {
         height: auto;
-        margin: 1rem 1rem 1rem 0;
+        margin: .8rem 1rem 1rem 0;
         display: flex;
         position: relative;
-
+        
         @include tablet {
             margin: 1rem 0;
         }
@@ -71,7 +71,7 @@
     }
     
     &__search-bar {
-        @include block-item(13rem, .8rem);
+        @include block-item(13rem, .62rem);
         @include body-copy-style;
         padding: .78rem;
         background-color: $octonary;
@@ -84,19 +84,25 @@
             color: $quinary;
             padding-left: 1.25rem;
 
-            @include tablet {
+            @include desktop {
+                @include block-item(13rem, 1.2rem);
                 padding-left: 1.75rem;
             }
         }
     
         &:active,
         &:focus {
-            @include block-item(13rem, .8rem);
+            @include block-item(13rem, .62rem);
             @include body-copy-style;
             outline: none;
             padding: .78rem;
             border: .125rem solid $secondary;
             border-radius: .25rem;  
+
+            @include desktop {
+                @include block-item(13rem, 1.2rem);
+                padding-left: 1.75rem;
+            }
         }
     }
 

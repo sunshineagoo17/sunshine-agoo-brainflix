@@ -3,11 +3,10 @@
 @use "../../styles/partials/mixins" as *;
 
 .videoDetails {
-    margin: -0.5rem 1rem 1rem 1rem;
+    margin: -.3rem 1rem 1rem 1rem;
 
     @include tablet {
-        margin-left: 2.25rem;
-        margin-right: 2.25rem;
+        margin: -.3rem 2.25rem 1.3rem 2.25rem;
     }
 
     @include desktop {
@@ -24,14 +23,14 @@
         @include heading-style;
         font-size: 1.5rem;
         color: $primary;
-        line-height: 1.85rem;
+        line-height: 1.95rem;
         letter-spacing: .015rem;
         margin-bottom: 1rem;
 
         @include tablet {
             @include bold-heading-style;
             font-size: 1.925rem;
-            margin-top: 2.5rem;
+            margin-top: 2.1rem;
             margin-bottom: .25rem;
         }
 
@@ -184,8 +183,8 @@
         @include body-copy-style;
         color: $quinary;
         font-size: .803rem;
-        padding-bottom: .5rem;
-        line-height: 1.2rem;
+        padding-bottom: .3rem;
+        line-height: 1.135rem;
 
         @include tablet {
             font-size: .87rem;

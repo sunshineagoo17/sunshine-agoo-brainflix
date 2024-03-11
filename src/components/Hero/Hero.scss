@@ -51,7 +51,7 @@
 
     &__play-overlay {
         @include block-item(1.375rem, .938rem); 
-        background-color: rgba($quinary, 0.5);
+        background-color: rgba($quinary, .5);
         border-radius: .25rem;
         display: flex;
         justify-content: center;
@@ -76,7 +76,7 @@
 
     &__scrub-overlay {
         @include block-item(12.438rem, .938rem); 
-        background-color: rgba($quinary, 0.5);
+        background-color: rgba($quinary, .5);
         border-radius: .25rem;
         display: flex;
         justify-content: space-between;
@@ -122,7 +122,7 @@
 
     &__video-buttons-container-overlay {
         @include block-item(2.188rem, .938rem); 
-        background-color: rgba($quinary, 0.5);
+        background-color: rgba($quinary, .5);
         border-radius: .25rem;
         display: flex;
         justify-content: space-between;
