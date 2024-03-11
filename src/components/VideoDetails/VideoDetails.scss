@@ -10,8 +10,7 @@
     }
 
     @include desktop {
-        margin-left: 6.623rem;
-        margin-right: 0;
+        margin: 0 0 1.3rem 6.623rem;
     }
 
     &__video-title-container {
@@ -206,6 +205,10 @@
         @include tablet {
             @include bold-heading-style;
             font-size: .88rem;
+        }
+
+        @include desktop {
+            margin-top: 2.1rem;
         }
     }
 }

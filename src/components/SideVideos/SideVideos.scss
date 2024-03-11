@@ -15,8 +15,7 @@
         }
 
         @include desktop {
-            padding-left: 1.5rem;
-            padding-right: 3.25rem;
+            padding: .4rem 3.25rem 1rem 1.5rem;
         }
 
         @include large-desktop {
@@ -37,6 +36,10 @@
         @include tablet {
             @include block-item(6.8rem, 4rem);
             margin-bottom: 1.25rem;
+        }
+
+        @include desktop {
+            margin-bottom: 1.36rem;
         }
     }
 
