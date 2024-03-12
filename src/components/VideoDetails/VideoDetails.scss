@@ -66,7 +66,7 @@
         @include tablet {
             display: flex; 
             flex-direction: row;
-            width: 11.4rem;
+            width: auto;
             align-items: baseline;
             justify-content: space-between;
         }
@@ -87,13 +87,18 @@
 
     &__timestamp {
         @include body-copy-style;
-            font-size: .8rem;
+            font-size: .85rem;
             color: $tertiary;
         
         @include tablet {
             font-size: .75rem;
             margin-bottom: 0;
             margin-top: 0;
+            padding-left: 2.15rem;
+        }
+
+        @include desktop {
+            padding-left: 1.75rem;
         }
     }
 
@@ -143,8 +148,8 @@
         padding: 0 3rem 0 .5rem;
 
         @include tablet {
-            padding: 0 0 0 .5rem;
-            font-size: .75rem;
+            padding: 0 0 0 .7rem;
+            font-size: .7rem;
         }
     }
 
