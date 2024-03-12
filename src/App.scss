@@ -10,6 +10,10 @@
 @import "./components/Comments/Comments.scss";
 @import "./components/SideVideos/SideVideos.scss";
 
+body {
+    margin: 0;
+}
+
 .app {
     &__video-details-container {
         @include desktop {
