@@ -11,13 +11,13 @@ import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 
 const Header = () => {
     // State for tracking user typing status and hover status
-    const [userIsTyping, updateTypingStatus] = useState(false);
+    const [userIsTyping, setUserIsTyping] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
     // Event handler for search input 
     const handleSearchInputChange = event => {
         const inputValue = event.target.value;
-        updateTypingStatus(inputValue.length > 0);
+        setUserIsTyping(inputValue.length > 0);
     };
 
     return (
