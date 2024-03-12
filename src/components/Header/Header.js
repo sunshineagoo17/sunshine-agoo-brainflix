@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 // Imports the stylesheet for the Header component
 import "./Header.scss";

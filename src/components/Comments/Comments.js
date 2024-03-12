@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 // Import TimeAgo function from the main App component
 import { TimeAgo } from "../../App";

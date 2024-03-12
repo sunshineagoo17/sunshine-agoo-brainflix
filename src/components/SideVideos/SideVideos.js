@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 // Imports the stylesheet for the SideVideos component
 import "./SideVideos.scss";
