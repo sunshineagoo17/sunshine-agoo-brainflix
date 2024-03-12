@@ -32,7 +32,7 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
             return text;
         }
 
-    // Truncate the text and add ellipsis if it exceeds the max length
+    // Truncate the text if it exceeds the max length
     return text.length > maxLength
         ? text.substr(0, text.lastIndexOf(" ", maxLength)).trim() + "..."
         : text;    
@@ -65,7 +65,7 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
                 {initialSideVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
                         <div className="sideVideos__thumbnail-info">
-                        {/* Created and added an inner wrapper for this unique video - to match the mockup */}
+                        {/* Created and added an inner wrapper for this specific video - to match the mockup */}
                         {video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? (
                             <div className="sideVideos__unique-wrapper" onClick={() =>  handleSideVideoClick(video)}>
                                 <img 
@@ -81,7 +81,7 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
                                 <img
                                     src={video.image}
                                     alt={video.title}
-                                    // Added a unique className for a the last video
+                                    // Added a unique className for the last video
                                     className={`sideVideos__thumbnail-image ${video.id === "76ca28c0-7dea-4553-887f-8e5129a80fc3" ? "sideVideos__unique-thumbnail-last-image" : ""}`}
                                 />
                             </div>

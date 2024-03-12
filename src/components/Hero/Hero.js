@@ -35,6 +35,7 @@ const Hero = ({ mainVideo }) => {
                         <div className="hero__scrub-duration-container">
                             <p className="hero__scrub-duration">
                                 0:00 /{" "} 
+                                {/* Displays the duration of the main video */}
                                 <span>{mainVideo.duration}</span> 
                             </p>
                         </div>

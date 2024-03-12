@@ -62,8 +62,8 @@ const Comments = ({ comments }) => {
                         className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""}`}
                         placeholder="Add a new comment"
                         autoComplete="off"
-                        onChange={handleCommentChange} 
-                        onBlur={() => setIsCommentEmpty(false)} 
+                        onChange={handleCommentChange} // Triggered whenever there is a change in the comment input field
+                        onBlur={() => setIsCommentEmpty(false)} // Triggered when the comment input field loses focus
                     />
                     {/* Comment button - for mobile */}
                     <div className="comments__button-container--bottom">
@@ -106,6 +106,7 @@ const Comments = ({ comments }) => {
 
             {/* Comments section */}
             <div className="comments__list">
+                {/* Maps over the comments array and renders each comment */}
                 {comments.map (({ comment, timestamp, name }) => (
                     <div key={timestamp} className="comments__item">
                         {/* Divider between comments */}
