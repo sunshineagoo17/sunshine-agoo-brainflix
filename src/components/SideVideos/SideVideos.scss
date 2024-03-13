@@ -41,6 +41,7 @@
         }
 
         @include desktop {
+            height: 4.065rem;
             margin-bottom: 1.36rem;
         }
     }
@@ -57,6 +58,10 @@
             min-width: 8.45rem;
             margin-left: -.625rem;
             clip-path: polygon(7% 0, 90% 0, 90% 100%, 7% 100%);
+        }
+
+        @include desktop {
+            height: 4.065rem;
         }
     }
     
@@ -131,7 +136,7 @@
 
         @include desktop {
             padding-top: 1rem;
-            padding-bottom: .4rem;
+            padding-bottom: .2rem;
         }
     }
 

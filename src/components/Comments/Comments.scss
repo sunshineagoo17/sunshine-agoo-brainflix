@@ -16,10 +16,12 @@
         @include tablet {
             margin: 0 2.25rem;
             align-items: center;
+            width: auto;
         }
 
         @include desktop {
             margin-left: 5.6rem;
+            width: auto;
         }
     }
 
@@ -208,8 +210,7 @@
         }
 
         @include desktop {
-            padding-right: 0;
-            padding-left: 0;
+            padding: .35rem 0 .25rem 0;
             margin-left: 6.65rem;
         }
 
@@ -243,7 +244,7 @@
         }
 
         @include desktop {
-            margin: .75rem 1.34rem 0.5rem .65rem;
+            margin: .75rem 1.34rem 0.735rem .65rem;
         }
 
         @include large-desktop {

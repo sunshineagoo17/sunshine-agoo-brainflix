@@ -38,6 +38,7 @@
         @include desktop {
             font-size: 2rem;
             letter-spacing: 0;
+            margin-top: 2.25rem;
         }
     }
 
@@ -208,6 +209,7 @@
         @include desktop {
             margin-right: 1.25rem;
             margin-bottom: 1.75rem;
+            line-height: 1.38rem;
             padding-right: 0;
         }
     }
@@ -223,7 +225,7 @@
         }
 
         @include desktop {
-            margin-top: 2.1rem;
+            margin-top: 2.3rem;
         }
     }
 }
