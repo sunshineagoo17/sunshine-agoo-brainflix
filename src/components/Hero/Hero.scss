@@ -19,10 +19,10 @@
         justify-items: center;
 
         @include tablet {
-            @include block-item(auto, 24.25rem);
+            height: 24.45rem;
 
             @include desktop {
-                @include block-item(auto, 29.6rem);
+                height: 29.6rem
             }
         }
     }
@@ -39,8 +39,8 @@
         align-items: center;
 
         @include tablet {
-            @include block-item(auto, auto);
-            top: 91.5%;
+            height: .89rem;
+            top: 92%;
             gap: .5rem;
 
             @include desktop {
@@ -109,10 +109,11 @@
         width: 10.2rem;
         border: none;
         border-top: .125rem solid $quinary;
+        border-radius: .25rem;
 
         @include tablet {
             width: 28.5rem;
-            border-top: .15rem solid $quinary;
+            border-top: .27rem solid $quinary;
 
             @include desktop {
                 width: 35.5rem;
@@ -156,7 +157,7 @@
         @include block-item(.835rem, .835rem); 
 
         @include tablet {
-            @include block-item(1.5rem, 1.5rem);
+            @include block-item(1.35rem, 1.35rem);
 
             @include desktop {
                 @include block-item(1.4rem, 1.4rem);

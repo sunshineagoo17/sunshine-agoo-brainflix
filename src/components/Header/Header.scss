@@ -25,6 +25,16 @@
     
     &__logo {
         @include block-item(7.2rem, auto);
+
+        @include tablet {
+            margin-bottom: 0;
+        }
+    }
+
+    &__link {
+        @include tablet {
+            height: 1.466rem;
+        }
     }
 
     &__search-list {
@@ -35,7 +45,7 @@
         margin: 0;
 
         @include tablet {
-            width: 30rem;
+            width: 29.8rem;
         
             @include desktop {
                 width: 30.5rem;
@@ -80,7 +90,7 @@
         border-radius: .25rem;
 
         @include tablet {
-            height: .8rem;
+            @include block-item(13.3rem, .8rem);
         }
     
         &::placeholder {
@@ -108,7 +118,7 @@
             border-radius: .25rem; 
             
             @include tablet {
-                height: .8rem;
+                @include block-item(13.3rem, .8rem);
             }
         }
     }
@@ -164,6 +174,10 @@
 
         &:active {
             transform: scale(.95); // Scales down the button on active state
+        }
+
+        @include tablet {
+            @include button-style(9.65rem, 2.5rem);
         }
         
         @include desktop {

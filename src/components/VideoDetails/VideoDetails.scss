@@ -7,7 +7,7 @@
     margin: -.25rem 1rem 1.1rem 1rem;
 
     @include tablet {
-        margin: -.3rem 2.25rem 1.3rem 2.25rem;
+        margin: -.35rem 2.25rem 1.3rem 2.25rem;
     }
 
     @include desktop {
@@ -29,9 +29,9 @@
 
         @include tablet {
             @include bold-heading-style;
-            font-size: 1.925rem;
+            font-size: 1.91rem;
             margin-top: 2.1rem;
-            margin-bottom: .25rem;
+            margin-bottom: .2rem;
             letter-spacing: .04rem;
         }
 
@@ -57,7 +57,6 @@
 
         @include tablet {
             height: 2rem;
-            padding-bottom: .25rem;
             align-items: last baseline;
         }
     }
@@ -203,7 +202,7 @@
         @include tablet {
             font-size: .87rem;
             line-height: 1.37rem;
-            padding: .5rem 1.25rem 1.1rem 0;
+            padding: .6rem 1.25rem .87rem 0;
         }
 
         @include desktop {

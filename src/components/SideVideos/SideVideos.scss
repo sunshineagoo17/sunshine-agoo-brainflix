@@ -124,6 +124,8 @@
         margin-bottom: .625rem;
 
         @include tablet {
+            margin-top: .8rem;
+            margin-bottom: .92rem;
             padding: .75rem 0 .79rem 0;
         }
 
