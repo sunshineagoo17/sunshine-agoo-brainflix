@@ -4,7 +4,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .videoDetails {
-    margin: -.3rem 1rem 1rem 1rem;
+    margin: -.25rem 1rem 1.1rem 1rem;
 
     @include tablet {
         margin: -.3rem 2.25rem 1.3rem 2.25rem;
@@ -23,7 +23,7 @@
         @include heading-style;
         font-size: 1.5rem;
         color: $primary;
-        line-height: 1.95rem;
+        line-height: 1.975rem;
         letter-spacing: .015rem;
         margin-bottom: 1rem;
 
@@ -76,6 +76,7 @@
         @include heading-style; 
         font-size: .85rem;
         color: $quinary;
+        margin-bottom: .4rem;
 
         @include tablet {
             @include bold-heading-style;
@@ -89,6 +90,7 @@
         @include body-copy-style;
             font-size: .85rem;
             color: $tertiary;
+            margin-top: .8rem;
         
         @include tablet {
             font-size: .75rem;
@@ -194,7 +196,8 @@
         @include body-copy-style;
         color: $quinary;
         font-size: .803rem;
-        padding-bottom: .3rem;
+        margin-top: .9rem;
+        margin-bottom: 1.1rem;
         line-height: 1.135rem;
 
         @include tablet {
@@ -213,6 +216,7 @@
     &__comments-counter {
         @include heading-style;
         font-size: .85rem;
+        margin: 0;
 
         @include tablet {
             @include bold-heading-style;

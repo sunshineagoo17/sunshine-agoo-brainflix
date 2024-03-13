@@ -15,7 +15,7 @@
     }
 
     &__main-video-image {
-        @include block-item(auto, 11.2rem); 
+        @include block-item(auto, 11.35rem); 
         justify-items: center;
 
         @include tablet {
@@ -28,9 +28,9 @@
     }
 
     &__overlay-container {
-        @include block-item(auto, .938rem); 
+        @include block-item(auto, .915rem); 
         position: absolute;
-        top: 91%;
+        top: 92%;
         left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
@@ -51,7 +51,7 @@
     }
 
     &__play-overlay {
-        @include block-item(1.375rem, .938rem); 
+        @include block-item(1.375rem, .915rem); 
         background-color: rgba($quinary, .5);
         border-radius: .25rem;
         display: flex;
@@ -64,7 +64,7 @@
     }
 
     &__play-button {
-        @include block-item(.6rem, .6rem); 
+        @include block-item(.45rem, .45rem); 
             
         @include tablet {
             @include block-item(.85rem, .85rem); 
@@ -76,7 +76,7 @@
     }
 
     &__scrub-overlay {
-        @include block-item(12.438rem, .938rem); 
+        @include block-item(12.438rem, .915rem); 
         background-color: rgba($quinary, .5);
         border-radius: .25rem;
         display: flex;
@@ -96,8 +96,8 @@
     }
 
     &__scrub-duration {
-        @include heading-style;
-        font-size: .45rem;
+        @include body-copy-style;
+        font-size: .37rem;
         color: $quaternary;
 
         @include tablet {
@@ -106,7 +106,7 @@
     }
 
     &__scrub-divider {
-        width: 9.5rem;
+        width: 10.2rem;
         border: none;
         border-top: .125rem solid $quinary;
 
@@ -122,7 +122,7 @@
     }
 
     &__video-buttons-container-overlay {
-        @include block-item(2.188rem, .938rem); 
+        @include block-item(2.188rem, .915rem); 
         background-color: rgba($quinary, .5);
         border-radius: .25rem;
         display: flex;
@@ -153,7 +153,7 @@
     }
 
     &__fullscreen-button {
-        @include block-item(.875rem, .875rem); 
+        @include block-item(.835rem, .835rem); 
 
         @include tablet {
             @include block-item(1.5rem, 1.5rem);

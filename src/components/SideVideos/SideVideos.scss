@@ -45,9 +45,9 @@
         }
     }
 
-    // Style for second image from the side videos
+    // Unique style for second image from the side videos - to match the mockup
     &__unique-thumbnail-umbrellas-image {
-        @include block-item(7.7rem, 3.75rem);
+        @include block-item(7.7rem, 3.725rem);
         background-color: $septenary;
         margin-left: -.5rem;
         clip-path: polygon(7% 0, 100% 0, 100% 100%, 7% 100%);
@@ -64,6 +64,7 @@
     &__unique-wrapper {
         height: 3.75rem;
         overflow: hidden;
+        margin-bottom: .775rem;
         min-width: 6.3rem;
         max-width: 6.3rem;
         border-radius: .25rem;
@@ -119,6 +120,8 @@
         font-size: .75rem;
         text-transform: uppercase;
         padding: .5rem 0;
+        margin-top: .72rem;
+        margin-bottom: .625rem;
 
         @include tablet {
             padding: .75rem 0 .79rem 0;

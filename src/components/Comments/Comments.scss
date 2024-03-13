@@ -71,13 +71,13 @@
     }
 
     &__textarea {
-        @include block-item(13.5rem, 4.6rem);
+        @include block-item(13.5rem, 4.7rem);
         @include body-copy-style;
         background-color: $octonary;
         border: .063rem solid $septenary;
         border-radius: .25rem;
         padding: .6rem;
-        margin-top: .3rem;
+        margin-top: .2rem;
         margin-bottom: .75rem;
         resize: none;
 
@@ -131,7 +131,7 @@
 
     &__button--bottom {
         @include heading-style;
-        @include button-style(14.75rem, 2.25rem);
+        @include button-style(14.75rem, 2.24rem);
         align-items: center;
         transition: background-color .3s, transform .3s; // Added transition effect for button interaction
     
@@ -274,11 +274,11 @@
 
     &__text {
         @include body-copy-style;
-        line-height: 1.15rem;
+        line-height: 1.13rem;
         color: $quinary;
         font-size: .803rem;
         margin-top: .5rem;
-        margin-bottom: .25rem;
+        margin-bottom: .05rem;
 
         @include tablet {
             font-size: .868rem;
