@@ -241,9 +241,11 @@
         @include tablet {
             margin-top: .77rem;
             margin-bottom: .7rem;
+            width: 100%;
         }
 
         @include desktop {
+            width: auto;
             margin: .75rem 1.34rem 0.735rem .65rem;
         }
 
