@@ -237,20 +237,18 @@
         flex-direction: row;
         margin-top: 0;
         margin-bottom: .25rem;
+        width: 100%;
 
         @include tablet {
             margin-top: .77rem;
             margin-bottom: .7rem;
-            width: 100%;
         }
 
         @include desktop {
-            width: auto;
             margin: .75rem 1.34rem 0.735rem .65rem;
         }
 
         @include large-desktop {
-            width: 100%;
             margin-left: .55rem;
         }
     }
@@ -333,6 +331,10 @@
 
     &__commenter-info-container {
         width: 100%;
+
+        @include desktop {
+            margin-right: 1.85rem;
+        }
 
         @include large-desktop {
             margin-right: 1.8rem;
