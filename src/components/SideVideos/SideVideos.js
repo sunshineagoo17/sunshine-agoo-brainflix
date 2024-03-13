@@ -52,10 +52,10 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
 
     return (
         <div className="sideVideos">
+            <div className="sideVideos__divider-container">
+                <hr className="sideVideos__divider" />
+            </div>
             <div className="sideVideos__videos-container">
-                <div className="sideVideos__divider-container">
-                    <hr className="sideVideos__divider" />
-                </div>
                 <div className="sideVideos__title-container">
                     <h3 className="sideVideos__header-title">
                         Next Videos

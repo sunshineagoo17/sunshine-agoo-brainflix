@@ -113,10 +113,18 @@
     }
 
     &__divider {
+        margin-left: 1rem;
         margin-top: 0;
-        width: 100%;
+        width: auto;
         border: none;
         border-top: .1rem solid $septenary;
+
+        @include tablet {
+            width: auto;
+            margin-left: 2.25rem;
+            margin-right: 2.25rem;
+            margin-top: .2rem;
+        }
     }
 
     &__header-title {
@@ -125,11 +133,11 @@
         font-size: .75rem;
         text-transform: uppercase;
         padding: .5rem 0;
-        margin-top: .72rem;
-        margin-bottom: .625rem;
+        margin-top: .2rem;
+        margin-bottom: .74rem;
 
         @include tablet {
-            margin-top: .8rem;
+            margin-top: .1rem;
             margin-bottom: .92rem;
             padding: .75rem 0 .79rem 0;
         }
