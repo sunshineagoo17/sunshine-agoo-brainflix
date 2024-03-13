@@ -133,7 +133,7 @@
         @include heading-style;
         @include button-style(14.75rem, 2.25rem);
         align-items: center;
-        transition: background-color .3s, transform .3s;
+        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
     
         &:hover,
         &:active {
@@ -141,7 +141,7 @@
         }
 
         &:active {
-            transform: scale(.95);
+            transform: scale(.95); // Scales down the button on active state
         }
     }
 
@@ -163,7 +163,7 @@
         @include heading-style;
         @include button-style(10rem, 2.5rem);
         align-items: center;
-        transition: background-color .3s, transform .3s;
+        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
 
         &:hover,
         &:active {
@@ -171,7 +171,7 @@
         }
 
         &:active {
-            transform: scale(.95);
+            transform: scale(.95); // Scales down the button on active state
         }
         
         @include desktop {

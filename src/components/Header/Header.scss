@@ -155,7 +155,7 @@
     &__upload-button--right {
         @include heading-style;
         @include button-style(9.85rem, 2.5rem);
-        transition: background-color .3s, transform .3s;
+        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
 
         &:hover,
         &:active {
@@ -163,7 +163,7 @@
         }
 
         &:active {
-            transform: scale(.95);
+            transform: scale(.95); // Scales down the button on active state
         }
         
         @include desktop {
@@ -175,7 +175,7 @@
     &__upload-button--bottom {
         @include heading-style;
         @include button-style(18rem, 2.5rem);
-        transition: background-color .3s, transform .3s;
+        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
 
         &:hover,
         &:active {
@@ -183,7 +183,7 @@
         }
 
         &:active {
-            transform: scale(.95);
+            transform: scale(.95); // Scales down the button on active state
         }
     }
 
