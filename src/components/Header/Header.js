@@ -39,7 +39,9 @@ const Header = () => {
                     {/* Hover effect applied */}
                     <button className={`nav__upload-button--right ${isHovered ? "hover" : ""}`}
                             onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}>
+                            onMouseLeave={() => setIsHovered(false)}
+                            aria-label="Upload"
+                    >
                         <div className="nav__upload-icon-container">
                             {/* Upload icon */}
                             <img src={UploadIcon} alt="upload icon" className="nav__upload-icon" />
@@ -62,7 +64,9 @@ const Header = () => {
                 {/* Hover effect applied */}
                 <button className={`nav__upload-button--bottom ${isHovered ? "hover" : ""}`}
                         onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}>
+                        onMouseLeave={() => setIsHovered(false)}
+                        aria-label="Upload"
+                >
                     <div className="nav__upload-icon-container">
                         {/* Upload icon */}
                         <img src={UploadIcon} alt="upload icon" className="nav__upload-icon" />

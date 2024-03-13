@@ -11,37 +11,40 @@ import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
 
 const Comments = ({ comments }) => {
-    // State for handling hover and empty comment
+    // State that manages the comment input value
+    const [commentValue, setCommentValue] = useState("");
+    // State that tracks hover state of the button
     const [isHovered, setIsHovered] = useState(false);
+    // State that indicates whether the comment input is empty
     const [isCommentEmpty, setIsCommentEmpty] = useState(false);
 
-    // Event handlers for the comment button click
+    // Event handlers for the button
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
-    // Event handler for the comment button click
+    // Event handler for comment button click
     const handleCommentButtonClick = () => {
-        // Get the comment input element by its ID
-        const commentInput = document.getElementById("input-comment");
-
-        // Check if the comment input is present and has no non-whitespace characters
-        const isEmpty = commentInput && commentInput.value.trim() === "";
-        
-        // Sets the state that indicates whether the comment is empty
+        // Check if the comment is empty
+        const isEmpty = commentValue.trim() === "";
         setIsCommentEmpty(isEmpty);
-
-        // Logs a message to the console if the comment is empty
-        console.log("You gotta add a comment.")
         
-        // If the comment isn't empty and the input element exists, clear the input value
-        if (!isEmpty && commentInput) {
-            commentInput.value = "";  
+        // Logs a message to the console if the comment is empty
+        if (!isEmpty) {
+            console.log("Submitted comment:", commentValue);
+            // Clears the input field after submission
+            setCommentValue("");
+        } else {
+            console.log("You gotta add a comment!");
         }
     };
     
-    // Function that updates the isCommentEmpty state based on whether the comment input is empty
-    const handleCommentChange = (event) => 
+    // Event handler for comment input change
+    const handleCommentChange = (event) => {
+        // Updates the comment value in the state
+        setCommentValue(event.target.value); 
+        // Check if the comment input is empty
         setIsCommentEmpty(event.target.value.trim() === "");
+    };
 
     return (
         <section className="comments">
@@ -62,8 +65,9 @@ const Comments = ({ comments }) => {
                         className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""}`}
                         placeholder="Add a new comment"
                         autoComplete="off"
-                        onChange={handleCommentChange} // Triggered whenever there is a change in the comment input field
-                        onBlur={() => setIsCommentEmpty(false)} // Triggered when the comment input field loses focus
+                        value={commentValue}
+                        onChange={handleCommentChange} // Event handler for input change
+                        onBlur={() => setIsCommentEmpty(false)} // Resets error state
                     />
                     {/* Comment button - for mobile */}
                     <div className="comments__button-container--bottom">
@@ -73,6 +77,7 @@ const Comments = ({ comments }) => {
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
                             onClick={handleCommentButtonClick}
+                            aria-label="Comment"
                         >
                             <div className="comments__button-icon-container">
                                 {/* Comment icon */}
@@ -92,6 +97,7 @@ const Comments = ({ comments }) => {
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                         onClick={handleCommentButtonClick}
+                        aria-label="Comment"
                     >
                         <div className="comments__button-icon-container">
                             {/* Comment icon */}
