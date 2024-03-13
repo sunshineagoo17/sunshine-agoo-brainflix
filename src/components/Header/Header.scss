@@ -135,7 +135,7 @@
         background-color: $septenary;
         flex-shrink: 0;
         object-fit: cover;
-        object-position: left center;
+        object-position: 16% center;
 
         @include tablet {
             @include block-item(2.5rem, 2.5rem);
