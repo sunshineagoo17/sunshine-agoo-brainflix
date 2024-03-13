@@ -33,6 +33,7 @@
         border-radius: .25rem;   
         color: $septenary;
         margin-bottom: .5rem;
+        cursor: pointer;
 
         @include tablet {
             @include block-item(6.8rem, 4rem);
