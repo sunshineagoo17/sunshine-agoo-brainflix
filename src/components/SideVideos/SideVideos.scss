@@ -170,11 +170,13 @@
         @include heading-style;
         font-size: .83rem;
         color: $primary;
+        line-height: 1.085rem;
         margin-bottom: .4rem;
         margin-top: 0;
 
         @include tablet {
             font-size: .89rem;
+            line-height: 1.2rem;
         }
 
         @include desktop {
