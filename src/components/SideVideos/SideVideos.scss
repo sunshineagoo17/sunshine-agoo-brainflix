@@ -106,6 +106,7 @@
 
     &__divider-container {
         display: block;
+        width: auto;
 
         @include desktop {
             display: none;
@@ -115,8 +116,8 @@
     &__divider {
         margin-left: 1rem;
         margin-top: 0;
-        width: auto;
         border: none;
+        margin-right: auto;
         border-top: .1rem solid $septenary;
 
         @include tablet {
