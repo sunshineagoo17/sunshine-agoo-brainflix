@@ -133,9 +133,15 @@
         @include heading-style;
         @include button-style(14.75rem, 2.25rem);
         align-items: center;
+        transition: background-color .3s, transform .3s;
     
-        &:hover {
+        &:hover,
+        &:active {
             background-color: $senary;
+        }
+
+        &:active {
+            transform: scale(.95);
         }
     }
 
@@ -157,13 +163,19 @@
         @include heading-style;
         @include button-style(10rem, 2.5rem);
         align-items: center;
+        transition: background-color .3s, transform .3s;
 
+        &:hover,
+        &:active {
+            background-color: $senary;
+        }
+
+        &:active {
+            transform: scale(.95);
+        }
+        
         @include desktop {
             @include button-style(9.27rem, 2.5rem);
-        }
-    
-        &:hover {
-            background-color: $senary;
         }
     }
 

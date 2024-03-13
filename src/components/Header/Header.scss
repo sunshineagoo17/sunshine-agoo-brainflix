@@ -155,23 +155,35 @@
     &__upload-button--right {
         @include heading-style;
         @include button-style(9.85rem, 2.5rem);
+        transition: background-color .3s, transform .3s;
+
+        &:hover,
+        &:active {
+            background-color: $senary;
+        }
+
+        &:active {
+            transform: scale(.95);
+        }
         
         @include desktop {
             width: 9.5rem;
             margin-left: .3rem;
-        }
-
-        &:hover {
-            background-color: $senary;
         }
     }
 
     &__upload-button--bottom {
         @include heading-style;
         @include button-style(18rem, 2.5rem);
-    
-        &:hover {
+        transition: background-color .3s, transform .3s;
+
+        &:hover,
+        &:active {
             background-color: $senary;
+        }
+
+        &:active {
+            transform: scale(.95);
         }
     }
 
