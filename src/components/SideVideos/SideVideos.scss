@@ -160,7 +160,7 @@
     &__title {
         @include heading-style;
         font-size: .83rem;
-        color: $quinary;
+        color: $primary;
         margin-bottom: .4rem;
         margin-top: 0;
 
@@ -176,7 +176,7 @@
     &__channel {
         @include body-copy-style;
         font-size: .803rem;
-        color: $quinary; 
+        color: $primary;
         margin: 0;
 
         @include tablet {

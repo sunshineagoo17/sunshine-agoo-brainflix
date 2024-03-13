@@ -75,7 +75,7 @@
     &__channel {
         @include heading-style; 
         font-size: .85rem;
-        color: $quinary;
+        color: $primary;
         margin-bottom: .4rem;
 
         @include tablet {
@@ -194,7 +194,7 @@
 
     &__description {
         @include body-copy-style;
-        color: $quinary;
+        color: $primary;
         font-size: .803rem;
         margin-top: .9rem;
         margin-bottom: 1.1rem;
@@ -217,6 +217,7 @@
     &__comments-counter {
         @include heading-style;
         font-size: .85rem;
+        color: $primary;
         margin: 0;
 
         @include tablet {
