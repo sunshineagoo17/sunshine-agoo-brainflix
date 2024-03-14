@@ -27,8 +27,8 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
 
     // Function to truncate text for mobile only
     const TruncateText = (text, maxLength, screenWidth) => {
-        // If the screen width is larger than a tablet, it returns the full text
-        if (screenWidth > 767) {
+        // If the screen width is larger than 446px, the full video title will be displayed
+        if (screenWidth > 446) {
             return text;
         }
 
