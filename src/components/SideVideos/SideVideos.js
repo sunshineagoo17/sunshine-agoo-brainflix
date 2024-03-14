@@ -5,15 +5,13 @@ import "./SideVideos.scss";
 
 const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
     // State to store the screen width
-    const [screenWidth, setScreenWidth] = useState(
-        window.innerWidth || document.documentElement.clientWidth
-    );
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     
     // Effect that dynamically updates the screen width state on window resize
     useLayoutEffect(() => {
         // Function that handles window resize and updates screen width state
         const handleResize = () => {
-            setScreenWidth(window.innerWidth || document.documentElement.clientWidth);
+            setScreenWidth(window.innerWidth);
         };
 
         // Attach the resize handler to the window's resize event
