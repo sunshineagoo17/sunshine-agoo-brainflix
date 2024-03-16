@@ -3,7 +3,7 @@ import { useState, useLayoutEffect } from "react";
 // Imports the stylesheet for the SideVideos component
 import "./SideVideos.scss";
 
-const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
+const SideVideos = ({ videos, mainVideoId, handleVideoClick }) => {
     // State to store the screen width
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     
@@ -38,15 +38,11 @@ const SideVideos = ({ videos, mainVideo, handleVideoClick }) => {
 
     // Function that handles click on a side video thumbnail
     const handleSideVideoClick = (sideVideo) => {
-        if (sideVideo.id === mainVideo.id) {
-            return;
-        }
-        
-        handleVideoClick(sideVideo);
+        handleVideoClick(sideVideo.id);
     };
 
     // Filter out the selected video from the initial side video list
-    const initialSideVideos = videos.filter(video => video.id !== mainVideo.id);
+    const initialSideVideos = videos.filter(video => video.id !== mainVideoId);
 
     return (
         <div className="sideVideos">

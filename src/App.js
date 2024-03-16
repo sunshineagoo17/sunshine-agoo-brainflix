@@ -37,23 +37,19 @@ const App = () => {
   // State to keep track of the list of videos
   const [videos, setVideos] = useState(VideoData);
   // State to track the selected video
-  const [mainVideo, setMainVideo] = useState(videos[0]);
+  const [mainVideoId, setMainVideoId] = useState(VideoData[0].id);
 
-  // Function that handles a video click event
-  const handleVideoClick = (video) => {
-    // Checks if the clicked videos is already selected
-    if (video.id === mainVideo.id) {
-      return;
-    }
+  // Find the main video details using mainVideoId
+  const mainVideoDetails = videos.find(video => video.id === mainVideoId);
 
-    // Updates the currently selected video
-    setMainVideo(video);
+  const handleVideoSelect = (selectedVideoId) => {
+    setMainVideoId(selectedVideoId);
 
-    // The initialVideos parameter represents the original state of the videos
+    // Ensures that the main video is at the front of the list and ensures that the list is unique
     setVideos(initialVideos => {
-      // Updates the 'videos' state, ensuring each video in the list is unique
-      const uniqueVideos = Array.from(new Set([mainVideo, ...initialVideos.filter(v => v.id !== video.id)]));
-      return uniqueVideos;
+      const newMainVideo = initialVideos.find(video => video.id === selectedVideoId);
+      const filteredVideos = initialVideos.filter(video => video.id !== selectedVideoId);
+      return [newMainVideo, ...filteredVideos];
     });
   };
 
@@ -63,13 +59,13 @@ const App = () => {
       {/* Displays Header component */}
       <Header />
       {/* Displays Hero component */}
-      <Hero mainVideo={mainVideo} handleVideoClick={handleVideoClick} />
+      <Hero mainVideo={mainVideoDetails} />
       <div className="app__video-details-container">
         <div className="app__video-details-text">
           {/* Displays main video description */}
-          <VideoDetails mainVideo={mainVideo} />
+          <VideoDetails mainVideo={mainVideoDetails} />
           {/* Displays comments for the selected video */}
-          <Comments comments={mainVideo.comments} />
+          <Comments comments={mainVideoDetails.comments} />
         </div>
         <div className="app__video-details-thumbnails-container">
           <div className="app__divider-container">
@@ -77,7 +73,7 @@ const App = () => {
           </div>
           <div className="app__video-details-thumbnails">
             {/* Displays a separate list of video thumbails */}
-            <SideVideos videos={videos} mainVideo={mainVideo} handleVideoClick={handleVideoClick} />
+            <SideVideos videos={videos.filter(video => video.id !== mainVideoId)} handleVideoClick={handleVideoSelect} />
           </div>
         </div>
       </div>
