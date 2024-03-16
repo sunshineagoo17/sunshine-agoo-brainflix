@@ -45,7 +45,7 @@ const App = () => {
   const handleVideoSelect = (selectedVideoId) => {
     setMainVideoId(selectedVideoId);
 
-    // Ensures that the main video is at the front of the list and ensures that the list is unique
+    // Updates the video list, setting the selected video as the main and filtering out its previous instance  
     setVideos(initialVideos => {
       const newMainVideo = initialVideos.find(video => video.id === selectedVideoId);
       const filteredVideos = initialVideos.filter(video => video.id !== selectedVideoId);

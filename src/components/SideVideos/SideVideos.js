@@ -4,10 +4,10 @@ import { useState, useLayoutEffect } from "react";
 import "./SideVideos.scss";
 
 const SideVideos = ({ videos, mainVideoId, handleVideoClick }) => {
-    // State to store the screen width
+    // State to store the screen width for responsive design adjustments
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     
-    // Effect that dynamically updates the screen width state on window resize
+    // UseLayoutEffect to update the screen width state dynamically upon window resizing
     useLayoutEffect(() => {
         // Function that handles window resize and updates screen width state
         const handleResize = () => {
@@ -41,7 +41,7 @@ const SideVideos = ({ videos, mainVideoId, handleVideoClick }) => {
         handleVideoClick(sideVideo.id);
     };
 
-    // Filter out the selected video from the initial side video list
+    // Excludes the currently selected video from the side videos list to avoid duplication
     const initialSideVideos = videos.filter(video => video.id !== mainVideoId);
 
     return (
@@ -55,11 +55,11 @@ const SideVideos = ({ videos, mainVideoId, handleVideoClick }) => {
                         Next Videos
                     </h3>
                 </div>
-                {/* Map through the initial side videos and render thumbnails */}
+                {/* Iterates over side videos to render each as a thumbnail, applying unique styling as needed */}
                 {initialSideVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
                         <div className="sideVideos__thumbnail-info">
-                        {/* Created and added an inner wrapper for this specific video - to match the mockup */}
+                        {/* Conditionally renders a unique wrapper for a specific video to match design mockup */}
                         {video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? (
                             <div className="sideVideos__unique-wrapper" onClick={() =>  handleSideVideoClick(video)}>
                                 <img 

@@ -10,11 +10,12 @@ import UploadIcon from "../../assets/images/icons/upload.svg";
 import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 
 const Header = () => {
-    // State for tracking user typing status and hover status
+    // State for tracking user typing status in the search bar to manage visibility
     const [userIsTyping, setUserIsTyping] = useState(false);
+    // State for tracking hover status over the buttons to apply hover effects dynamically
     const [isHovered, setIsHovered] = useState(false);
 
-    // Event handler for search input 
+    // Event handler for search input - tracks user typing to toggle search icon visibility
     const handleSearchInputChange = event => {
         const inputValue = event.target.value;
         setUserIsTyping(inputValue.length > 0);
@@ -28,7 +29,7 @@ const Header = () => {
             {/* Search bar and icons */}
             <div className="nav__search-list">
                 <div className="nav__search-container">
-                    {/* Search icon is only visible when the user is not typing */}
+                    {/* Search icon is only visible when the user is not typing in the search bar */}
                     {!userIsTyping && <img src={SearchIcon} alt="search icon" className="nav__search-icon" />}
                     {/* Search input */}
                     <input type="text" placeholder="Search" id="header-search" className="nav__search-bar" onChange={handleSearchInputChange}/>
@@ -36,7 +37,6 @@ const Header = () => {
 
                 {/* Upload button - for mobile only */}
                 <div className="nav__upload-button-container--right">
-                    {/* Hover effect applied */}
                     <button className={`nav__upload-button--right ${isHovered ? "hover" : ""}`}
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
@@ -61,7 +61,6 @@ const Header = () => {
 
             {/* Upload button - for tablet and desktop  */}
             <div className="nav__upload-button-container--bottom">
-                {/* Hover effect applied */}
                 <button className={`nav__upload-button--bottom ${isHovered ? "hover" : ""}`}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}

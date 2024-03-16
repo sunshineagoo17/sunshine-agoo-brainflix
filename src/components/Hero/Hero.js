@@ -16,9 +16,9 @@ const Hero = ({ mainVideo }) => {
                     className="hero__main-video-image"
                     poster={mainVideo.image}
                     alt={mainVideo.title}
-                    // controls - Added default controls since it's part of the requirements and was commented out since it doesn't match the mockup 
+                    // controls - Default vidoe controls are omitted and custom controls are provided to match the mockup 
                 />
-                {/* Custom controls added to match the mockup - it's non-functional */}
+                {/* Custom controls added (non-functional) */}
                 <div className="hero__overlay-container">
                     {/* Play button */}
                     <div className="hero__play-overlay">

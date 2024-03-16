@@ -6,7 +6,7 @@ import { TimeAgo } from "../../App";
 // Imports the stylesheet for the Comments component
 import "./Comments.scss";
 
-// Imported icon and image
+// Imported icon and avatar
 import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
 
@@ -22,9 +22,8 @@ const Comments = ({ comments }) => {
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
-    // Event handler for comment button click
+    // Handles comment submission and validates input for emptiness
     const handleCommentButtonClick = () => {
-        // Check if the comment is empty
         const isEmpty = commentValue.trim() === "";
         setIsCommentEmpty(isEmpty);
         
@@ -42,7 +41,7 @@ const Comments = ({ comments }) => {
     const handleCommentChange = (event) => {
         // Updates the comment value in the state
         setCommentValue(event.target.value); 
-        // Check if the comment input is empty
+        // Checks if the comment input is empty
         setIsCommentEmpty(event.target.value.trim() === "");
     };
 
