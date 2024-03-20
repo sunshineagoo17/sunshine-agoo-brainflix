@@ -45,7 +45,7 @@ const Header = () => {
                         type="text"
                         placeholder="Search"
                         id="header-search"
-                        className={`nav__search-bar ${searchValue ? "is-filled" : ""}`}
+                        className={`nav__search-bar ${searchValue ? "field--filled" : ""}`}
                         value={searchValue}
                         onChange={(e) => {
                             setSearchValue(e.target.value);

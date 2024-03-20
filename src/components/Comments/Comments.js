@@ -84,11 +84,12 @@ const Comments = () => {
                         {/* Textarea for entering comments */}
                         <textarea 
                             id="input-comment"
-                            className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""} ${isTextareaFocused ? "comments__focused" : ""} ${commentValue.trim() !== "" ? "comments__filled" : ""}`}
+                            className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""} ${isTextareaFocused ? "comments__focused" : ""} ${commentValue.trim() !== "" ? "comments--filled" : ""}`}
                             placeholder="Add a new comment"
                             autoComplete="off"
                             value={commentValue}
                             onChange={handleCommentChange} // Event handler for input change
+                            onFocus={handleTextareaFocus}
                             onBlur={() => { 
                                 // Resets focus and error states when moving away from the textarea
                                 setIsCommentEmpty(false);

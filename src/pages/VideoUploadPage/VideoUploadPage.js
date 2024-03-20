@@ -124,7 +124,7 @@ const VideoUploadPage = () => {
                                         id="videoTitle"
                                         name="title"
                                         placeholder="Add a title to your video"
-                                        className={`videoUploadPage__title-input ${titleValue.trim() ? "field__filled" : ""} ${isTitleEmpty ? "videoUploadPage__error" : ""} ${isTitleFocused ? "title__focused" : ""}`}
+                                        className={`videoUploadPage__title-input ${titleValue.trim() ? "field--filled" : ""} ${isTitleEmpty ? "videoUploadPage__error" : ""} ${isTitleFocused ? "title__focused" : ""}`}
                                         value={titleValue}
                                         onChange={handleInputChange}
                                         onFocus={handleTitleAreaFocus}
@@ -144,7 +144,7 @@ const VideoUploadPage = () => {
                                         id="videoDescription"
                                         name="description"
                                         placeholder="Add a description to your video"
-                                        className={`videoUploadPage__description-input ${descriptionValue.trim() ? "field__filled" : ""} ${isDescriptionEmpty ? "videoUploadPage__error" : ""} ${isDescriptionFocused ? "description__focused" : ""}`}
+                                        className={`videoUploadPage__description-input ${descriptionValue.trim() ? "field--filled" : ""} ${isDescriptionEmpty ? "videoUploadPage__error" : ""} ${isDescriptionFocused ? "description__focused" : ""}`}
                                         value={descriptionValue}
                                         onChange={handleTextareaChange}
                                         onFocus={handleDescriptionAreaFocus}
