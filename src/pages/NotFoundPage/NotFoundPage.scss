@@ -1,0 +1,159 @@
+// Import partials
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/mixins" as *;
+
+.notFoundPage {
+    display: flex;
+    flex-direction: column;
+
+    &__content-container { 
+        margin: 0 1rem;
+    }
+
+    &__nav-divider-container {
+        width: auto;
+        margin-top: -.25rem;
+    
+        @include tablet {
+            margin-top: -.1rem;
+        }
+    }
+
+    &__nav-divider {
+        @include block-item(auto, 100%);
+        border: .063rem solid $septenary;
+        margin-top: 0;
+    }
+
+    &__title {
+        @include heading-style;
+        font-size: 1.5rem;
+        color: $primary;
+        letter-spacing: .015rem;
+
+        @include tablet {
+            @include bold-heading-style;
+            font-size: 1.91rem;
+            margin: 1.8rem 1.25rem 1.7rem 1.25rem;
+            letter-spacing: .04rem;
+        }
+
+        @include desktop {
+            font-size: 2rem;
+            letter-spacing: 0;
+            margin-top: 1.75rem;
+            margin-left: 7rem;
+        }
+    }
+
+    &__body-copy {
+        @include body-copy-style;
+        color: $primary;
+        font-size: .803rem;
+        margin-top: .9rem;
+        margin-bottom: 1.1rem;
+        line-height: 1.135rem;
+
+        @include tablet {
+            font-size: .87rem;
+            line-height: 1.37rem;
+            margin: 1.5rem 3.25rem 1.25rem 1.25rem;
+        }
+
+        @include desktop {
+            margin: 1.25rem 3.25rem 1.5rem 7rem;
+            line-height: 1.38rem;
+            padding-right: 0;
+        }
+    }
+
+    &__developer-container {
+        @include block-item(auto, 18rem);
+        margin-right: 1rem;
+
+        @include tablet {
+            margin-left: 1.25rem;
+            height: 23rem;
+        }
+
+        @include desktop {
+            margin-left: 7rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__developer {
+        @include block-item(auto, 18rem);
+        background-color: $septenary;
+        border-radius: .25rem;
+
+        @include tablet {
+            height: 23rem;
+        }
+    }
+
+    &__homepage-link {
+        @include heading-style;
+        font-size: .85rem;
+        text-decoration: none;
+        color: $secondary;
+
+        &:hover {
+            background-color: $secondary;
+            border-radius: .25rem;
+            color: $quaternary;
+        }
+
+        &:active {
+            @include heading-style;
+            border-radius: .25rem;
+            background-color: $senary;
+            color: $quaternary;
+        }
+    }
+
+    &__divider-container--top {
+        display: none;
+        width: auto;
+
+        @include tablet {
+            display: block;
+            margin: 0 1.25rem .5rem 1.25rem;
+        }
+
+        @include desktop {
+            margin: 0 7.3rem 0 7rem;
+        }
+    }
+
+    &__divider--top {
+        @include block-item(auto, 100%);
+        border: .063rem solid $septenary;
+        margin-top: 0;
+        display: block;
+    }
+
+    &__divider-container--bottom {
+        display: none;
+        width: auto;
+
+        @include tablet {
+            display: block;
+            margin: 1.5rem 1.25rem 0 1.25rem;
+        }
+
+        @include desktop {
+            margin: 2rem 7.3rem 0 7rem;
+        }
+    }
+
+    &__divider--bottom {
+        @include tablet {
+            @include block-item(auto, 100%);
+            border: .063rem solid $septenary;
+            margin: 0;
+            display: block;
+        }
+    }
+}
