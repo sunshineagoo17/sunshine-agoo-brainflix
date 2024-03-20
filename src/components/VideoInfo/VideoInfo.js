@@ -1,7 +1,7 @@
 import { TimeAgo } from "../../App";
 
 // Imports the stylesheet for the VideoDetails component
-import "./VideoDetails.scss";
+import "./VideoInfo.scss";
 
 // Imported icons
 import ViewsIcon from "../../assets/images/icons/views.svg";
