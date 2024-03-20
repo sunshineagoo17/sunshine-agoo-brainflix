@@ -10,17 +10,21 @@
     &__form-container {
         display: flex;
         flex-direction: row;
-        width: 19rem;
-        margin: 0 1rem;
+        width: auto;
+        margin: 0 .5rem;
+
+        @include large-mobile {
+            width: 19rem;
+        }
 
         @include tablet {
-            margin: 0 2.25rem;
+            margin: 0 1.15rem;
             align-items: center;
             width: auto;
         }
 
         @include desktop {
-            margin-left: 5.6rem;
+            margin-left: 2.85rem;
             width: auto;
         }
     }
@@ -122,6 +126,10 @@
             @include large-desktop {
                 width: 24.5rem;
             }
+        }
+
+        &.comments__filled {
+            border-color: $septenary;  
         }
     }
 
@@ -377,6 +385,16 @@
         @include desktop {
             margin-right: 1rem;
             margin-left: 1.2rem;
+        }
+    }
+
+    &__delete-button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: .5rem;
+
+        @include desktop {
+            margin-top: .6rem;
         }
     }
 

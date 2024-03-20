@@ -1,78 +1,124 @@
-import { useState } from "react";
-
-// Import TimeAgo function from the main App component
-import { TimeAgo } from "../../App";
+import { useState, useContext } from "react";
+import { VideoContext, TimeAgo, GenerateRandomUsername } from "../VideoPageManager/VideoPageManager";
+import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
+import CommentIcon from "../../assets/images/icons/add_comment.svg";
+import DeleteIcon from "../../assets/images/icons/icon-delete.svg";
 
 // Imports the stylesheet for the Comments component
 import "./Comments.scss";
 
-// Imported icon and avatar
-import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
-import CommentIcon from "../../assets/images/icons/add_comment.svg";
+const Comments = () => {
+    // Get the video and comment functions from VideoContext
+    const { mainVideo, postComment, deleteComment } = useContext(VideoContext);
 
-const Comments = ({ comments }) => {
-    // State that manages the comment input value
-    const [commentValue, setCommentValue] = useState("");
-    // State that tracks hover state of the button
-    const [isHovered, setIsHovered] = useState(false);
-    // State that indicates whether the comment input is empty
-    const [isCommentEmpty, setIsCommentEmpty] = useState(false);
+    // States for handling comment form interactions
+    const [commentValue, setCommentValue] = useState(""); // Holds what's typed in the comment
+    const [isHovered, setIsHovered] = useState(false); // State for tracking hover state of the comment button
+    const [isCommentEmpty, setIsCommentEmpty] = useState(false); // State for checking if the comment input is empty (for validation)
+    const [isTextareaFocused, setIsTextareaFocused] = useState(false); // State to track if the textarea is focused
+    
+    //Updates the comment text
+    const handleCommentChange = (e) => {
+        const value = e.target.value;
+        setCommentValue(value); 
+        setIsCommentEmpty(false); // Always remove error when typing
+    };
+    
+    // Keeps track of whether the comment box is selected
+    const handleTextareaFocus = () => {
+        setIsTextareaFocused(true);
+    }
 
-    // Event handlers for the button
+    // Resets form states when clicking outside the form
+    const handleFormBlur = (e) => {
+        // Checks if the blur event is triggered by leaving the textarea
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+            // This means the user clicked outside the form
+            setIsCommentEmpty(false);
+            setIsTextareaFocused(false);
+        }
+    };
+
+    // Handles comment submission - prevents default form action, validates non-empty comment, and sets error state if empty
+    const handleCommentSubmit = async (e) => {
+        e.preventDefault();
+        if (!commentValue.trim()) {
+            setIsCommentEmpty(true);
+            console.log("You gotta add a comment.");
+            return;
+        }
+        
+        const username = GenerateRandomUsername(); // Generates a random username for the comment
+        const result = await postComment(mainVideo.id, commentValue.trim(), username); // Posts the comment
+        if (result.success) {
+            setCommentValue(""); // Clears the comment box on success
+            setIsCommentEmpty(false);
+        } else { // Log any error messages
+            console.log(result.message);
+        }
+    };
+
+    // Functions to handle mouse enter/leave for button hover effect
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
-    // Handles comment submission and validates input for emptiness
-    const handleCommentButtonClick = () => {
-        const isEmpty = commentValue.trim() === "";
-        setIsCommentEmpty(isEmpty);
-        
-        // Logs a message to the console if the comment is empty
-        if (!isEmpty) {
-            console.log("Submitted comment:", commentValue);
-            // Clears the input field after submission
-            setCommentValue("");
-        } else {
-            console.log("You gotta add a comment!");
-        }
-    };
-    
-    // Event handler for comment input change
-    const handleCommentChange = (event) => {
-        // Updates the comment value in the state
-        setCommentValue(event.target.value); 
-        // Checks if the comment input is empty
-        setIsCommentEmpty(event.target.value.trim() === "");
+    // Deletes a comment when you click the delete icon
+    const handleDeleteComment = async (commentId) => {
+        await deleteComment(mainVideo.id, commentId);
     };
 
     return (
         <section className="comments">
-            {/* Comment form */}
-            <div className="comments__form-container">
-                <div className="comments__avatar-container">
-                    {/* User avatar */}
-                    <img src={AvatarImg} alt="Mohan Muruge" className="comments__avatar-img"/>
-                </div>
-                <div className="comments__form">
-                    {/* Label for the comment input */}
-                    <label htmlFor="input-comment" className="comments__label">
-                        Join the conversation
-                    </label>
-                    {/* Textarea for entering comments */}
-                    <textarea 
-                        id="input-comment"
-                        className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""}`}
-                        placeholder="Add a new comment"
-                        autoComplete="off"
-                        value={commentValue}
-                        onChange={handleCommentChange} // Event handler for input change
-                        onBlur={() => setIsCommentEmpty(false)} // Resets error state
-                    />
-                    {/* Comment button - for mobile */}
-                    <div className="comments__button-container--bottom">
+            {/* Comment submission form */}
+            <form onBlur={handleFormBlur} onSubmit={handleCommentSubmit} className="comments__form-container">
+                <div className="comments__form-container">
+                    <div className="comments__avatar-container">
+                        {/* User avatar */}
+                        <img src={AvatarImg} alt="Mohan Muruge" className="comments__avatar-img" />
+                    </div>
+                    <div className="comments__form">
+                        {/* Label for the comment input */}
+                        <label htmlFor="input-comment" className="comments__label">
+                            Join the conversation
+                        </label>
+                        {/* Textarea for entering comments */}
+                        <textarea 
+                            id="input-comment"
+                            className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""} ${isTextareaFocused ? "comments__focused" : ""} ${commentValue.trim() !== "" ? "comments__filled" : ""}`}
+                            placeholder="Add a new comment"
+                            autoComplete="off"
+                            value={commentValue}
+                            onChange={handleCommentChange} // Event handler for input change
+                            onBlur={() => { 
+                                // Resets focus and error states when moving away from the textarea
+                                setIsCommentEmpty(false);
+                                setIsCommentEmpty(!commentValue.trim());
+                            }}
+                        />
+                        {/* Comment button */}
+                        <div className="comments__button-container--bottom">
+                            <button
+                                className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
+                                onMouseEnter={handleMouseEnter}
+                                onMouseLeave={handleMouseLeave}
+                                onClick={handleCommentButtonClick}
+                                aria-label="Comment"
+                            >
+                                <div className="comments__button-icon-container">
+                                    {/* Comment icon */}
+                                    <img src={CommentIcon} alt="Comment Icon" className="comments__icon" />
+                                </div>
+                                <div className="comments__copy">
+                                    Comment
+                                </div>
+                            </button>
+                        </div>                   
+                    </div>
+                    {/* Comment button */}
+                    <div className="comments__button-container--right">
                         {/* Button for submitting comments */}
                         <button
-                            className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
+                            className={`comments__button--right ${isHovered ? "hover" : ""}`}
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
                             onClick={handleCommentButtonClick}
@@ -86,40 +132,22 @@ const Comments = ({ comments }) => {
                                 Comment
                             </div>
                         </button>
-                    </div>                   
+                    </div>
                 </div>
-                {/* Comment button - for tablet and desktop */}
-                <div className="comments__button-container--right">
-                    {/* Button for submitting comments */}
-                    <button
-                        className={`comments__button--right ${isHovered ? "hover" : ""}`}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        onClick={handleCommentButtonClick}
-                        aria-label="Comment"
-                    >
-                        <div className="comments__button-icon-container">
-                            {/* Comment icon */}
-                            <img src={CommentIcon} alt="Comment Icon" className="comments__icon" />
-                        </div>
-                        <div className="comments__copy">
-                            Comment
-                        </div>
-                    </button>
-                </div>
-            </div>
+            </form>
 
-            {/* Comments section */}
+            {/* List of comments */}
             <div className="comments__list">
-                {/* Maps over the comments array and renders each comment */}
-                {comments.map (({ comment, timestamp, name }) => (
-                    <div key={timestamp} className="comments__item">
+                {/* Loop through each comment and display it */}
+                {mainVideo.comments.map (({ id, comment, timestamp, name }, index) => (
+                    <div key={index} className="comments__item">
                         {/* Divider between comments */}
                         <div className="comments__divider-container">
                             <hr className="comments__divider" />
                         </div>
-                        {/* Commenter info and timestamp */}
+                        {/* Each comment block */}
                         <div className="comments__list-container">
+                            {/* Placeholder for commenter's avatar */}
                             <div className="comments__avatar" />
                             <div className="comments__commenter-info-container">
                                 <div className="comments__commenter-info">
@@ -137,6 +165,16 @@ const Comments = ({ comments }) => {
                                 {/* Displays the comment text */}
                                 <div className="comments__single-container">
                                     <p className="comments__text">{comment}</p>
+                                </div>
+
+                                {/* Delete button */}
+                                <div className="comments__delete-button-container">
+                                    <img
+                                        src={DeleteIcon}
+                                        alt="Delete button"
+                                        className="comments__delete-button"
+                                        onClick={() => handleDeleteComment(id)}
+                                    />
                                 </div>
                             </div>
                         </div>
