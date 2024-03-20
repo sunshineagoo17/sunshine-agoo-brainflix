@@ -22,7 +22,7 @@ const VideoUploadPage = () => {
     // State for checking if the description input is empty (for validation)
     const [isDescriptionEmpty, setIsDescriptionEmpty] = useState(false);
     // State to track if the title input is focused
-    const [isTitleFocuse, setIsTitleFocused] = useState(false);
+    const [isTitleFocused, setIsTitleFocused] = useState(false);
     // State to track if the description input is focuse
     const [isDescriptionFocused, setIsDescriptionFocused] = useState(false);
 
@@ -94,30 +94,30 @@ const VideoUploadPage = () => {
             <div className="videoUploadPage__content-container">
                 <h1 className="videoUploadPage__title">Upload Video</h1>
 
-                {/* Top Divider - display only for mobile and desktop screens */}
-                <div className="videoUploadPage__divider-container-top">
-                    <hr className="videoUploadPage__divider-top" />
+                {/* Top Divider - displays only for mobile and desktop screens */}
+                <div className="videoUploadPage__divider-container--top">
+                    <hr className="videoUploadPage__divider--top" />
                 </div>
 
                 {/* Form for video upload inputs */}
                 <form onBlur={handleFormBlur} onSubmit={handleSubmit} className="videoUploadPage__form">
                     <div className="videoUploadPage__thumbnail-and-inputs-container">
-                        {/* Thumbnail Section */}
-                        <div className="videoUploadpage__thumbnail-section">
-                            <div className="videoUploadpage__thumbnail-label-container">
+                        {/* Thumbnail section */}
+                        <div className="videoUploadPage__thumbnail-section">
+                            <div className="videoUploadPage__thumbnail-label-container">
                                 <label htmlFor="videoThumbnail" className="videoUploadPage__thumbnail-label">
-                                    Video Thumbnail
+                                    Video Thumbnail   
                                 </label>
                             </div>
                             <div className="videoUploadPage__thumbnail-container">
-                                <img src={DefaultThumbnail} alt="biker video thumbnail" className="videoUploadPage__thumbnail" />
+                                <img src={DefaultThumbnail} alt="biker video thumbnail" className="videoUploadPage__thumbnail" /> 
                             </div>
                         </div>
                         <div className="videoUploadPage__title-and-description-container">
                             <div className="videoUploadPage__input-container">
                                 <div className="videoUploadPage__label-container--top">
                                     <label htmlFor="videoTitle" className="videoUploadPage__label--top">Title your video</label>
-                                </div>
+                                </div>        
                                     {/* Title Input */}
                                     <input
                                         type="text"
@@ -134,11 +134,11 @@ const VideoUploadPage = () => {
                                         }}
                                     />
                             </div>
-
+                            
                             <div className="videoUploadPage__input-container">
-                                <div className="videoUploadPage__label-container-bottom">
+                                <div className="videoUploadPage__label-container--bottom">
                                     <label htmlFor="videoDescription" className="videoUploadPage__label--bottom">Add a Video Description</label>
-                                </div>
+                                </div>    
                                     {/* Description Textarea */}
                                     <textarea
                                         id="videoDescription"
@@ -152,14 +152,14 @@ const VideoUploadPage = () => {
                                             setIsDescriptionFocused(false);
                                             setIsDescriptionEmpty(!descriptionValue.trim());
                                         }}
-                                    />    
+                                    />
                             </div>
                         </div>
                     </div>
 
                     {/* Bottom Divider - displays only for mobile and desktop screens */}
-                    <div className="videoUploadPage__divider-container-bottom">
-                        <hr className="videoUploadPage__divider-bottom" />
+                    <div className="videoUploadPage__divider-container--bottom">
+                        <hr className="videoUploadPage__divider--bottom" />
                     </div>
 
                     <div className="videoUploadPage__buttons-container">
@@ -167,10 +167,10 @@ const VideoUploadPage = () => {
                         <div className="videoUploadPage__button-publish-container">
                             {/* Hover effect applied */}
                             <button className={`videoUploadPage__button-publish ${isHovered ? "hover" : ""}`}
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                type="submit"
-                                aria-label="Publish"
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                    type="submit"
+                                    aria-label="Publish"
                             >
                                 <div className="videoUploadPage__publish-icon-container">
                                     {/* Publish icon */}
@@ -179,17 +179,17 @@ const VideoUploadPage = () => {
                                 <div className="videoUploadPage__publish-copy">
                                     Publish
                                 </div>
-                            </button>    
+                            </button>
                         </div>
                         {/* Button container for Cancel button */}
                         <div className="videoUploadPage__button-cancel-container">
                             {/* Hover effect applied */}
                             <button className={`videoUploadPage__button-cancel ${isHovered ? "hover" : ""}`}
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                                onClick={handleCancel}
-                                type="button"
-                                aria-label="Cancel"
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                    onClick={handleCancel}
+                                    type="button"
+                                    aria-label="Cancel"
                             >
                                 <div className="videoUploadPage__cancel-copy">
                                     Cancel
@@ -200,7 +200,7 @@ const VideoUploadPage = () => {
                 </form>
                 {/* Alert for successful upload */}
                 {showAlert && (
-                    <div className="alert">
+                    <div className="videoUploadPage__alert">
                         Video uploaded successfully!
                         <button onClick={handleCloseAlert}>Close</button>
                     </div>
@@ -210,4 +210,4 @@ const VideoUploadPage = () => {
     );
 };
 
-export default VideoUploadPage
+export default VideoUploadPage;

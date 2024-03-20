@@ -101,7 +101,6 @@ const Comments = () => {
                                 className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
-                                onClick={handleCommentButtonClick}
                                 aria-label="Comment"
                             >
                                 <div className="comments__button-icon-container">
@@ -121,7 +120,6 @@ const Comments = () => {
                             className={`comments__button--right ${isHovered ? "hover" : ""}`}
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
-                            onClick={handleCommentButtonClick}
                             aria-label="Comment"
                         >
                             <div className="comments__button-icon-container">

@@ -1,6 +1,6 @@
 import { TimeAgo } from "../VideoPageManager/VideoPageManager";
 
-// Imports the stylesheet for the VideoDetails component
+// Imports the stylesheet for the VideoInfo component
 import "./VideoInfo.scss";
 
 // Imported icons
@@ -15,7 +15,7 @@ const VideoInfo = ({ mainVideo }) => {
     const formattedTimestamp = TimeAgo(mainVideo.timestamp);
 
     // Calculates the number of comments. If there are no comments, it defaults to 0
-    const numOfComments = mainVideo.comments ? mainVideo.comments.lenth : 0;
+    const numOfComments = mainVideo.comments ? mainVideo.comments.length : 0;
 
     return (
         <section className="videoInfo">
@@ -24,7 +24,7 @@ const VideoInfo = ({ mainVideo }) => {
                 <h1 className="videoInfo__video-title">{mainVideo.title}</h1>
             </div>
             {/* Divider above video info */}
-            <div className="videoInfo__video-details-divider-container--top">
+            <div className="videoInfos__video-details-divider-container--top">
                 <hr className="videoInfo__video-details-divider--top" />
             </div>
             {/* Video info section */}
@@ -35,7 +35,7 @@ const VideoInfo = ({ mainVideo }) => {
                     <p className="videoInfo__timestamp">{formattedTimestamp}</p>
                 </div>
                 {/* Views and Likes */}
-                <div className="videoInfo__video-info--right">
+                <div className="videoInfo__video-details--right">
                     <div className="videoInfo__video-views-container">
                         <img src={ViewsIcon} alt="Views Icon" className="videoInfo__views-icon"/>
                         <p className="videoInfo__views">{mainVideo.views}</p>
@@ -54,7 +54,7 @@ const VideoInfo = ({ mainVideo }) => {
             <div className="videoInfo__video-details--bottom">
                 <p className="videoInfo__description">{mainVideo.description}</p>
             </div>
-            {/* Displays the number of comments */}
+            {/* Displays the total number of comments for the video */}
             <div className="videoInfo__video-comments-counter">
                 <p className="videoInfo__comments-counter">{numOfComments} Comments</p>
             </div>

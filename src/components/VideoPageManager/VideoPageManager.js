@@ -56,7 +56,8 @@ export const useAPIKey = () => {
             try {
                 // Request API key
                 const response = await axios.get(`${baseURL}/register`);
-                // Set API key in state            
+                // Set API key in state  
+                setAPIKey(response.data.api_key);          
             } catch (error) {
                 // Log fetch error
                 console.error("Error fetching API key:", error);
@@ -83,7 +84,7 @@ export const useFetchVideoData = () => {
         if (!apiKey) return; // Exit if apiKey is not available
         const fetchData = async () => {
             try {
-                const response = await axiosinstance.get("/videos", { params: { api_key: apiKey } });
+                const response = await axiosInstance.get("/videos", { params: { api_key: apiKey } });
                 // Update state with the fetched video list of videos
                 setVideos(response.data);
             } catch (error) {

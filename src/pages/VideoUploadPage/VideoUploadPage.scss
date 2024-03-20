@@ -14,7 +14,7 @@
             margin-right: 6rem;
         }
     }
-
+    
     &__nav-divider-container {
         width: auto;
         margin-top: -.25rem;
@@ -26,7 +26,7 @@
 
     &__nav-divider {
         @include block-item(auto, 100%);
-        border: .063rem solid $septenary;
+        border: .063rem solid $septenary;   
         margin-top: 0;
     }
 
@@ -37,13 +37,13 @@
         line-height: 1.975rem;
         letter-spacing: .015rem;
         margin: 1.25rem 1rem;
-    
+
         @include tablet {
             @include bold-heading-style;
             font-size: 1.91rem;
             margin: 2.5rem 2.25rem 1.85rem 2.25rem;
             letter-spacing: .04rem;
-        }        
+        }
 
         @include desktop {
             font-size: 2rem;
@@ -55,14 +55,14 @@
     &__thumbnail-label-container {
         margin-left: 1rem;
         margin-bottom: .25rem;
-    
+
         @include tablet {
             margin-left: 2.25rem;
         }
     }
 
     &__thumbnail-label {
-        @include heading-style;
+        @include heading-style; 
         color: $tertiary;
         font-size: .75rem;
         text-transform: uppercase;
@@ -92,7 +92,7 @@
         background-color: $septenary;
         object-fit: cover;
         object-position: center 37.5%;
-        border-radius: .25rem;
+        border-radius: .25rem;  
 
         @include tablet {
             @include block-item(18rem, 12rem);
@@ -103,7 +103,7 @@
         }
     }
 
-    &__divider-container-top {
+    &__divider-container--top {
         display: none;
         width: auto;
 
@@ -115,7 +115,7 @@
 
     &__divider--top {
         @include block-item(auto, 100%);
-        border: .063rem solid $septenary;
+        border: .063rem solid $septenary;   
         margin-top: 0;
         display: block;
     }
@@ -133,7 +133,7 @@
     &__divider--bottom {
         @include tablet {
             @include block-item(auto, 100%);
-            border: .063rem solid $septenary;
+            border: .063rem solid $septenary;   
             margin-top: 0;
             margin-bottom: 0;
             display: block;
@@ -144,7 +144,7 @@
     &__label-container--bottom {
         margin-left: 1rem;
         margin-bottom: .25rem;
-
+        
         @include tablet {
             margin-left: 2.25rem;
         }
@@ -164,7 +164,7 @@
 
     &__label--top,
     &__label--bottom {
-        @include heading-style;
+        @include heading-style; 
         color: $tertiary;
         font-size: .75rem;
         text-transform: uppercase;
@@ -189,7 +189,7 @@
             margin-left: .75rem;
             width: 40.5rem;
         }
-
+    
         &::placeholder {
             @include body-copy-style;
             font-size: .78rem;
@@ -200,7 +200,7 @@
                 padding-left: .4rem;
             }
         }
-        
+    
         &:active,
         &:focus {
             @include block-item(16.65rem, .22rem);
@@ -210,8 +210,8 @@
             outline: none;
             padding: 1rem .6rem;
             border: .125rem solid $secondary;
-            border-radius: .25rem;
-
+            border-radius: .25rem; 
+            
             @include tablet {
                 @include block-item(42.2rem, .37rem);
                 margin-left: 2.25rem;
@@ -224,7 +224,7 @@
         }
 
         &.field__filled {
-            border-color: $septenary;
+            border-color: $septenary;  
         }
     }
 
@@ -248,7 +248,7 @@
             width: 40.5rem;
             margin-left: .75rem;
         }
-
+    
         &::placeholder {
             @include body-copy-style;
             font-size: .78rem;
@@ -259,7 +259,7 @@
                 padding-left: .4rem;
             }
         }
-
+    
         &:active,
         &:focus {
             @include block-item(16.65rem, 4rem);
@@ -269,8 +269,8 @@
             outline: none;
             padding: .75rem .6rem;
             border: .125rem solid $secondary;
-            border-radius: .25rem;
-
+            border-radius: .25rem; 
+            
             @include tablet {
                 @include block-item(42.2rem, 3.9rem);
                 margin-left: 2.25rem;
@@ -283,7 +283,7 @@
         }
 
         &.field__filled {
-            border-color: $septenary;
+            border-color: $septenary;  
         }
     }
 
@@ -298,8 +298,8 @@
     &__button-publish {
         @include heading-style;
         @include button-style(18rem, 2.5rem);
-        transition: background-color .3s, transform .3s; // Added transition effect for button interaction 
-    
+        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
+
         &:hover,
         &:active {
             background-color: $senary;
@@ -329,7 +329,7 @@
         left: 50%;
         transform: translateX(-50%);
     }
-
+    
     &__publish-icon {
         @include block-item(1.3rem, auto);
         margin-top: .1rem;
@@ -341,7 +341,7 @@
 
     &__button-cancel-container {
         margin: 1.5rem 1rem 1rem 1rem;
-        
+
         @include tablet {
             margin: 0;
         }
@@ -359,9 +359,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
+        cursor: pointer;   
         transition: background-color .4s, transform .3s; // Added transition effect for button interaction
-        
+    
         &:hover,
         &:active {
             background-color: $octonary;
@@ -377,7 +377,7 @@
             @include block-item(9.65rem, 2.5rem);
         }
     }
-
+    
     &__error {
         border: .125rem solid $nonary;
     }
@@ -409,29 +409,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            z-index: 1000; // Ensures it's above other content
-            top: 5.125rem;
+            position: fixed; 
+            z-index: 1000; // Ensures it's above other content 
+            top: 5.125rem; 
             background-color: $octonary;
             border-radius: .25rem;
             margin-top: 1.25rem;
             padding: 1rem;
             color: $primary;
-            box-shadow: 0 .25rem .375rem rgba(0,0,0,.5);
+            box-shadow: 0 .25rem .375rem rgba(0,0,0,.5); 
 
             @include tablet {
                 top: 4.125rem;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translateX(-50%); 
+            }
+
+            @include desktop {
+                top: 3.1rem;
+                left: 50%;
+                transform: translateX(-50%); 
             }
         }
     }
-
+    
     &__alert button {
         @include heading-style;
         border-radius: .25rem;
         margin-left: .5rem;
-        background-color: $secondary;
+        background-color: $secondary; 
         color: $quaternary;
         text-transform: uppercase;
         border: none;

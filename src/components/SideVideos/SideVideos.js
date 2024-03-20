@@ -64,7 +64,7 @@ const SideVideos = ({ videos, mainVideo }) => {
                                     </div>
                                 ) : (
                                     // Container for defaul side video thumbnail
-                                    <div className="sideVideos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>
+                                    <div className="sideVideos__thumbnail-container">
                                         <img
                                             src={video.image}
                                             alt={video.title}
