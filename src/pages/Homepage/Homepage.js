@@ -6,7 +6,7 @@ import VideoInfo from "../../components/VideoInfo/VideoInfo";
 import Comments from "../../components/Comments/Comments";
 import SideVideos from "../../components/SideVideos/SideVideos";
 
-// Imports specific styling to the Homepage
+// Imports styling to the Homepage
 import "./Homepage.scss";
 
 const Homepage = () => {
