@@ -3,7 +3,7 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
-.videoDetails {
+.videoInfo {
     margin: -.25rem 1rem 1.1rem 1rem;
 
     @include tablet {
@@ -42,14 +42,14 @@
         }
     }
 
-    &__video-info-divider--bottom,
-    &__video-info-divider--top {
+    &__video-details-divider--bottom,
+    &__video-details-divider--top {
         width: auto;
         border: none;
         border-top: .1rem solid $septenary;    
     }
 
-    &__video-info--top{
+    &__video-details--top{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -62,7 +62,7 @@
         }
     }
 
-    &__video-info--left {
+    &__video-details--left {
         @include tablet {
             display: flex; 
             flex-direction: row;
@@ -104,7 +104,7 @@
         }
     }
 
-    &__video-info--right {
+    &__video-details--right {
         @include tablet {
             display: flex; 
             flex-direction: row;
@@ -184,7 +184,7 @@
         }
     }
 
-    &__video-info-divider--top {
+    &__video-details-divider--top {
         display: block;
 
         @include tablet {
