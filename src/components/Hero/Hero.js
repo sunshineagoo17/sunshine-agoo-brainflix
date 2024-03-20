@@ -11,12 +11,12 @@ const Hero = ({ mainVideo }) => {
         <section className="hero">
             {/* Render Main Video */}
             <div className="hero__main-video">
-                {/* Man video with custom controls */}
+                {/* Main video with custom controls */}
                 <video 
                     className="hero__main-video-image"
-                    poster={mainVideo.image}
-                    alt={mainVideo.title}
-                    // controls - Default vidoe controls are omitted and custom controls are provided to match the mockup 
+                    poster={mainVideo?.image} // Uses optional chaining to safely access the image property
+                    alt={mainVideo?.title} // Uses optional chaning to safely access the title property
+                    // controls - Added default controls since it's part of the requirements and was commented out since it doesn't match the mockup
                 />
                 {/* Custom controls added (non-functional) */}
                 <div className="hero__overlay-container">
@@ -36,7 +36,7 @@ const Hero = ({ mainVideo }) => {
                             <p className="hero__scrub-duration">
                                 0:00 /{" "} 
                                 {/* Displays the duration of the main video */}
-                                <span>{mainVideo.duration}</span> 
+                                <span>{mainVideo?.duration}</span> 
                             </p>
                         </div>
                     </div>
