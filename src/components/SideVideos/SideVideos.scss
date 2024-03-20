@@ -46,6 +46,11 @@
         }
     }
 
+    &__thumbnail {
+        display: flex;
+        flex-direction: row;
+    }
+
     // Unique style for second image from the side videos - to match the mockup
     &__unique-thumbnail-umbrellas-image {
         @include block-item(7.7rem, 3.725rem);

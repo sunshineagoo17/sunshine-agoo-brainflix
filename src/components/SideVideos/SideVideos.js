@@ -1,48 +1,40 @@
 import { useState, useLayoutEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Imports the stylesheet for the SideVideos component
 import "./SideVideos.scss";
 
-const SideVideos = ({ videos, mainVideoId, handleVideoClick }) => {
-    // State to store the screen width for responsive design adjustments
+const SideVideos = ({ videos, mainVideo }) => {
+    // State to hold the current screen width, used for responsive design decisions
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     
-    // UseLayoutEffect to update the screen width state dynamically upon window resizing
+    // UseLayoutEffect to handle dynamic screen width updates on window resize
     useLayoutEffect(() => {
-        // Function that handles window resize and updates screen width state
         const handleResize = () => {
-            setScreenWidth(window.innerWidth);
+            setScreenWidth(window.innerWidth); // Updates state with new screen width
         };
 
-        // Attach the resize handler to the window's resize event
-        window.onresize = handleResize;
+        // Add event listener for window resize to update screenWidth state
+        window.addEventListener("resize", handleResize);
 
-        // Remove the resize handler when the component is not in use
-        return () => {
-            window.onresize = null;
-        };       
-    }, []);
+        // Cleanup function to remove the even listener when the component unmounts
+        return () => window.removeEventListener("resize", handleResize);       
+    }, []); // Empty dependency array ensures this runs only once at mount
 
-    // Function to truncate text for mobile only
+   // Truncates text to the specified maxLength if the screen width is below a threshold (mobile view)
     const TruncateText = (text, maxLength, screenWidth) => {
-        // If the screen width is larger than 446px, the full video title will be displayed
-        if (screenWidth > 446) {
-            return text;
-        }
-
-    // Truncate the text if it exceeds the max length
-    return text.length > maxLength
-        ? text.substr(0, text.lastIndexOf(" ", maxLength)).trim() + "..."
-        : text;    
+        return screenWidth <= 446 && text.length > maxLength
+            ? `${text.substr(0, maxLength).trim()}...`
+            : text;
     };
 
-    // Function that handles click on a side video thumbnail
-    const handleSideVideoClick = (sideVideo) => {
-        handleVideoClick(sideVideo.id);
-    };
+    // Do not render the component if there's no mainVideo selected or the video list is empty
+    if (!mainVideo || videos.length === 0) {
+        return null;
+    }
 
-    // Excludes the currently selected video from the side videos list to avoid duplication
-    const initialSideVideos = videos.filter(video => video.id !== mainVideoId);
+    // Filter out the main video from the list of side videos
+    const filteredVideos = videos.filter(video => video.id !== mainVideo.Id);
 
     return (
         <div className="sideVideos">
@@ -50,43 +42,45 @@ const SideVideos = ({ videos, mainVideoId, handleVideoClick }) => {
                 <hr className="sideVideos__divider" />
             </div>
             <div className="sideVideos__videos-container">
+                {/* Title for side videos section */}
                 <div className="sideVideos__title-container">
-                    <h3 className="sideVideos__header-title">
-                        Next Videos
-                    </h3>
+                    <h3 className="sideVideos__header-title">Next Videos</h3>
                 </div>
-                {/* Iterates over side videos to render each as a thumbnail, applying unique styling as needed */}
-                {initialSideVideos.map((video) => (
+                {/* List of side video thumbnails */}
+                {filteredVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
-                        <div className="sideVideos__thumbnail-info">
-                        {/* Conditionally renders a unique wrapper for a specific video to match design mockup */}
-                        {video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? (
-                            <div className="sideVideos__unique-wrapper" onClick={() =>  handleSideVideoClick(video)}>
-                                <img 
-                                    src={video.image}
-                                    alt={video.title}
-                                    // Added a unique className for this specific video - to match the mockup
-                                    className={`sideVideos__thumbnail-image sideVideos__unique-thumbnail-umbrellas-image`}
-                                />
+                        {/* Wraps the video thumbnail in a link component to make it clickable, leading to the video's detail page */}
+                        <Link to={`/video/${video.id}`} className="sideVideos__thumbnail-link">
+                            <div className="sideVideos__thumbnail-info">
+                                {/* Created and added an inner wrapper for this specific video - to match the mockup */}
+                                {video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? (
+                                    <div className="sideVideos__unique-wrapper">
+                                        <img 
+                                            src={video.image}
+                                            alt={video.title}
+                                            // Added a unique className for this specific video - to match the mockup
+                                            className={`sideVideos__thumbnail-image sideVideos__unique-thumbnail-umbrellas-image`}
+                                        />
+                                    </div>
+                                ) : (
+                                    // Container for defaul side video thumbnail
+                                    <div className="sideVideos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>
+                                        <img
+                                            src={video.image}
+                                            alt={video.title}
+                                            // Added a unique className for the last video
+                                            className={`sideVideos__thumbnail-image ${video.id === "76ca28c0-7dea-4553-887f-8e5129a80fc3" ? "sideVideos__unique-thumbnail-last-image" : ""}`}
+                                        />
+                                    </div>
+                                )}
                             </div>
-                        ) : (
-                            // Container for defaul side video thumbnail
-                            <div className="sideVideos__thumbnail-container" onClick={() => handleSideVideoClick(video)}>
-                                <img
-                                    src={video.image}
-                                    alt={video.title}
-                                    // Added a unique className for the last video
-                                    className={`sideVideos__thumbnail-image ${video.id === "76ca28c0-7dea-4553-887f-8e5129a80fc3" ? "sideVideos__unique-thumbnail-last-image" : ""}`}
-                                />
-                            </div>
-                        )}
-                            <div className="sideVideos__info">
-                                <h3 className={`sideVideos__title`}>
-                                    {/* Truncate video title based on screen width */}
-                                    {TruncateText(video.title, 40, screenWidth)}
-                                </h3>
-                                <p className="sideVideos__channel">{video.channel}</p>
-                            </div>
+                        </Link>
+                        <div className="sideVideos__info">
+                            {/* Displays a truncated version of the video title to fit within the design limits. The TruncateText function shortens the title based on screen width */}
+                            <h3 className={`sideVideos__title`}>
+                                {TruncateText(video.title, 40, screenWidth)}
+                            </h3>
+                            <p className="sideVideos__channel">{video.channel}</p>
                         </div>
                     </div>
                 ))}
