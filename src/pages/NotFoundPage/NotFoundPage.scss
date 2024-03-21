@@ -68,7 +68,7 @@
         }
     }
 
-    &__developer-container {
+    &__graphic-container {
         @include block-item(auto, 18rem);
         margin-right: 1rem;
 
@@ -83,7 +83,7 @@
         }
     }
 
-    &__developer {
+    &__graphic {
         @include block-item(auto, 18rem);
         background-color: $septenary;
         border-radius: .25rem;
