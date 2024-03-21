@@ -19,7 +19,7 @@ const NotFoundPage = () => {
             image: AlienAbductionImage,
         },
         {
-            copy: "Uh-oh! This page is undergoing some to-secret, super cool construction.",
+            copy: "Uh-oh! This page is undergoing some top-secret, super cool construction.",
             image: UnderConstructionImage,
         },
     ];
