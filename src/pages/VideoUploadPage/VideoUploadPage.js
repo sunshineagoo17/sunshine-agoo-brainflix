@@ -3,70 +3,70 @@ import { useNavigate } from "react-router-dom";
 import DefaultThumbnail from "../../assets/images/pictures/Upload-video-preview.jpg";
 import PublishIcon from "../../assets/images/icons/publish.svg"
 
-// Imports the stylesheet for the VideoUploadPage component
+// Imports styling to the Video Upload page
 import "./VideoUploadPage.scss";
 
 const VideoUploadPage = () => {
-    // Hook to navigate programmatically
     const navigate = useNavigate();
-    // State to control the visibility of the alert
+    // State hooks for managing form fields, hover state, validation errors, and submission status 
     const [showAlert, setShowAlert] = useState(false);
-    // State for the title input value
     const [titleValue, setTitleValue] = useState("");
-    // State for the description input value
     const [descriptionValue, setDescriptionValue] = useState("");
-    // State for tracking hover state of the buttons
     const [isHovered, setIsHovered] = useState(false);
-    // State for checking if the title input is empty (for validation)
     const [isTitleEmpty, setIsTitleEmpty] = useState(false);
-    // State for checking if the description input is empty (for validation)
     const [isDescriptionEmpty, setIsDescriptionEmpty] = useState(false);
-    // State to track if the title input is focused
     const [isTitleFocused, setIsTitleFocused] = useState(false);
-    // State to track if the description input is focuse
     const [isDescriptionFocused, setIsDescriptionFocused] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
-    // Handles changes to the title input
+    // Handlers for input changes, focus, blur, and form submission
     const handleInputChange = (e) => {
         const value = e.target.value;
         setTitleValue(value);
-        setIsTitleEmpty(false); // Resets title validation state
+        setIsTitleEmpty(false); // Resets title error state on change
     };
 
-    // Handles changes to the description textarea
     const handleTextareaChange = (e) => {
         const value = e.target.value;
         setDescriptionValue(value);
-        setIsDescriptionEmpty(false); // Resets description validation state
+        setIsDescriptionEmpty(false); // Resets description error state on change
     };
 
-    // Sets focus states for title and description fields
+    // Focus handlers to manage input focus states
     const handleTitleAreaFocus = () => setIsTitleFocused(true);
     const handleDescriptionAreaFocus = () => setIsDescriptionFocused(true);
     
-    // Resets form states when focus moves away from form fields
+    // Blur handler to reset focus and error states when moving away from the form
     const handleFormBlur = (e) => {
-        // Check if the blur event is triggered by leaving the textarea
-        if (!e.currentTarget.contains(e.relatedTarget)) {
-            // This means the user clicked outside the form
-            setIsTitleEmpty(false);
-            setIsDescriptionEmpty(false);
+        if (!e.currentTarget.contains(e.relatedTarget) && !showAlert) {
+            if (!formSubmitted) {
+                setIsTitleEmpty(false);
+                setIsDescriptionEmpty(false);
+            }
             setIsTitleFocused(false);
             setIsDescriptionFocused(false);
         }
     };
 
-    // Submits the form, showing an alert and navigating home if successful
+    // Submission handler to validate form fields and show alert on success
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!titleValue.trim() || !descriptionValue.trim()) {
-            // Validates both title and description for non-empty values
-            setIsTitleEmpty(!titleValue.trim());
-            setIsDescriptionEmpty(!descriptionValue.trim());
+
+        const isTitleValid = titleValue.trim();
+        const isDescriptionValid = descriptionValue.trim();
+
+        // Updates error states based on field validity
+        setIsTitleEmpty(!isTitleValid);
+        setIsDescriptionEmpty(!isDescriptionValid);
+
+        // Only proceeds if both fields are valid
+        if (!isTitleValid || !isDescriptionValid) {
+            setFormSubmitted(true); // Marks form as submitted for error display
             console.log("Both title and description are required.");
             return;
         }
 
+        // Shows success alert and navigates away after a delay
         setShowAlert(true);
         setTimeout(() => navigate("/home"), 4000);
     };
@@ -75,13 +75,13 @@ const VideoUploadPage = () => {
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
-    // Closes the success alert and navigates home immediately
+    // Closes the success alert and navigates to homepage
     const handleCloseAlert = () => {
         setShowAlert(false);
         navigate("/home");
     }
 
-    // Handles cancel action, navigating back without submitting
+    // Cancel button handler to navigate to home without form submission
     const handleCancel = () => {
         navigate("/home");
     };
@@ -91,6 +91,7 @@ const VideoUploadPage = () => {
             <div className="videoUploadPage__nav-divider-container">
                 <hr className="videoUploadPage__nav-divider" />
             </div>
+
             <div className="videoUploadPage__content-container">
                 <h1 className="videoUploadPage__title">Upload Video</h1>
 
@@ -113,27 +114,30 @@ const VideoUploadPage = () => {
                                 <img src={DefaultThumbnail} alt="biker video thumbnail" className="videoUploadPage__thumbnail" /> 
                             </div>
                         </div>
+
                         <div className="videoUploadPage__title-and-description-container">
                             <div className="videoUploadPage__input-container">
                                 <div className="videoUploadPage__label-container--top">
                                     <label htmlFor="videoTitle" className="videoUploadPage__label--top">Title your video</label>
                                 </div>        
-                                    {/* Title Input */}
-                                    <input
-                                        type="text"
-                                        id="videoTitle"
-                                        name="title"
-                                        aria-label="Enter video title"
-                                        placeholder="Add a title to your video"
-                                        className={`videoUploadPage__title-input ${titleValue.trim() ? "field--filled" : ""} ${isTitleEmpty ? "videoUploadPage__error" : ""} ${isTitleFocused ? "title__focused" : ""}`}
-                                        value={titleValue}
-                                        onChange={handleInputChange}
-                                        onFocus={handleTitleAreaFocus}
-                                        onBlur={() => {
-                                            setIsTitleFocused(false);
+                                {/* Title Input */}
+                                <input
+                                    type="text"
+                                    id="videoTitle"
+                                    name="title"
+                                    aria-label="Enter video title"
+                                    placeholder="Add a title to your video"
+                                    className={`videoUploadPage__title-input ${titleValue.trim() ? "field--filled" : ""} ${isTitleEmpty && formSubmitted ? "videoUploadPage__error" : ""} ${isTitleFocused ? "title__focused" : ""}`}
+                                    value={titleValue}
+                                    onChange={handleInputChange}
+                                    onFocus={handleTitleAreaFocus}
+                                    onBlur={() => {
+                                        setIsTitleFocused(false);
+                                        if (!formSubmitted) {
                                             setIsTitleEmpty(!titleValue.trim());
-                                        }}
-                                    />
+                                        }
+                                    }}
+                                />
                             </div>
                             
                             <div className="videoUploadPage__input-container">
@@ -145,14 +149,16 @@ const VideoUploadPage = () => {
                                         id="videoDescription"
                                         name="description"
                                         placeholder="Add a description to your video"
-                                        className={`videoUploadPage__description-input ${descriptionValue.trim() ? "field--filled" : ""} ${isDescriptionEmpty ? "videoUploadPage__error" : ""} ${isDescriptionFocused ? "description__focused" : ""}`}
+                                        className={`videoUploadPage__description-input ${descriptionValue.trim() ? "field--filled" : ""} ${isDescriptionEmpty && formSubmitted ? "videoUploadPage__error" : ""} ${isDescriptionFocused ? "description__focused" : ""}`}
                                         value={descriptionValue}
                                         aria-label="Enter video description"
                                         onChange={handleTextareaChange}
                                         onFocus={handleDescriptionAreaFocus}
                                         onBlur={() => {
                                             setIsDescriptionFocused(false);
-                                            setIsDescriptionEmpty(!descriptionValue.trim());
+                                            if (!formSubmitted) {
+                                                setIsDescriptionEmpty(!descriptionValue.trim());
+                                            }
                                         }}
                                     />
                             </div>
@@ -163,11 +169,11 @@ const VideoUploadPage = () => {
                     <div className="videoUploadPage__divider-container--bottom">
                         <hr className="videoUploadPage__divider--bottom" />
                     </div>
-
+                    
+                    {/* Buttons for publishing or cancelling the upload */}
                     <div className="videoUploadPage__buttons-container">
-                        {/* Button container for Publish button */}
+                        {/* Publish button */}
                         <div className="videoUploadPage__button-publish-container">
-                            {/* Hover effect applied */}
                             <button className={`videoUploadPage__button-publish ${isHovered ? "hover" : ""}`}
                                     onMouseEnter={handleMouseEnter}
                                     onMouseLeave={handleMouseLeave}
@@ -175,7 +181,6 @@ const VideoUploadPage = () => {
                                     aria-label="Publish"
                             >
                                 <div className="videoUploadPage__publish-icon-container">
-                                    {/* Publish icon */}
                                     <img src={PublishIcon} alt="publish icon" className="videoUploadPage__publish-icon" />
                                 </div>
                                 <div className="videoUploadPage__publish-copy">
@@ -183,9 +188,9 @@ const VideoUploadPage = () => {
                                 </div>
                             </button>
                         </div>
-                        {/* Button container for Cancel button */}
+                        
+                        {/* Cancel button */}
                         <div className="videoUploadPage__button-cancel-container">
-                            {/* Hover effect applied */}
                             <button className={`videoUploadPage__button-cancel ${isHovered ? "hover" : ""}`}
                                     onMouseEnter={handleMouseEnter}
                                     onMouseLeave={handleMouseLeave}
@@ -200,6 +205,7 @@ const VideoUploadPage = () => {
                         </div>
                     </div>
                 </form>
+
                 {/* Alert for successful upload */}
                 {showAlert && (
                     <div className="videoUploadPage__alert">
