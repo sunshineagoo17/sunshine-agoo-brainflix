@@ -53,9 +53,9 @@
 
         @include desktop {
             @include block-item(auto, 100%);
-            border: .063 solid $septenary;
+            border: .063rem solid $septenary;   
             margin-top: 0;
             display: block;
         }
     }
-}
+}     
