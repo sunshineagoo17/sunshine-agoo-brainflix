@@ -123,6 +123,7 @@ const VideoUploadPage = () => {
                                         type="text"
                                         id="videoTitle"
                                         name="title"
+                                        aria-label="Enter video title"
                                         placeholder="Add a title to your video"
                                         className={`videoUploadPage__title-input ${titleValue.trim() ? "field--filled" : ""} ${isTitleEmpty ? "videoUploadPage__error" : ""} ${isTitleFocused ? "title__focused" : ""}`}
                                         value={titleValue}
@@ -146,6 +147,7 @@ const VideoUploadPage = () => {
                                         placeholder="Add a description to your video"
                                         className={`videoUploadPage__description-input ${descriptionValue.trim() ? "field--filled" : ""} ${isDescriptionEmpty ? "videoUploadPage__error" : ""} ${isDescriptionFocused ? "description__focused" : ""}`}
                                         value={descriptionValue}
+                                        aria-label="Enter video description"
                                         onChange={handleTextareaChange}
                                         onFocus={handleDescriptionAreaFocus}
                                         onBlur={() => {
@@ -202,7 +204,7 @@ const VideoUploadPage = () => {
                 {showAlert && (
                     <div className="videoUploadPage__alert">
                         Video uploaded successfully!
-                        <button onClick={handleCloseAlert}>Close</button>
+                        <button onClick={handleCloseAlert} aria-label="Close">Close</button>
                     </div>
                 )}
             </div>

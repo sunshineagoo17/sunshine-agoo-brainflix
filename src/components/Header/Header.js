@@ -33,7 +33,7 @@ const Header = () => {
     return (
         <header className="nav">
             {/* Link to the homepage with the BrainFlix logo */}
-            <Link to="/home" className="nav__link"><img src={BrainFlixLogo} alt="BrainFlix logo" className="nav__logo" /></Link>
+            <Link to="/home" aria-label="Homepage" className="nav__link"><img src={BrainFlixLogo} alt="BrainFlix logo" className="nav__logo" /></Link>
             
             {/* Search bar and icons */}
             <div className="nav__search-list">
@@ -44,6 +44,7 @@ const Header = () => {
                     <input
                         type="text"
                         placeholder="Search"
+                        aria-label="Search"
                         id="header-search"
                         className={`nav__search-bar ${searchValue ? "field--filled" : ""}`}
                         value={searchValue}
@@ -82,7 +83,7 @@ const Header = () => {
 
             {/* Upload button - for mobile  */}
             <div className="nav__upload-button-container--bottom">
-                <Link to="/upload">
+                <Link to="/upload" aria-label="Upload Video">
                     {/* Hover effect applied */}
                     <button className={`nav__upload-button--bottom ${isHovered ? "hover" : ""}`}
                             onMouseEnter={() => setIsHovered(true)}

@@ -86,6 +86,7 @@ const Comments = () => {
                             id="input-comment"
                             className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""} ${isTextareaFocused ? "comments__focused" : ""} ${commentValue.trim() !== "" ? "comments--filled" : ""}`}
                             placeholder="Add a new comment"
+                            aria-label="Enter your comment here"
                             autoComplete="off"
                             value={commentValue}
                             onChange={handleCommentChange} // Event handler for input change
@@ -102,7 +103,7 @@ const Comments = () => {
                                 className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={handleMouseLeave}
-                                aria-label="Comment"
+                                aria-label="Submit comment"
                             >
                                 <div className="comments__button-icon-container">
                                     {/* Comment icon */}
@@ -121,7 +122,7 @@ const Comments = () => {
                             className={`comments__button--right ${isHovered ? "hover" : ""}`}
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
-                            aria-label="Comment"
+                            aria-label="Submit comment"
                         >
                             <div className="comments__button-icon-container">
                                 {/* Comment icon */}
@@ -168,12 +169,16 @@ const Comments = () => {
 
                                 {/* Delete button */}
                                 <div className="comments__delete-button-container">
-                                    <img
-                                        src={DeleteIcon}
-                                        alt="Delete button"
+                                    <button
+                                        aria-label="Delete comment"
                                         className="comments__delete-button"
                                         onClick={() => handleDeleteComment(id)}
-                                    />
+                                    >
+                                        <img
+                                            src={DeleteIcon}
+                                            alt="Delete button"
+                                        />
+                                    </button>
                                 </div>
                             </div>
                         </div>

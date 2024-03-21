@@ -398,6 +398,11 @@
         }
     }
 
+    &__delete-button {
+        background-color: transparent;
+        border: none;
+    }
+
     &__error {
         border: .125rem solid $nonary;
     }

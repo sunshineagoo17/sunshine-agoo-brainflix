@@ -28,7 +28,7 @@ const NotFoundPage = () => {
 
                 {/* Container for the main message, guiding users back to the homepage */}
                 <div className="notFoundPage__body-copy-container">
-                    <p className="notFoundPage__body-copy">Oops! The page you are looking for does not exist. But don't worry, you can find plenty of other awesome things to check out on our <Link to="/home" className="notFoundPage__homepage-link">homepage</Link>.</p>
+                    <p className="notFoundPage__body-copy">Oops! The page you are looking for does not exist. But don't worry, you can find plenty of other awesome things to check out on our <Link to="/home" className="notFoundPage__homepage-link" aria-label="Homepage">homepage</Link>.</p>
                 </div>
 
                 {/* Developer Image */}
