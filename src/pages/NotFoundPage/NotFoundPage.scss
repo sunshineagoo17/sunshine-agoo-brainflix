@@ -6,15 +6,15 @@
 .notFoundPage {
     display: flex;
     flex-direction: column;
-
-    &__content-container { 
+    
+    &__content-container {
         margin: 0 1rem;
     }
 
     &__nav-divider-container {
         width: auto;
         margin-top: -.25rem;
-    
+
         @include tablet {
             margin-top: -.1rem;
         }
@@ -22,7 +22,7 @@
 
     &__nav-divider {
         @include block-item(auto, 100%);
-        border: .063rem solid $septenary;
+        border: .063rem solid $septenary;   
         margin-top: 0;
     }
 
@@ -58,7 +58,7 @@
         @include tablet {
             font-size: .87rem;
             line-height: 1.37rem;
-            margin: 1.5rem 3.25rem 1.25rem 1.25rem;
+            margin: 1.5rem 3.25rem 1.25rem 1.25rem; 
         }
 
         @include desktop {
@@ -129,7 +129,7 @@
 
     &__divider--top {
         @include block-item(auto, 100%);
-        border: .063rem solid $septenary;
+        border: .063rem solid $septenary;   
         margin-top: 0;
         display: block;
     }
@@ -151,7 +151,7 @@
     &__divider--bottom {
         @include tablet {
             @include block-item(auto, 100%);
-            border: .063rem solid $septenary;
+            border: .063rem solid $septenary;   
             margin: 0;
             display: block;
         }

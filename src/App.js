@@ -12,14 +12,14 @@ import Homepage from "./pages/Homepage/Homepage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 // Imports the main stylesheet for the App component
-import './App.scss';
+import "./App.scss";
 
 const App = () => {
   // Render method for App component - defines routing and layout structure
   return (
     <Router>
       <div className="app">
-        {/* Header component is displayed across all routes for consistent navigation */}
+         {/* Header component is displayed across all routes for consistent navigation */}
         <Header />
         <Routes>
           {/* Redirect route path "/" to home */}

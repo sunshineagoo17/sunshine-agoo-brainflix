@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-// Imports an image to use on the 404 page
+// Imports an image to use on the 404 page 
 import developerImage from "../../assets/images/pictures/developer-sleeping-404-page.jpg";
 
 // Imports the stylesheet for the NotFoundPage component
@@ -9,7 +9,7 @@ import "./NotFoundPage.scss";
 const NotFoundPage = () => {
     return (
         <div className="notFoundPage">
-            
+
             {/* Nav Divider */}
             <div className="notFoundPage__nav-divider-container">
                 <hr className="notFoundPage__nav-divider" />
@@ -28,7 +28,7 @@ const NotFoundPage = () => {
 
                 {/* Container for the main message, guiding users back to the homepage */}
                 <div className="notFoundPage__body-copy-container">
-                    <p className="notFoundPage__body-copy">Oops! The page you are looking for does not exist. But don't worry, you can find plenty of other awesome things to check out on our <Link to="/home" className="notFoundPage__homepage-link">homepage</Link>.</p> 
+                    <p className="notFoundPage__body-copy">Oops! The page you are looking for does not exist. But don't worry, you can find plenty of other awesome things to check out on our <Link to="/home" className="notFoundPage__homepage-link">homepage</Link>.</p>
                 </div>
 
                 {/* Developer Image */}

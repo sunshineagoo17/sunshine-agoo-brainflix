@@ -1,7 +1,7 @@
 // Imports the stylesheet for the Hero component
 import "./Hero.scss";
 
-// Imported icons
+// Importing icons for use in the Hero component's custom video controls
 import PlayButton from "../../assets/images/icons/play.svg";
 import FullscreenButton from "../../assets/images/icons/fullscreen.svg";
 import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
@@ -15,8 +15,8 @@ const Hero = ({ mainVideo }) => {
                 <video 
                     className="hero__main-video-image"
                     poster={mainVideo?.image} // Uses optional chaining to safely access the image property
-                    alt={mainVideo?.title} // Uses optional chaning to safely access the title property
-                    // controls - Added default controls since it's part of the requirements and was commented out since it doesn't match the mockup
+                    alt={mainVideo?.title} // Uses optional chaining to safely access the title property
+                    // controls - Added default controls since it's part of the requirements and was commented out since it doesn't match the mockup 
                 />
                 {/* Custom controls added (non-functional) */}
                 <div className="hero__overlay-container">
