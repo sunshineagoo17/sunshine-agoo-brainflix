@@ -58,11 +58,11 @@
         @include tablet {
             font-size: .87rem;
             line-height: 1.37rem;
-            margin: 1.5rem 3.25rem 1.25rem 1.25rem; 
+            margin: 1.5rem 1.25rem 1.25rem 1.25rem; 
         }
 
         @include desktop {
-            margin: 1.25rem 7.1rem 1.5rem 7rem;
+            margin: 1.25rem 7.25rem 1.5rem 7rem;
             line-height: 1.38rem;
             padding-right: 0;
         }
