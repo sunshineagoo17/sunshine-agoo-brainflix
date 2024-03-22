@@ -1,31 +1,59 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import AlienAbductionImage from "../../assets/images/pictures/404-alien-abduction.jpg";
 import UnderConstructionImage from "../../assets/images/pictures/404-under-construction.jpg";
 import DeveloperImage from "../../assets/images/pictures/404-developer-sleeping.jpg";
+import MatrixImage from "../../assets/images/pictures/404-matrix.jpg";
+import TimeTravelImage from "../../assets/images/pictures/404-time-travel.jpg";
 
 // Imports the stylesheet for the NotFoundPage component
 import "./NotFoundPage.scss";
 
 const NotFoundPage = () => {
 
-    //Array containing different options for the 404 page with corresponding images
+    // Array containing different options for the 404 page with corresponding images
     const imageArr = [
         {
-            copy: "Oops! The page you are looking for does not exist.",
+            id: 0,
+            copy: "Shhh! The page you are looking for does not exist. Our hardworking devs will be right on it once they wake up.",
             image: DeveloperImage,
         },
         {
-            copy: "Oh no! They're at it again. Aliens have abducted this page",
+            id: 1,
+            copy: "Oh no! They're at it again. Aliens have abducted this page.",
             image: AlienAbductionImage,
         },
         {
+            id: 2,
             copy: "Uh-oh! This page is undergoing some top-secret, super cool construction.",
             image: UnderConstructionImage,
         },
+        {
+            id: 3,
+            copy: "Whoa, Neo, wrong turn! You should've followed the white rabbit.",
+            image: MatrixImage,
+        },       
+        {
+            id: 4,
+            copy: "Great Scott! Lookis like you've ventured into the time vortex. Hang tight while we dial back the clock and find that missing page!",
+            image: TimeTravelImage,
+        },
     ];
 
-    // Randomly select an option from the array
-    const currentOption = imageArr[Math.floor(Math.random() * imageArr.length)];
+    // Function to get the next unique option
+    const getNextOption = () => {
+        const lastIndex = parseInt(localStorage.getItem("lastShownIndex"), 10);
+        let nextIndex = lastIndex >= 0 && lastIndex < imageArr.length - 1 ? lastIndex + 1 : 0;
+        localStorage.setItem("lastShownIndex", nextIndex.toString());
+        return imageArr[nextIndex];
+    };
+
+    // Initialize currentOption with getNextOption
+    const [currentOption, setCurrentOption] = useState(getNextOption);
+
+    const handleNextOptionClick = () => {
+        setCurrentOption(getNextOption());
+    };
 
     return (
         <div className="notFoundPage">
@@ -50,8 +78,8 @@ const NotFoundPage = () => {
                 <div className="notFoundPage__body-copy-container">
                     <p className="notFoundPage__body-copy">
                         {/* Displaying the selected message from the current option */}
-                        {currentOption?.copy} But don't worry, you can find plenty of other awesome things to check out on our{" "} 
-                        <Link to="/home" className="notFoundPage__homepage-link" aria-label="Homepage">
+                        {currentOption?.copy} Don't worry, you can find plenty of other awesome things to check out on our{" "} 
+                        <Link to="/home" onClick={handleNextOptionClick} className="notFoundPage__homepage-link" aria-label="Homepage">
                             homepage
                         </Link>
                         .
