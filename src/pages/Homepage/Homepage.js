@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { VideoContext } from "../../components/VideoPageManager/VideoPageManager";
 import Hero from "../../components/Hero/Hero";
 import VideoInfo from "../../components/VideoInfo/VideoInfo";
 import Comments from "../../components/Comments/Comments";
 import SideVideos from "../../components/SideVideos/SideVideos";
-
+import Loader from "../../components/Loader/Loader";
 // Imports styling to the Homepage
 import "./Homepage.scss";
 
@@ -13,6 +13,8 @@ const Homepage = () => {
     // Accessing the video context to use the shared state and functions across components
     const { videos, mainVideo, updateMainVideo } = useContext(VideoContext);
     
+    const [isLoading, setIsLoading] = useState(true);
+
     // Tracks the current URL path to react to navigation changes within the app
     const location = useLocation(); 
 
@@ -24,7 +26,16 @@ const Homepage = () => {
         }
     }, [videos, updateMainVideo, location.pathname]); // Reacts to changes in the videos list, updateMainVideo function, or the URL path
 
+    useEffect(() => {
+        if (mainVideo) {
+            setIsLoading(false);
+        }
+    }, [mainVideo]);
+    
     return (
+        <>
+        {isLoading && <Loader />}
+        {!isLoading && (
         <div className="homepage">
             {/* Conditionally render the main video and related components only if mainVideo is not null */}
             {mainVideo && (
@@ -49,8 +60,10 @@ const Homepage = () => {
                         </div>
                     </div>
                 </div>
+                )}
+            </div>
             )}
-        </div>
+        </>
     );
 };
 
