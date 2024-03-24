@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+// Imports images for different 404 scenarios
 import Loader from "../../components/Loader/Loader";
 import AlienAbductionImage from "../../assets/images/pictures/404-alien-abduction.jpg";
 import UnderConstructionImage from "../../assets/images/pictures/404-under-construction.jpg";
@@ -11,16 +13,21 @@ import TimeTravelImage from "../../assets/images/pictures/404-time-travel.jpg";
 import "./NotFoundPage.scss";
 
 const NotFoundPage = () => {
+    // State to control the loading indicator
     const [isLoading , setIsLoading] = useState(true);
+
+    // Effect hook to manage the loading state based on the entire page load
     useEffect(() => {
         const handleLoad = () => setIsLoading(false);
 
+        // If the document is already loaded, call handleLoad immediately; otherwise, wait for the load event
         if (document.readyState === "complete") {
             handleLoad();
         } else {
             window.addEventListener("load", handleLoad);
         }
 
+        // Cleanup function to remove the event listener
         return () => window.removeEventListener("load", handleLoad);
     }, []);
 
@@ -53,22 +60,27 @@ const NotFoundPage = () => {
         },
     ];
 
-    // Function to get the next unique option
+    // Function to cycle through the imageArr and display a new message and image each time a 404 is encountered 
     const getNextOption = () => {
         try {
+            // Retrieving the last shown index from local Storage, if available
             const lastIndex = parseInt(localStorage.getItem("lastShownIndex"), 10);
+            // Calculating the next index; if at the end of the array, loop back to the start
             let nextIndex = lastIndex >= 0 && lastIndex < imageArr.length - 1 ? lastIndex + 1 : 0;
+            // Storing the next index for future visits
             localStorage.setItem("lastShownIndex", nextIndex.toString());
             return imageArr[nextIndex];
         } catch (e) {
             console.error("Error accessing localStorage", e);
+            // Defaulting to the first message and image in case of any error
             return imageArr[0];
         }
     };
 
-    // Initialize currentOption with getNextOption
+    // State to hold the currently selected 404 message and image
     const [currentOption, setCurrentOption] = useState(getNextOption);
 
+    // Function to update the currentOption to state with a new 404 scenario
     const handleNextOptionClick = () => {
         setCurrentOption(getNextOption());
     };
@@ -76,6 +88,7 @@ const NotFoundPage = () => {
     return (
         <>
             {isLoading && <Loader />}
+            {/* If the loading is true, the Loader component is displayed to indicate that the page is currently loading  */}
             {!isLoading && (
                 <div className="notFoundPage">
                     {/* Nav Divider */}

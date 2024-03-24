@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"; // To access URL parameters
 
-// Importing context and child components for assembling the Video Details page
+// Context and components for assembling the Video Details page
 import { VideoContext } from "../../components/VideoPageManager/VideoPageManager"; 
 import Hero from "../../components/Hero/Hero";
 import VideoInfo from "../../components/VideoInfo/VideoInfo";
@@ -13,32 +13,42 @@ import Loader from "../../components/Loader/Loader";
 import "./VideoDetailsPage.scss";
 
 const VideoDetailsPage = () => {
-    // Retrieve the videoId from the URL
+    // Extracts videoId from the current URL
     const { videoId } = useParams();
-    // Access context to use the video data and update function
+    // Uses context to share video data and functionality across components
     const { videos, mainVideo, updateMainVideo } = useContext(VideoContext);
-    // Initialize loading state to true
+    // State for managing the loading indicator
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        // Function to load video details based on the current videoId
         const loadVideoDetails = async () => {
+            // Ensure a videoId is present
             if (videoId) {
+                // Start loading animation
                 setIsLoading(true);
                 try {
+                    // Attempt to update the main video based on videoId
                     await updateMainVideo(videoId);
+                    // Handle any errors that occur during fetch
                 } catch (error) {
                     console.error("Failed to load video details:", error);
                 } 
+                // Stops loading animation
                 setIsLoading(false);
             }
         };
-        
+
+        // Invokes the function to load video details
         loadVideoDetails();
+        // Re-run effect if videoId changes or updateMainVideo function updates
     }, [videoId, updateMainVideo]); 
 
     return (
         <>
+            {/* Displays loader while content is loading */}
             {isLoading && <Loader />}
+            {/* Ensures mainVideo is loaded before rendering page content */}
             {!isLoading && mainVideo && (
                 <div className="videoDetailsPage">
                     <div className="videoDetailsPage__container">

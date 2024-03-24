@@ -1,3 +1,4 @@
+// Imports necessary hooks and components
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultThumbnail from "../../assets/images/pictures/Upload-video-preview.jpg";
@@ -8,7 +9,9 @@ import Loader from "../../components/Loader/Loader";
 import "./VideoUploadPage.scss";
 
 const VideoUploadPage = () => {
+    // Hook to programmatically navigate to other routes
     const navigate = useNavigate();
+
     // State hooks for managing form fields, hover state, validation errors, and submission status 
     const [showAlert, setShowAlert] = useState(false);
     const [titleValue, setTitleValue] = useState("");
@@ -21,48 +24,53 @@ const VideoUploadPage = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [isLoading , setIsLoading] = useState(true);
 
+    // Effect hook to manage loader visibility based on page load status
     useEffect(() => {
+        // Disables loader once page is fully loaded
         const handleLoad = () => setIsLoading(false);
 
         if (document.readyState === "complete") {
+            // If document is already loaded, immediately disable loader
             handleLoad();
         } else {
+            // Otherwise, wait for the load event
             window.addEventListener("load", handleLoad);
         }
 
+        // Clean up event listener on component unmount
         return () => window.removeEventListener("load", handleLoad);
     }, []);
 
-    // Handlers for input changes, focus, blur, and form submission
+    // Handlers for input field changes, to update state and reset validation flags
     const handleInputChange = (e) => {
         const value = e.target.value;
         setTitleValue(value);
-        setIsTitleEmpty(false); // Resets title error state on change
+        setIsTitleEmpty(false); 
     };
 
     const handleTextareaChange = (e) => {
         const value = e.target.value;
         setDescriptionValue(value);
-        setIsDescriptionEmpty(false); // Resets description error state on change
+        setIsDescriptionEmpty(false); 
     };
 
-    // Focus handlers to manage input focus states
+    // Focus handlers to visually indicate focus on input fields
     const handleTitleAreaFocus = () => setIsTitleFocused(true);
     const handleDescriptionAreaFocus = () => setIsDescriptionFocused(true);
     
-    // Blur handler to reset focus and error states when moving away from the form
+    // Handler to reset focus states and validation states when moving away from the form fields
     const handleFormBlur = (e) => {
         if (!e.currentTarget.contains(e.relatedTarget) && !showAlert) {
-            if (!formSubmitted) {
-                setIsTitleEmpty(false);
-                setIsDescriptionEmpty(false);
-            }
             setIsTitleFocused(false);
             setIsDescriptionFocused(false);
+            if (!formSubmitted) {
+                setIsTitleEmpty(!titleValue.trim());
+                setIsDescriptionEmpty(!descriptionValue.trim());
+            }
         }
     };
 
-    // Submission handler to validate form fields and show alert on success
+    // Submission handler to validate the form fields and show alert on success
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -102,7 +110,9 @@ const VideoUploadPage = () => {
 
     return (
         <>
+            {/* Displays loader while content is loading */}
             {isLoading && <Loader />}
+            {/* Render the form once loading is complete */}
             {!isLoading && (
                 <div className="videoUploadPage">
                     <div className="videoUploadPage__nav-divider-container">
