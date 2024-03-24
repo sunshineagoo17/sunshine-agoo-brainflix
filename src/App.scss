@@ -3,20 +3,6 @@
 @use "./styles/partials/fonts" as *;
 @use "./styles/partials/mixins" as *;
 
-// Import component styles
-@import "./components/Header/Header.scss";
-@import "./components/Hero/Hero.scss";
-@import "./components/VideoInfo/VideoInfo.scss";
-@import "./components/Comments/Comments.scss";
-@import "./components/SideVideos/SideVideos.scss";
-@import "./components/Loader/Loader.scss";
-
-// Import page styles
-@import "./pages/Homepage/Homepage.scss";
-@import "./pages/VideoDetailsPage/VideoDetailsPage.scss";
-@import "./pages/VideoUploadPage/VideoUploadPage.scss";
-@import "./pages/NotFoundPage/NotFoundPage.scss";
-
 body {
     margin: 0;
 }

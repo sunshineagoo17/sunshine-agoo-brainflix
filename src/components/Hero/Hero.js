@@ -15,7 +15,7 @@ const Hero = ({ mainVideo }) => {
                 <video 
                     className="hero__main-video-image"
                     poster={mainVideo?.image} // Uses optional chaining to safely access the image property
-                    alt={mainVideo?.title} // Uses optional chaining to safely access the title property
+                    aria-label={mainVideo?.title} // Uses optional chaining to safely access the title property
                     // controls - Added default controls since it's part of the requirements and was commented out since it doesn't match the mockup 
                 />
                 {/* Custom controls added (non-functional) */}
@@ -23,7 +23,7 @@ const Hero = ({ mainVideo }) => {
                     {/* Play button */}
                     <div className="hero__play-overlay">
                         {/* Play button icon */}
-                        <img className="hero__play-button" src={PlayButton} alt="Play Button" />
+                        <img className="hero__play-button" src={PlayButton} alt="Play Button" aria-label="Play video" />
                     </div>
                     {/* Scrub controls with video duration included */}
                     <div className="hero__scrub-overlay">
@@ -43,9 +43,9 @@ const Hero = ({ mainVideo }) => {
                     {/* Fullscreen and volume buttons */}
                     <div className="hero__video-buttons-container-overlay">
                         {/* Fullscreen button icon */}
-                        <img className="hero__fullscreen-button" src={FullscreenButton} alt="Fullscreen Button" />
+                        <img className="hero__fullscreen-button" src={FullscreenButton} alt="Fullscreen Button" aria-label="Fullscreen video" />
                         {/* Volume up button icon */}
-                        <img className="hero__volume-up-button" src={VolumeUpButton} alt="Volume Up Button" />                       
+                        <img className="hero__volume-up-button" src={VolumeUpButton} alt="Volume Up Button" aria-label="Volume up"/>                       
                     </div>
                 </div>
             </div>

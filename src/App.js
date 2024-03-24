@@ -15,7 +15,6 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import "./App.scss";
 
 const App = () => {
-  // Render method for App component - defines routing and layout structure
   return (
     <Router>
       <div className="app">

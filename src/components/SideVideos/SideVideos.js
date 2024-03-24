@@ -50,7 +50,7 @@ const SideVideos = ({ videos, mainVideo }) => {
                 {filteredVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
                         {/* Wraps the video thumbnail in a link component to make it clickable, leading to the video's detail page */}
-                        <Link to={`/video/${video.id}`} className="sideVideos__thumbnail-link"> 
+                        <Link to={`/video/${video.id}`} className="sideVideos__thumbnail-link" aria-label={`Watch ${video.title}`}> 
                             <div className="sideVideos__thumbnail-info">
                                 {/* Created and added an inner wrapper for this specific video - to match the mockup */}
                                 {video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? (

@@ -24,7 +24,7 @@ const VideoInfo = ({ mainVideo }) => {
                 <h1 className="videoInfo__video-title">{mainVideo.title}</h1>
             </div>
             {/* Divider above video info */}
-            <div className="videoInfos__video-details-divider-container--top">
+            <div className="videoInfo__video-details-divider-container--top">
                 <hr className="videoInfo__video-details-divider--top" />
             </div>
             {/* Video info section */}
