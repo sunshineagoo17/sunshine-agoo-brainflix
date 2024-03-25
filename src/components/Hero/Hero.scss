@@ -65,6 +65,7 @@
 
     &__play-button {
         @include block-item(.45rem, .45rem); 
+        cursor: pointer;
             
         @include tablet {
             @include block-item(.85rem, .85rem); 
@@ -110,6 +111,7 @@
         border: none;
         border-top: .125rem solid $quinary;
         border-radius: .25rem;
+        cursor: pointer;
 
         @include tablet {
             width: 28.5rem;
@@ -143,6 +145,7 @@
 
     &__volume-up-button {
         @include block-item(.875rem, .875rem); 
+        cursor: pointer;
 
         @include tablet {
             @include block-item(1.7rem, 1.7rem);
@@ -155,6 +158,7 @@
 
     &__fullscreen-button {
         @include block-item(.835rem, .835rem); 
+        cursor: pointer;
 
         @include tablet {
             @include block-item(1.35rem, 1.35rem);

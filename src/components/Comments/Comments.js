@@ -177,6 +177,7 @@ const Comments = () => {
                                         <img
                                             src={DeleteIcon}
                                             alt="Delete button"
+                                            className="comments__delete-icon"
                                         />
                                     </button>
                                 </div>

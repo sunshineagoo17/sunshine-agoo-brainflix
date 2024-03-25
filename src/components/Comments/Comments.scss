@@ -403,6 +403,12 @@
         border: none;
     }
 
+    &__delete-icon {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
     &__error {
         border: .125rem solid $nonary;
     }
