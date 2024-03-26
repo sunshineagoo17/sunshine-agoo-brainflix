@@ -38,14 +38,16 @@
     }
 
     &__search-list {
-        display: flex;
-        width: auto;
+        display: flex;      
+        width: 70vw;
+        min-width: 18rem;
+        max-width: 33.556rem;
         justify-content: space-between;
         align-items: center;
         margin: 0;
 
         @include tablet {
-            width: 29.8rem;
+            width: 30rem;
         
             @include desktop {
                 width: 30.5rem;
@@ -54,13 +56,17 @@
     }
 
     &__search-container {
-        height: auto;
-        margin: .7rem 1rem 1rem 0;
+        @include block-item(60vw, auto);
+        min-width: 13rem;
+        max-width: 35rem;
+        margin: .7rem 0 1rem 0;
         display: flex;
         position: relative;
+        flex-grow: 1;
         
         @include tablet {
-            margin: 1rem 0;
+            margin: 1rem 0 1rem 0;
+            width: 13.5rem;
         }
 
         @include desktop {
@@ -71,26 +77,28 @@
     &__search-icon {
         @include block-item(1rem, 1rem);
         position: absolute;
-        left: 7%;
+        left: 1rem;
         top: 30%;
         transform: translateX(-45%);
 
         @include tablet {
             @include block-item(1.2rem, 1.2rem);
-            left: 10%;
+            left: 1.5rem;
         }
     }
     
     &__search-bar {
-        @include block-item(13rem, .62rem);
         @include body-copy-style;
+        @include block-item(60vw, .62rem);
+        min-width: 13rem;
+        max-width: 40rem;
         padding: .78rem;
         background-color: $octonary;
         border: .063rem solid $septenary;
         border-radius: .25rem;
 
         @include tablet {
-            @include block-item(13.3rem, .8rem);
+            @include block-item(13.5rem, .8rem);
         }
     
         &::placeholder {
@@ -110,7 +118,9 @@
     
         &:active,
         &:focus {
-            @include block-item(13rem, .62rem);
+            @include block-item(60vw, .62rem);
+            min-width: 13rem;
+            max-width: 40rem;
             @include body-copy-style;
             outline: none;
             padding: .78rem;
@@ -118,7 +128,7 @@
             border-radius: .25rem; 
             
             @include tablet {
-                @include block-item(13.3rem, .8rem);
+                @include block-item(13.5rem, .8rem);
             }
         }
         
@@ -136,17 +146,19 @@
     &__avatar {
         @include block-item(2.3rem, 2.3rem);
         border-radius: 50%;
+        margin-left: 1rem;
         background-color: $septenary;
         flex-shrink: 0;
         object-fit: cover;
         object-position: 16% center;
 
         @include tablet {
-            @include block-item(2.5rem, 2.5rem);
-        
-            @include desktop {
-                margin-left: 1.75rem;
-            }
+            @include block-item(2.5rem, 2.5rem);  
+            margin-left: .25rem;          
+        }
+
+        @include desktop {
+            margin-left: 1rem;
         }
     }
 
@@ -167,8 +179,8 @@
     }
 
     &__upload-button--right {
-        @include heading-style;
         @include button-style(9.85rem, 2.5rem);
+        @include heading-style;
         transition: background-color .3s, transform .3s; // Added transition effect for button interaction
 
         &:hover,
@@ -182,17 +194,20 @@
 
         @include tablet {
             @include button-style(9.65rem, 2.5rem);
+            margin-right: 1rem;
         }
         
         @include desktop {
             width: 9.5rem;
-            margin-left: .3rem;
+            margin-left: .5rem;
         }
     }
 
     &__upload-button--bottom {
+        @include button-style(70vw, 2.5rem);
+        min-width: 18rem;
+        max-width: 33.556rem;
         @include heading-style;
-        @include button-style(18rem, 2.5rem);
         transition: background-color .3s, transform .3s; // Added transition effect for button interaction
 
         &:hover,

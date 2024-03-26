@@ -20,10 +20,10 @@
 
         @include tablet {
             height: 24.45rem;
+        }
 
-            @include desktop {
-                height: 29.7rem
-            }
+        @include desktop {
+            height: 29.7rem
         }
     }
 
