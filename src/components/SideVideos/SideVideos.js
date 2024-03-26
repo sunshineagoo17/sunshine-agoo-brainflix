@@ -1,25 +1,21 @@
 import { useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 
-// Imports the stylesheet for the SideVideos component
 import "./SideVideos.scss";
 
 const SideVideos = ({ videos, mainVideo }) => {
-    // State to hold the current screen width, used for responsive design decisions
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     
     // UseLayoutEffect to handle dynamic screen width updates on window resize
     useLayoutEffect(() => {
         const handleResize = () => {
-            setScreenWidth(window.innerWidth); // Updates state with new screen width
+            setScreenWidth(window.innerWidth); 
         };
 
-        // Add event listener for window resize to update screenWidth state
         window.addEventListener("resize", handleResize);
 
-        // Cleanup function to remove the event listener when the component unmounts
         return () => window.removeEventListener("resize", handleResize);
-    }, []); // Empty dependency array ensures this runs only once at mount
+    }, []); 
 
     // Truncates text to the specified maxLength if the screen width is below a threshold (mobile view)
     const TruncateText = (text, maxLength, screenWidth) => {
@@ -28,7 +24,6 @@ const SideVideos = ({ videos, mainVideo }) => {
             : text;
     };
 
-    // Do not render the component if there's no mainVideo selected or the videos list is empty
     if (!mainVideo || videos.length === 0) {
         return null;
     }
@@ -42,14 +37,13 @@ const SideVideos = ({ videos, mainVideo }) => {
                 <hr className="sideVideos__divider" />
             </div>
             <div className="sideVideos__videos-container">
-                {/* Title for the side videos section */}
                 <div className="sideVideos__title-container">
                     <h3 className="sideVideos__header-title">Next Videos</h3>
                 </div>
+
                 {/* List of side video thumbnails */}
                 {filteredVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
-                        {/* Wraps the video thumbnail in a link component to make it clickable, leading to the video's detail page */}
                         <Link to={`/video/${video.id}`} className="sideVideos__thumbnail-link" aria-label={`Watch ${video.title}`}> 
                             <div className="sideVideos__thumbnail-info">
                                 {/* Created and added an inner wrapper for this specific video - to match the mockup */}
@@ -63,7 +57,6 @@ const SideVideos = ({ videos, mainVideo }) => {
                                         />
                                     </div>
                                 ) : (
-                                    // Container for default side video thumbnail
                                     <div className="sideVideos__thumbnail-container">
                                         <img
                                             src={video.image}
@@ -75,8 +68,9 @@ const SideVideos = ({ videos, mainVideo }) => {
                                 )}
                             </div>  
                         </Link>
+                        
                         <div className="sideVideos__info">
-                            {/* Displays a truncated version of the video title to fit within the design limits. The TruncateText function shortens the title based on screen width */}
+                            {/* Displays a truncated version of the video title to fit within the design limits. */}
                             <h3 className={`sideVideos__title`}>
                                 {TruncateText(video.title, 40, screenWidth)}
                             </h3>

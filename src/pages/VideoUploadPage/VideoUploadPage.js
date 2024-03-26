@@ -1,15 +1,12 @@
-// Imports necessary hooks and components
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultThumbnail from "../../assets/images/pictures/Upload-video-preview.jpg";
 import PublishIcon from "../../assets/images/icons/publish.svg"
 import Loader from "../../components/Loader/Loader";
 
-// Imports styling to the Video Upload page
 import "./VideoUploadPage.scss";
 
 const VideoUploadPage = () => {
-    // Hook to programmatically navigate to other routes
     const navigate = useNavigate();
 
     // State hooks for managing form fields, hover state, validation errors, and submission status 
@@ -26,22 +23,17 @@ const VideoUploadPage = () => {
 
     // Effect hook to manage loader visibility based on page load status
     useEffect(() => {
-        // Disables loader once page is fully loaded
         const handleLoad = () => setIsLoading(false);
 
         if (document.readyState === "complete") {
-            // If document is already loaded, immediately disable loader
             handleLoad();
         } else {
-            // Otherwise, wait for the load event
             window.addEventListener("load", handleLoad);
         }
 
-        // Clean up event listener on component unmount
         return () => window.removeEventListener("load", handleLoad);
     }, []);
 
-    // Handlers for input field changes, to update state and reset validation flags
     const handleInputChange = (e) => {
         const value = e.target.value;
         setTitleValue(value);
@@ -77,13 +69,11 @@ const VideoUploadPage = () => {
         const isTitleValid = titleValue.trim();
         const isDescriptionValid = descriptionValue.trim();
         
-        // Updates error states based on field validity
         setIsTitleEmpty(!isTitleValid);
         setIsDescriptionEmpty(!isDescriptionValid);
     
-        // Only proceeds if both fields are valid
         if (!isTitleValid || !isDescriptionValid) {
-            setFormSubmitted(true); // Marks form as submitted for error display
+            setFormSubmitted(true); 
             console.log("Both title and description are required.");
             return;
         }
@@ -93,7 +83,6 @@ const VideoUploadPage = () => {
         setTimeout(() => navigate("/home"), 4000);
     };
 
-    // Hover effect handlers for buttons
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
@@ -122,15 +111,13 @@ const VideoUploadPage = () => {
                     <div className="videoUploadPage__content-container">
                         <h1 className="videoUploadPage__title">Upload Video</h1>
 
-                        {/* Top Divider - displays only for mobile and desktop screens */}
                         <div className="videoUploadPage__divider-container--top">
                             <hr className="videoUploadPage__divider--top" />
                         </div>
 
-                        {/* Form for video upload inputs */}
                         <form onBlur={handleFormBlur} onSubmit={handleSubmit} className="videoUploadPage__form">
                             <div className="videoUploadPage__thumbnail-and-inputs-container">
-                                {/* Thumbnail section */}
+        
                                 <div className="videoUploadPage__thumbnail-section">
                                     <div className="videoUploadPage__thumbnail-label-container">
                                         <label htmlFor="videoThumbnail" className="videoUploadPage__thumbnail-label">
@@ -147,7 +134,6 @@ const VideoUploadPage = () => {
                                         <div className="videoUploadPage__label-container--top">
                                             <label htmlFor="videoTitle" className="videoUploadPage__label--top">Title your video</label>
                                         </div>        
-                                        {/* Title Input */}
                                         <input
                                             type="text"
                                             id="videoTitle"
@@ -171,7 +157,6 @@ const VideoUploadPage = () => {
                                         <div className="videoUploadPage__label-container--bottom">
                                             <label htmlFor="videoDescription" className="videoUploadPage__label--bottom">Add a Video Description</label>
                                         </div>    
-                                            {/* Description Textarea */}
                                             <textarea
                                                 id="videoDescription"
                                                 name="description"
@@ -192,14 +177,11 @@ const VideoUploadPage = () => {
                                 </div>
                             </div>
 
-                            {/* Bottom Divider - displays only for mobile and desktop screens */}
                             <div className="videoUploadPage__divider-container--bottom">
                                 <hr className="videoUploadPage__divider--bottom" />
                             </div>
                             
-                            {/* Buttons for publishing or cancelling the upload */}
                             <div className="videoUploadPage__buttons-container">
-                                {/* Publish button */}
                                 <div className="videoUploadPage__button-publish-container">
                                     <button className={`videoUploadPage__button-publish ${isHovered ? "hover" : ""}`}
                                             onMouseEnter={handleMouseEnter}
@@ -216,7 +198,6 @@ const VideoUploadPage = () => {
                                     </button>
                                 </div>
                                 
-                                {/* Cancel button */}
                                 <div className="videoUploadPage__button-cancel-container">
                                     <button className={`videoUploadPage__button-cancel ${isHovered ? "hover" : ""}`}
                                             onMouseEnter={handleMouseEnter}

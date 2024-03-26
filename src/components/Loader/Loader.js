@@ -1,7 +1,5 @@
-// Imports the loader img
 import LoaderImg from "../../assets/images/icons/loader.png";
 
-//Imports the styling to the Loader component
 import "./Loader.scss";
 
 const Loader = () => (
