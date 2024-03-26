@@ -21,6 +21,9 @@ const VideoDetailsPage = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        // Scroll to the top of the page on component mount or video change
+        window.scrollTo(0, 0);
+        
         // Function to load video details based on the current videoId
         const loadVideoDetails = async () => {
             // Ensure a videoId is present
