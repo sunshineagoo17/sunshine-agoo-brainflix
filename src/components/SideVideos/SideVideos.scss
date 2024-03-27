@@ -38,11 +38,12 @@
         @include tablet {
             @include block-item(6.8rem, 4rem);
             margin-bottom: 1.25rem;
-        }
+         
 
-        @include desktop {
-            height: 4.065rem;
-            margin-bottom: 1.24rem;
+            @include desktop {
+                height: 4.065rem;
+                margin-bottom: 1.24rem;
+            }
         }
     }
 
