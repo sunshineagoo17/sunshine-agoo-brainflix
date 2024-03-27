@@ -10,14 +10,12 @@ import VideoUploadPage from "./pages/VideoUploadPage/VideoUploadPage";
 import MainVideoPage from "./pages/MainVideoPage/MainVideoPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
-// Imports the main stylesheet for the App component
 import "./App.scss";
 
 const App = () => {
   return (
     <Router>
       <div className="app">
-         {/* Header component is displayed across all routes for consistent navigation */}
         <Header />
         <Routes>
           {/* Redirect route path "/" to home */}
@@ -29,7 +27,7 @@ const App = () => {
           <Route path="/upload" element={<VideoUploadPage />} />
           {/* Redirect 404 path */}
           <Route path="*" element={<Navigate to="/uh-oh" />} />
-          {/* Handle 404 errors */}
+          {/* Handles 404 errors */}
           <Route path="/uh-oh" element={<NotFoundPage />} />
         </Routes>
       </div>
