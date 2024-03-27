@@ -3,7 +3,7 @@
 @use "../../styles/partials/fonts" as *;
 @use "../../styles/partials/mixins" as *;
 
-.videoDetailsPage {
+.mainVideoPage {
     &__video-info-container {
         @include desktop {
             display: flex;
