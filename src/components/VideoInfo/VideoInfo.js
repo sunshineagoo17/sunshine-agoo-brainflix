@@ -1,11 +1,9 @@
-import { TimeAgo } from "../VideoPageManager/VideoPageManager";
-
 import "./VideoInfo.scss";
 
 import ViewsIcon from "../../assets/images/icons/views.svg";
 import LikesIcon from "../../assets/images/icons/likes.svg";
 
-const VideoInfo = ({ mainVideo }) => {
+const VideoInfo = ({ mainVideo, TimeAgo }) => {
     // Checks if there's a video to display, otherwise stops the function early
     if (!mainVideo) return null;
 

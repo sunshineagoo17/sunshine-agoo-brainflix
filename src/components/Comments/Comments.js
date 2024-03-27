@@ -1,28 +1,32 @@
-import { useState, useContext } from "react";
-import { VideoContext, TimeAgo, GenerateRandomUsername } from "../VideoPageManager/VideoPageManager";
+import React, { useState } from "react";
+
 import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
 import DeleteIcon from "../../assets/images/icons/icon-delete.svg";
 
 import "./Comments.scss";
 
-const Comments = () => {
-    // Get the video and comment functions from VideoContext
-    const { mainVideo, postComment, deleteComment } = useContext(VideoContext);
+const Comments = ({
+    postComment,
+    deleteComment,
+    mainVideo,
+    TimeAgo,
+    GenerateRandomUsername
+}) => {
 
     // States for handling comment form interactions
-    const [commentValue, setCommentValue] = useState(""); 
-    const [isHovered, setIsHovered] = useState(false); 
-    const [isCommentEmpty, setIsCommentEmpty] = useState(false); 
-    const [isTextareaFocused, setIsTextareaFocused] = useState(false); 
-    
+    const [commentValue, setCommentValue] = useState("");
+    const [isHovered, setIsHovered] = useState(false);
+    const [isCommentEmpty, setIsCommentEmpty] = useState(false);
+    const [isTextareaFocused, setIsTextareaFocused] = useState(false);
+
     //Updates the comment text
     const handleCommentChange = (e) => {
         const value = e.target.value;
-        setCommentValue(value); 
-        setIsCommentEmpty(false); 
+        setCommentValue(value);
+        setIsCommentEmpty(false);
     };
-    
+
     const handleTextareaFocus = () => {
         setIsTextareaFocused(true);
     }
@@ -44,12 +48,12 @@ const Comments = () => {
         }
 
         // Generates a random username for the comment
-        const username = GenerateRandomUsername(); 
-        const result = await postComment(mainVideo.id, commentValue.trim(), username); 
+        const username = GenerateRandomUsername();
+        const result = await postComment(mainVideo.id, commentValue.trim(), username);
         if (result.success) {
-            setCommentValue(""); 
+            setCommentValue("");
             setIsCommentEmpty(false);
-        } else { 
+        } else {
             console.log(result.message);
         }
     };
@@ -129,7 +133,7 @@ const Comments = () => {
 
             {/* List of comments */}
             <div className="comments__list">
-                {mainVideo.comments.map (({ id, comment, timestamp, name }, index) => (
+                {mainVideo && mainVideo.comments && mainVideo.comments.map(({ id, comment, timestamp, name }, index) => (
                     <div key={index} className="comments__item">
                         <div className="comments__divider-container">
                             <hr className="comments__divider" />
@@ -148,7 +152,7 @@ const Comments = () => {
                                         </p>
                                     </div>
                                 </div>
-                               
+                                
                                 <div className="comments__single-container">
                                     <p className="comments__text">{comment}</p>
                                 </div>

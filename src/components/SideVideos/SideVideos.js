@@ -24,6 +24,11 @@ const SideVideos = ({ videos, mainVideo }) => {
             : text;
     };
 
+    // Function to handle click on side video
+    const handleSideVideoClick = () => {
+        window.scrollTo(0, 0); // Scroll to the top of the page
+    };
+
     if (!mainVideo || videos.length === 0) {
         return null;
     }
@@ -44,7 +49,12 @@ const SideVideos = ({ videos, mainVideo }) => {
                 {/* List of side video thumbnails */}
                 {filteredVideos.map((video) => (
                     <div key={video.id} className="sideVideos__thumbnail">
-                        <Link to={`/video/${video.id}`} className="sideVideos__thumbnail-link" aria-label={`Watch ${video.title}`}> 
+                        <Link 
+                            to={`/video/${video.id}`}
+                            className="sideVideos__thumbnail-link"
+                            aria-label={`Watch ${video.title}`}
+                            onClick={handleSideVideoClick}
+                        > 
                             <div className="sideVideos__thumbnail-info">
                                 {/* Created and added an inner wrapper for this specific video - to match the mockup */}
                                 {video.id === "25ce5d91-a262-4dcf-bb87-42b87546bcfa" ? (
