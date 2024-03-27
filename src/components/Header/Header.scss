@@ -39,9 +39,9 @@
 
     &__search-list {
         display: flex;      
-        width: 70vw;
+        width: 100%;
         min-width: 18rem;
-        max-width: 33.556rem;
+        max-width: 100%;
         justify-content: space-between;
         align-items: center;
         margin: 0;
@@ -56,9 +56,7 @@
     }
 
     &__search-container {
-        @include block-item(60vw, auto);
-        min-width: 13rem;
-        max-width: 35rem;
+        @include block-item(100%, auto);
         margin: .7rem 0 1rem 0;
         display: flex;
         position: relative;
@@ -70,7 +68,7 @@
         }
 
         @include desktop {
-            margin: 1rem 1rem 1rem 0;
+            margin: 1rem 1.5rem 1rem 0;
         }
     }
 
@@ -88,10 +86,9 @@
     }
     
     &__search-bar {
-        @include body-copy-style;
-        @include block-item(60vw, .62rem);
+        @include block-item(100%, .62rem);
         min-width: 13rem;
-        max-width: 40rem;
+        @include body-copy-style;
         padding: .78rem;
         background-color: $octonary;
         border: .063rem solid $septenary;
@@ -99,6 +96,11 @@
 
         @include tablet {
             @include block-item(13.5rem, .8rem);
+            margin-right: 1.6rem;
+        }
+
+        @include desktop {
+            margin-right: 0;
         }
     
         &::placeholder {
@@ -118,9 +120,8 @@
     
         &:active,
         &:focus {
-            @include block-item(60vw, .62rem);
+            @include block-item(100%, .62rem);
             min-width: 13rem;
-            max-width: 40rem;
             @include body-copy-style;
             outline: none;
             padding: .78rem;
@@ -172,6 +173,9 @@
 
     &__upload-button-container--bottom {
         display: block;
+        width: 100%;
+        min-width: 18rem;
+        max-width: 45.938rem;
 
         @include tablet {
             display: none;
@@ -193,20 +197,19 @@
         }
 
         @include tablet {
-            @include button-style(9.65rem, 2.5rem);
+            @include button-style(9.7rem, 2.5rem);
             margin-right: 1rem;
         }
         
         @include desktop {
             width: 9.5rem;
-            margin-left: .5rem;
         }
     }
 
     &__upload-button--bottom {
-        @include button-style(70vw, 2.5rem);
+        @include button-style(100%, 2.5rem);
         min-width: 18rem;
-        max-width: 33.556rem;
+        max-width: 100%;
         @include heading-style;
         transition: background-color .3s, transform .3s; // Added transition effect for button interaction
 
