@@ -11,6 +11,7 @@ const VideoUploadPage = () => {
 
     // State hooks for managing form fields, hover state, validation errors, and submission status 
     const [showAlert, setShowAlert] = useState(false);
+    const [showErrorAlert, setShowErrorAlert] = useState(false);
     const [titleValue, setTitleValue] = useState("");
     const [descriptionValue, setDescriptionValue] = useState("");
     const [isHovered, setIsHovered] = useState(false);
@@ -20,7 +21,7 @@ const VideoUploadPage = () => {
     const [isDescriptionFocused, setIsDescriptionFocused] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [isLoading , setIsLoading] = useState(true);
-
+    
     // Effect hook to manage loader visibility based on page load status
     useEffect(() => {
         const handleLoad = () => setIsLoading(false);
@@ -65,6 +66,9 @@ const VideoUploadPage = () => {
     // Submission handler to validate the form fields and show alert on success
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Reset the error alert state on each submit attempt
+        setShowErrorAlert(false);
     
         const isTitleValid = titleValue.trim();
         const isDescriptionValid = descriptionValue.trim();
@@ -73,7 +77,8 @@ const VideoUploadPage = () => {
         setIsDescriptionEmpty(!isDescriptionValid);
     
         if (!isTitleValid || !isDescriptionValid) {
-            setFormSubmitted(true); 
+            setFormSubmitted(true);
+            setShowErrorAlert(true); 
             console.log("Both title and description are required.");
             return;
         }
@@ -221,8 +226,30 @@ const VideoUploadPage = () => {
                         {/* Alert for successful upload */}
                         {showAlert && (
                             <div className="videoUploadPage__alert">
-                                Video uploaded successfully!
-                                <button onClick={handleCloseAlert} aria-label="Close">Close</button>
+                                <p className="videoUploadPage__alert-text">
+                                    Video uploaded successfully!
+                                </p>
+                                <button className="videoUploadPage__alert-button" onClick={handleCloseAlert} aria-label="Close">Close</button>
+                            </div>
+                        )}
+
+                        {/* Error alert for missing title or description */}
+                        {showErrorAlert && (
+                            <div className="videoUploadPage__alert--error">
+                                <p className="videoUploadPage__alert-text--error">
+                                    Title and description are required.
+                                </p>
+                                <button 
+                                    className="videoUploadPage__alert-button--error" 
+                                    onClick={() => {
+                                        setShowErrorAlert(false);
+                                        setIsDescriptionEmpty(false);
+                                        setIsTitleEmpty(false);
+                                    }}
+                                    aria-label="Close"
+                                >
+                                    Close
+                                </button>
                             </div>
                         )}
                     </div>

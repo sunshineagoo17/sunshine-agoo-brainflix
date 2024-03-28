@@ -438,54 +438,102 @@
         }
     }
 
-    &__alert {
-        @include mobile {
-            @include heading-style;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed; 
-            z-index: 1000; // Ensures it's above other content 
-            top: 5.125rem; 
-            background-color: $octonary;
-            border-radius: .25rem;
-            margin-top: 1.25rem;
-            padding: 1rem;
-            color: $primary;
-            box-shadow: 0 .25rem .375rem rgba(0,0,0,.5); 
+    &__alert-text--error {
+        font-size: .75rem;
 
-            @include tablet {
-                top: 4.125rem;
-                left: 50%;
-                transform: translateX(-50%); 
-            }
-
-            @include desktop {
-                top: 3.1rem;
-                left: 50%;
-                transform: translateX(-50%); 
-            }
+        @include tablet {
+            font-size: 1rem;
         }
     }
-    
-    &__alert button {
+
+    &__alert-text {
+        font-size: .85rem;
+
+        @include tablet {
+            font-size: 1.1rem;
+        }
+    }
+
+    &__alert,
+    &__alert--error {
+        @include heading-style;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed; 
+        z-index: 1000; // Ensures it's above other content 
+        top: 5.125rem; 
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $octonary;
+        border-radius: .25rem;
+        margin-top: 1.25rem;
+        padding: 1rem;
+        color: $primary;
+        box-shadow: 0 .25rem .375rem rgba(0,0,0,.5); 
+
+        @include tablet {
+            top: 3.85rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem;
+        }
+
+        @include desktop {
+            top: 3.1rem;
+            left: 50%;
+            transform: translateX(-50%); 
+        }
+    }
+
+    &__alert {
+        width: 16rem;
+
+        @include tablet {
+            width: 19.5rem;
+        }
+    }
+
+    &__alert--error {
+        width: 16rem;
+
+        @include tablet {
+            width: 20.5rem;
+        }
+    }
+
+    &__alert-button,
+    &__alert-button--error {
         @include heading-style;
         border-radius: .25rem;
-        margin-left: .5rem;
-        background-color: $secondary; 
         color: $quaternary;
         text-transform: uppercase;
         border: none;
         cursor: pointer;
         padding: .313rem .625rem;
 
+        &:active {
+            transform: scale(.95); // Scales down the button on active state
+        }
+    }
+
+    &__alert-button {
+        background-color: $secondary;
+        margin-left: .1rem;
+   
         &:hover,
         &:active {
             background-color: $senary;
         }
+    }
 
+    &__alert-button--error {
+        background-color: $nonary;
+        margin-left: .25rem;
+
+        &:hover,
         &:active {
-            transform: scale(.95); // Scales down the button on active state
+            background-color: $primary;
         }
     }
 }
