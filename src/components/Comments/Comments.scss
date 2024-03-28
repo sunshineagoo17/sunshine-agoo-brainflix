@@ -412,4 +412,66 @@
     &__error {
         border: .125rem solid $nonary;
     }
+
+    &__alert-text {
+        font-size: 1.05rem;
+
+        @include tablet {
+            font-size: 1.15rem;
+        }
+    }
+
+    &__alert--error {
+        @include heading-style;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed; 
+        z-index: 1000; // Ensures it's above other content 
+        top: 3rem; 
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $octonary;
+        border-radius: .25rem;
+        margin-top: 1.25rem;
+        padding: 1rem;
+        color: $primary;
+        width: 16.2rem;
+        box-shadow: 0 .25rem .375rem rgba(0,0,0,.5); 
+
+        @include tablet {
+            top: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem;
+            width: 17.5rem;
+        }
+
+        @include desktop {
+            top: 3.1rem;
+            left: 50%;
+            transform: translateX(-50%); 
+        }
+    }
+
+    &__alert-close {
+        @include heading-style;
+        border-radius: .25rem;
+        color: $quaternary;
+        text-transform: uppercase;
+        background-color: $nonary;
+        margin-left: .1rem;
+        border: none;
+        cursor: pointer;
+        padding: .313rem .625rem;
+
+        &:active {
+            transform: scale(.95); // Scales down the button on active state
+        }
+   
+        &:hover,
+        &:active {
+            background-color: $primary;
+        }
+    }
 }

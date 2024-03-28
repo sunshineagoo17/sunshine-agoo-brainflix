@@ -19,12 +19,14 @@ const Comments = ({
     const [isHovered, setIsHovered] = useState(false);
     const [isCommentEmpty, setIsCommentEmpty] = useState(false);
     const [isTextareaFocused, setIsTextareaFocused] = useState(false);
+    const [showErrorAlert, setShowErrorAlert] = useState(false);
 
     //Updates the comment text
     const handleCommentChange = (e) => {
         const value = e.target.value;
         setCommentValue(value);
         setIsCommentEmpty(false);
+        setShowErrorAlert(false);
     };
 
     const handleTextareaFocus = () => {
@@ -43,6 +45,7 @@ const Comments = ({
         e.preventDefault();
         if (!commentValue.trim()) {
             setIsCommentEmpty(true);
+            setShowErrorAlert(true);
             console.log("You gotta add a comment.");
             return;
         }
@@ -53,6 +56,7 @@ const Comments = ({
         if (result.success) {
             setCommentValue("");
             setIsCommentEmpty(false);
+            setShowErrorAlert(false);
         } else {
             console.log(result.message);
         }
@@ -175,6 +179,19 @@ const Comments = ({
                     </div>
                 ))}
             </div>
+            {showErrorAlert && (
+                <div className="comments__alert--error">
+                    <p className="comments__alert-text">
+                        Please add a comment.
+                    </p>
+                    <button
+                        className="comments__alert-close"
+                        onClick={() => setShowErrorAlert(false)}
+                    >
+                        Close
+                    </button>
+                </div>
+            )}
         </section>
     );
 };
