@@ -170,24 +170,46 @@
         text-transform: uppercase;
     }
 
-    &__title-input {
-        @include block-item(16.65rem, .22rem);
-        @include body-copy-style;
-        padding: 1rem .6rem;
-        background-color: $octonary;
-        border: .063rem solid $septenary;
-        border-radius: .25rem;
-        margin-left: 1rem;
+    &__title-and-description-container {
+        @include desktop {
+            width: 90rem;
+        }
+    }
+
+    &__input-wrapper,
+    &__textarea-wrapper {
         margin-right: 1rem;
+        margin-left: 1rem;
 
         @include tablet {
-            @include block-item(42.2rem, .37rem);
             margin-left: 2.25rem;
+            margin-right: 2.25rem;
         }
 
         @include desktop {
             margin-left: .75rem;
-            width: 40.5rem;
+        }
+    }
+
+    &__title-input {
+        @include body-copy-style;
+        @include block-item(100%, 2.5rem);
+        box-sizing: border-box;
+        min-width: 16.65rem;
+        padding: 1rem .6rem;
+        background-color: $octonary;
+        border: .063rem solid $septenary;
+        border-radius: .25rem;
+
+        @include tablet {
+            @include block-item(100%, 2.5rem);
+            min-width: 42.2rem;
+        }
+
+        @include desktop {
+            width: 100%;
+            min-width: 40.5rem;
+            max-width: 90rem;
         }
     
         &::placeholder {
@@ -203,23 +225,24 @@
     
         &:active,
         &:focus {
-            @include block-item(16.65rem, .22rem);
             @include body-copy-style;
-            margin-left: 1rem;
-            margin-right: 1rem;
+            @include block-item(100%, 2.5rem);
+            box-sizing: border-box;
+            min-width: 16.65rem;
             outline: none;
             padding: 1rem .6rem;
             border: .125rem solid $secondary;
             border-radius: .25rem; 
             
             @include tablet {
-                @include block-item(42.2rem, .37rem);
-                margin-left: 2.25rem;
+                @include block-item(100%, 2.5rem);
+                min-width: 42.2rem;
             }
 
             @include desktop {
-                margin-left: .75rem;
-                width: 40.5rem;
+                width: 100%;
+                min-width: 40.5rem;
+                max-width: 90rem;
             }
         }
 
@@ -229,24 +252,25 @@
     }
 
     &__description-input {
-        @include block-item(16.65rem, 4rem);
         @include body-copy-style;
+        @include block-item(100%, 5.35rem);
+        box-sizing: border-box;
+        min-width: 16.65rem;
         padding: .75rem .6rem;
         background-color: $octonary;
         border: .063rem solid $septenary;
         border-radius: .25rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
         resize: none;
 
         @include tablet {
-            @include block-item(42.2rem, 3.9rem);
-            margin-left: 2.25rem;
+            @include block-item(100%, 5.5rem);
+            min-width: 42.2rem;
         }
 
         @include desktop {
-            width: 40.5rem;
-            margin-left: .75rem;
+            width: 100%;
+            min-width: 40.5rem;
+            max-width: 90rem;
         }
     
         &::placeholder {
@@ -262,23 +286,24 @@
     
         &:active,
         &:focus {
-            @include block-item(16.65rem, 4rem);
             @include body-copy-style;
-            margin-left: 1rem;
-            margin-right: 1rem;
+            @include block-item(100%, 5.35rem);
+            box-sizing: border-box;
+            min-width: 16.65rem;
             outline: none;
             padding: .75rem .6rem;
             border: .125rem solid $secondary;
             border-radius: .25rem; 
             
             @include tablet {
-                @include block-item(42.2rem, 3.9rem);
-                margin-left: 2.25rem;
+                @include block-item(100%, 5.5rem);
+                min-width: 42.2rem;
             }
 
             @include desktop {
-                width: 40.5rem;
-                margin-left: .75rem;
+                width: 100%;
+                min-width: 40.5rem;
+                max-width: 90rem;
             }
         }
 
@@ -297,7 +322,9 @@
 
     &__button-publish {
         @include heading-style;
-        @include button-style(18rem, 2.5rem);
+        @include button-style(100%, 2.5rem);
+        box-sizing: border-box;
+        min-width: 18rem;
         transition: background-color .3s, transform .3s; // Added transition effect for button interaction
 
         &:hover,
@@ -310,6 +337,11 @@
         }
 
         @include tablet {
+            @include button-style(100%, 2.5rem);
+            min-width: 9.65rem;
+        }
+
+        @include desktop {
             @include button-style(9.65rem, 2.5rem);
         }
     }
@@ -348,7 +380,9 @@
     }
 
     &__button-cancel {
-        @include block-item(18rem, 2.5rem);
+        @include button-style(100%, 2.5rem);
+        box-sizing: border-box;
+        min-width: 18rem;
         @include heading-style;
         background-color: $quaternary;
         color: $secondary;
@@ -374,7 +408,8 @@
         }
 
         @include tablet {
-            @include block-item(9.65rem, 2.5rem);
+            @include block-item(100%, 2.5rem);
+            min-width: 9.65rem;
         }
     }
     

@@ -133,30 +133,33 @@ const VideoUploadPage = () => {
                                     <div className="videoUploadPage__input-container">
                                         <div className="videoUploadPage__label-container--top">
                                             <label htmlFor="videoTitle" className="videoUploadPage__label--top">Title your video</label>
-                                        </div>        
-                                        <input
-                                            type="text"
-                                            id="videoTitle"
-                                            name="title"
-                                            aria-label="Enter video title"
-                                            placeholder="Add a title to your video"
-                                            className={`videoUploadPage__title-input ${titleValue.trim() ? "field--filled" : ""} ${isTitleEmpty && formSubmitted ? "videoUploadPage__error" : ""} ${isTitleFocused ? "title__focused" : ""}`}
-                                            value={titleValue}
-                                            onChange={handleInputChange}
-                                            onFocus={handleTitleAreaFocus}
-                                            onBlur={() => {
-                                                setIsTitleFocused(false);
-                                                if (!formSubmitted) {
-                                                    setIsTitleEmpty(!titleValue.trim());
-                                                }
-                                            }}
-                                        />
+                                        </div> 
+                                        <div className="videoUploadPage__input-wrapper">       
+                                            <input
+                                                type="text"
+                                                id="videoTitle"
+                                                name="title"
+                                                aria-label="Enter video title"
+                                                placeholder="Add a title to your video"
+                                                className={`videoUploadPage__title-input ${titleValue.trim() ? "field--filled" : ""} ${isTitleEmpty && formSubmitted ? "videoUploadPage__error" : ""} ${isTitleFocused ? "title__focused" : ""}`}
+                                                value={titleValue}
+                                                onChange={handleInputChange}
+                                                onFocus={handleTitleAreaFocus}
+                                                onBlur={() => {
+                                                    setIsTitleFocused(false);
+                                                    if (!formSubmitted) {
+                                                        setIsTitleEmpty(!titleValue.trim());
+                                                    }
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                     
                                     <div className="videoUploadPage__input-container">
                                         <div className="videoUploadPage__label-container--bottom">
                                             <label htmlFor="videoDescription" className="videoUploadPage__label--bottom">Add a Video Description</label>
-                                        </div>    
+                                        </div>
+                                        <div className="videoUploadPage__textarea-wrapper">   
                                             <textarea
                                                 id="videoDescription"
                                                 name="description"
@@ -173,6 +176,7 @@ const VideoUploadPage = () => {
                                                     }
                                                 }}
                                             />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
