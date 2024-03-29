@@ -137,8 +137,10 @@ const Comments = ({
 
             {/* List of comments */}
             <div className="comments__list">
-                {mainVideo && mainVideo.comments && mainVideo.comments.map(({ id, comment, timestamp, name }, index) => (
-                    <div key={index} className="comments__item">
+                {mainVideo && mainVideo.comments && mainVideo.comments
+                    .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                    .map(({ id, comment, timestamp, name }, index) => (
+                        <div key={`${id}-${index}`} className="comments__item">
                         <div className="comments__divider-container">
                             <hr className="comments__divider" />
                         </div>
