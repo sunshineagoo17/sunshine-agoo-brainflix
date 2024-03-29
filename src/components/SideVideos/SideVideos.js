@@ -19,9 +19,13 @@ const SideVideos = ({ videos, mainVideo }) => {
 
     // Truncates text to the specified maxLength if the screen width is below a threshold (mobile view)
     const TruncateText = (text, maxLength, screenWidth) => {
-        return screenWidth <= 446 && text.length > maxLength
-            ? `${text.substr(0, maxLength).trim()}...`
-            : text;
+        if (screenWidth > 446) {
+            return text;
+        }
+
+    return text.length > maxLength
+        ? text.substr(0, text.lastIndexOf(" ", maxLength)).trim() + "..."
+        : text;    
     };
 
     // Function to handle click on side video
