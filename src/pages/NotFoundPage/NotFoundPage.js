@@ -58,15 +58,19 @@ const NotFoundPage = () => {
 
     // Function to cycle through the imageArr and display a new message and image each time a 404 is encountered 
     const getNextOption = () => {
+        let nextIndex = 0; 
         try {
-            const lastIndex = parseInt(localStorage.getItem("lastShownIndex"), 10);
-            let nextIndex = lastIndex >= 0 && lastIndex < imageArr.length - 1 ? lastIndex + 1 : 0;
-            localStorage.setItem("lastShownIndex", nextIndex.toString());
-            return imageArr[nextIndex];
+            // Retrieve the last shown index from sessionStorage
+            const lastIndex = parseInt(sessionStorage.getItem("lastShownIndex"), 10);
+            if (!isNaN(lastIndex) && lastIndex >= 0) {
+                nextIndex = (lastIndex + 1) % imageArr.length; 
+            }
+            // Update the sessionStorage with the new index for the next load
+            sessionStorage.setItem("lastShownIndex", nextIndex.toString());
         } catch (e) {
-            console.error("Error accessing localStorage", e);
-            return imageArr[0];
+            console.error("Error accessing sessionStorage", e);
         }
+        return imageArr[nextIndex];
     };
 
     const [currentOption, setCurrentOption] = useState(getNextOption);
