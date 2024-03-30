@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./MainVideoPage.scss";
@@ -41,6 +41,7 @@ function GenerateRandomUsername() {
 
 const MainVideoPage = () => {
     const { videoId } = useParams();
+    const navigate = useNavigate();
     const [videos, setVideos] = useState([]);
     const [mainVideo, setMainVideo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -62,13 +63,17 @@ const MainVideoPage = () => {
     // Function to update the main video data
     const updateMainVideo = useCallback(async (videoId) => {
         if (!apiKey) return;
+        setIsLoading(true);
         try {
             const response = await axiosInstance.get(`/videos/${videoId}`, { params: { api_key: apiKey } });
             setMainVideo(response.data);
         } catch (error) {
             console.error("Error fetching main video details:", error);
+            navigate("/uh-oh");
+        } finally {
+            setIsLoading(false);
         }
-    }, [apiKey]);
+    }, [apiKey, navigate]);
 
     useEffect(() => {
         if (!apiKey) return;
