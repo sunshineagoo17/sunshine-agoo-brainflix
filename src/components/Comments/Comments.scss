@@ -91,6 +91,7 @@
         @include tablet {
             @include block-item(26.9rem, 1.25rem);
             margin-top: .35rem;
+            padding: .65rem 0 .5rem .9rem;
         }
 
         @include desktop {
