@@ -196,7 +196,7 @@
         @include block-item(100%, 2.5rem);
         box-sizing: border-box;
         min-width: 16.65rem;
-        padding: 1rem .6rem;
+        padding: 1rem .7rem;
         background-color: $octonary;
         border: .063rem solid $septenary;
         border-radius: .25rem;
@@ -204,6 +204,7 @@
         @include tablet {
             @include block-item(100%, 2.5rem);
             min-width: 42.2rem;
+            padding-left: 1rem;
         }
 
         @include desktop {
@@ -216,11 +217,6 @@
             @include body-copy-style;
             font-size: .78rem;
             color: $quinary;
-            padding-left: .25rem;
-
-            @include tablet {
-                padding-left: .4rem;
-            }
         }
     
         &:active,
@@ -230,13 +226,14 @@
             box-sizing: border-box;
             min-width: 16.65rem;
             outline: none;
-            padding: 1rem .6rem;
+            padding: 1rem .7rem;
             border: .125rem solid $secondary;
             border-radius: .25rem; 
             
             @include tablet {
                 @include block-item(100%, 2.5rem);
                 min-width: 42.2rem;
+                padding-left: 1rem;
             }
 
             @include desktop {
@@ -256,7 +253,7 @@
         @include block-item(100%, 5.35rem);
         box-sizing: border-box;
         min-width: 16.65rem;
-        padding: .75rem .6rem;
+        padding: .75rem .7rem;
         background-color: $octonary;
         border: .063rem solid $septenary;
         border-radius: .25rem;
@@ -265,6 +262,7 @@
         @include tablet {
             @include block-item(100%, 5.5rem);
             min-width: 42.2rem;
+            padding-left: 1rem;
         }
 
         @include desktop {
@@ -277,11 +275,6 @@
             @include body-copy-style;
             font-size: .78rem;
             color: $quinary;
-            padding-left: .25rem;
-
-            @include tablet {
-                padding-left: .4rem;
-            }
         }
     
         &:active,
@@ -291,13 +284,14 @@
             box-sizing: border-box;
             min-width: 16.65rem;
             outline: none;
-            padding: .75rem .6rem;
+            padding: .75rem .7rem;
             border: .125rem solid $secondary;
             border-radius: .25rem; 
             
             @include tablet {
                 @include block-item(100%, 5.5rem);
                 min-width: 42.2rem;
+                padding-left: 1rem;
             }
 
             @include desktop {
