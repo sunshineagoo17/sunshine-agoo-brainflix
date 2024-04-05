@@ -122,13 +122,25 @@ const MainVideoPage = () => {
 
     // Deletes a specific comment from a video
     const deleteComment = async (videoId, commentId) => {
+        const updatedComments = mainVideo.comments.filter(comment => comment.id !== commentId);
+        const previousComments = mainVideo.comments;
+
+        setMainVideo(prevMainVideo => ({
+            ...prevMainVideo,
+            comments: updatedComments
+        }));
+
         console.log(`Attempting to delete comment with ID ${commentId} from video with ID ${videoId} using API key ${apiKey}`);
+        
         try {
             const response = await axiosInstance.delete(`/videos/${videoId}/comments/${commentId}`, { params: { api_key: apiKey } });
             console.log("Comment deleted successfully:", response.data);
-            updateMainVideo(videoId);
         } catch (error) {
             console.error("Sorry, we can't delete that comment:", error);
+            setMainVideo(prevMainVideo => ({
+                ...prevMainVideo,
+                comments: previousComments
+            }))
         }
     };
 
