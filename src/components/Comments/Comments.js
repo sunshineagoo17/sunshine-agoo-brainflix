@@ -65,7 +65,9 @@ const Comments = ({
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
 
-    const handleDeleteComment = async (commentId) => {
+    const handleDeleteComment = async (event, commentId) => {
+        event.preventDefault();
+        event.stopPropagation();
         await deleteComment(mainVideo.id, commentId);
     };
 
@@ -165,9 +167,10 @@ const Comments = ({
 
                                 <div className="comments__delete-button-container">
                                     <button
+                                        type="button"
                                         aria-label="Delete comment"
                                         className="comments__delete-button"
-                                        onClick={() => handleDeleteComment(id)}
+                                        onClick={(event) => handleDeleteComment(event, id)}
                                     >
                                         <img
                                             src={DeleteIcon}

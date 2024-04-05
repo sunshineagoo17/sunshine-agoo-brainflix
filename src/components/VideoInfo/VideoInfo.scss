@@ -115,6 +115,10 @@
         @include desktop {
             margin-right: 1.45rem;
         }
+
+        @include large-desktop {
+            margin-right: 1.35rem;
+        }
     }
 
     &__video-views-container,

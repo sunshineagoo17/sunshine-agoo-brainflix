@@ -27,10 +27,6 @@
             justify-items: flex-start;
             flex-direction: row;
         }
-
-        @include large-desktop {
-            flex: 0;
-        }
     }
 
     &__video-info-thumbnails {
