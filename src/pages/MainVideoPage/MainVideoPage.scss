@@ -21,7 +21,7 @@
 
     &__video-info-thumbnails-container {
         @include desktop {
-            @include block-item(35%, auto);
+            @include block-item(20.5rem, auto);
             flex: 1;
             display: flex;
             justify-items: flex-start;

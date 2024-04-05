@@ -168,7 +168,7 @@
         }
 
         @include desktop {
-            margin-left: 1.4rem;
+            margin-left: 1.65rem;
         }
     }
 
@@ -342,7 +342,7 @@
         width: 100%;
 
         @include desktop {
-            margin-right: 1.85rem;
+            margin-right: 2.25rem;
         }
 
         @include large-desktop {
@@ -396,6 +396,7 @@
 
         @include desktop {
             margin-top: .6rem;
+            margin-right: -.25rem;
         }
     }
 
