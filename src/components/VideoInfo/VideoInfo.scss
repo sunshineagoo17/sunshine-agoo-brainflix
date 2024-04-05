@@ -4,7 +4,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .videoInfo {
-    margin: -.25rem 1rem 1.1rem 1rem;
+    margin: -.3rem 1rem 1.1rem 1rem;
 
     @include tablet {
         margin: -.35rem 2.25rem 1.3rem 2.25rem;
