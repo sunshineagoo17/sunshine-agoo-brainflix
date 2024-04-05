@@ -76,9 +76,9 @@
         border-radius: .25rem;
 
         @include tablet {
-            @include block-item(18rem, 12rem);
+            @include block-item(21.5rem, 12rem);
             margin-left: 2.25rem;
-            margin-top: .4rem;
+            margin-top: .3rem;
         }
 
         @include desktop {
@@ -95,7 +95,7 @@
         border-radius: .25rem;  
 
         @include tablet {
-            @include block-item(18rem, 12rem);
+            @include block-item(21.5rem, 12rem);
         }
 
         @include desktop {
