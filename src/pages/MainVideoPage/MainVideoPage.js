@@ -110,7 +110,7 @@ const MainVideoPage = () => {
                     comments: [response.data, ...prevMainVideo.comments]
                 }));
 
-                console.log(`Comment posted: Video ID: ${videoId}, API Key: ${apiKey}, Comment ID: ${response.data.id}`);
+                console.log(`Comment posted: Video ID: ${videoId}, Comment ID: ${response.data.id}`);
             }
             
             return { success: true, comment: response.data };
@@ -130,7 +130,7 @@ const MainVideoPage = () => {
             comments: updatedComments
         }));
 
-        console.log(`Attempting to delete comment with ID ${commentId} from video with ID ${videoId} using API key ${apiKey}`);
+        console.log(`Attempting to delete comment with ID ${commentId} from video with ID ${videoId}`);
         
         try {
             const response = await axiosInstance.delete(`/videos/${videoId}/comments/${commentId}`, { params: { api_key: apiKey } });
