@@ -51,7 +51,7 @@ const NotFoundPage = () => {
         },       
         {
             id: 4,
-            copy: "Great Scott! Lookis like you've ventured into the time vortex. Hang tight while we dial back the clock and find that missing page!",
+            copy: "Great Scott! Looks like you've ventured into the time vortex. Hang tight while we dial back the clock and find that missing page!",
             image: TimeTravelImage,
         },
     ];
