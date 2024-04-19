@@ -14,12 +14,13 @@ const Header = () => {
     const [isHovered, setIsHovered] = useState(false); 
     const location = useLocation(); 
 
-    // Whenever the page changes, the search bar is cleared and this indicates typing has stopped
+    // Clears the search input and resets typing status when navigating to a different route
     useEffect(() => {
         setSearchValue("");
         setUserIsTyping(false);
     }, [location]); 
     
+    // Updates search input state and determines if the user is currently typing
     const handleSearchInputChange = event => {
         const inputValue = event.target.value;
         setUserIsTyping(inputValue.length > 0);
@@ -32,7 +33,7 @@ const Header = () => {
             
             <div className="nav__search-list">
                 <div className="nav__search-container">
-                    {/* Search icon is only visible when the user is not typing in the search bar */}
+                    {/* Search icon visibility toggles based on user typing status */}
                     {!userIsTyping && <img src={SearchIcon} alt="search icon" className="nav__search-icon" />}
                     <input
                         type="text"
