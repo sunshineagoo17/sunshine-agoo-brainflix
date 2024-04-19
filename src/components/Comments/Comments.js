@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 import CommentIcon from "../../assets/images/icons/add_comment.svg";
 import DeleteIcon from "../../assets/images/icons/icon-delete.svg";
+import LikeIcon from "../../assets/images/icons/icon-like.svg";
 
 import "./Comments.scss";
 
@@ -11,17 +12,18 @@ const Comments = ({
     deleteComment,
     mainVideo,
     TimeAgo,
-    GenerateRandomUsername
+    GenerateRandomUsername,
+    handleLikeComment
 }) => {
 
-    // States for handling comment form interactions
+    // State management for comment input and UI interactions
     const [commentValue, setCommentValue] = useState("");
     const [isHovered, setIsHovered] = useState(false);
     const [isCommentEmpty, setIsCommentEmpty] = useState(false);
     const [isTextareaFocused, setIsTextareaFocused] = useState(false);
     const [showErrorAlert, setShowErrorAlert] = useState(false);
 
-    //Updates the comment text
+    // Handles comment input changes
     const handleCommentChange = (e) => {
         const value = e.target.value;
         setCommentValue(value);
@@ -33,7 +35,7 @@ const Comments = ({
         setIsTextareaFocused(true);
     }
 
-    // Resets form states when clicking outside the form
+    // Handles focus losss on the entire form
     const handleFormBlur = (e) => {
         if (!e.currentTarget.contains(e.relatedTarget)) {
             setIsCommentEmpty(false);
@@ -41,6 +43,7 @@ const Comments = ({
         }
     };
 
+    // Submits the comment to the server
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         if (!commentValue.trim()) {
