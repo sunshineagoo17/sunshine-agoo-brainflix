@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import "./MainVideoPage.scss";
 
@@ -9,9 +8,6 @@ import VideoInfo from "../../components/VideoInfo/VideoInfo";
 import Comments from "../../components/Comments/Comments";
 import SideVideos from "../../components/SideVideos/SideVideos";
 import Loader from "../../components/Loader/Loader";
-
-const baseURL = "https://project-2-api.herokuapp.com";
-const axiosInstance = axios.create({ baseURL });
 
 // Function that formats dynamic timestamp - used in Comments and VideoInfo components
 const TimeAgo = (timestamp) => {
@@ -39,33 +35,18 @@ function GenerateRandomUsername() {
     return `${randomFirstName} ${randomLastName}`;
 }
 
-const MainVideoPage = () => {
+const MainVideoPage = ({ axiosInstance }) => {
     const { videoId } = useParams();
     const navigate = useNavigate();
     const [videos, setVideos] = useState([]);
     const [mainVideo, setMainVideo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [apiKey, setApiKey] = useState("");
-
-    // Fetch API key on component mount
-    useEffect(() => {
-        const fetchApiKey = async () => {
-            try {
-                const response = await axios.get(`${baseURL}/register`);
-                setApiKey(response.data.api_key);
-            } catch (error) {
-                console.error("Error fetching API key:", error);
-            }
-        };
-        fetchApiKey();
-    }, []);
 
     // Function to update the main video data
     const updateMainVideo = useCallback(async (videoId) => {
-        if (!apiKey) return;
         setIsLoading(true);
         try {
-            const response = await axiosInstance.get(`/videos/${videoId}`, { params: { api_key: apiKey } });
+            const response = await axiosInstance.get(`/videos/${videoId}`);
             setMainVideo(response.data);
         } catch (error) {
             console.error("Error fetching main video details:", error);
@@ -73,36 +54,37 @@ const MainVideoPage = () => {
         } finally {
             setIsLoading(false);
         }
-    }, [apiKey, navigate]);
+    }, [navigate, axiosInstance]);
+
+    const fetchData = useCallback(async () => {
+        try {
+            const response = await axiosInstance.get("/videos");
+            setVideos(response.data);
+            if (videoId) {
+                updateMainVideo(videoId);
+            } else if (response.data.length > 0) {
+                updateMainVideo(response.data[0].id);
+            }
+        } catch (error) {
+            console.error("Error fetching videos:", error.response || error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [axiosInstance, videoId, updateMainVideo]);  
 
     useEffect(() => {
-        if (!apiKey) return;
-        const fetchData = async () => {
-            try {
-                const response = await axiosInstance.get("/videos", { params: { api_key: apiKey } });
-                setVideos(response.data);
-                if(videoId) {
-                    updateMainVideo(videoId);
-                } else if(response.data.length > 0) {
-                    updateMainVideo(response.data[0].id);
-                }
-            } catch (error) {
-                console.error("Error fetching videos:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
         fetchData();
-    }, [apiKey, videoId, updateMainVideo]); 
+    }, [fetchData]);
+
+    const handleVideoSelect = (videoId) => {
+        updateMainVideo(videoId);
+    };
 
     // Post a new comment and log the action
     const postComment = async (videoId, commentText, username) => {
-        if (!apiKey) return;
         try {
             const commentPayload = { name: username, comment: commentText };
-            const response = await axiosInstance.post(`/videos/${videoId}/comments`, commentPayload, {
-                params: { api_key: apiKey }
-            });
+            const response = await axiosInstance.post(`/videos/${videoId}/comments`, commentPayload);
             
             if (response.data && mainVideo.id === videoId) {
                 setMainVideo(prevMainVideo => ({
@@ -122,25 +104,34 @@ const MainVideoPage = () => {
 
     // Deletes a specific comment from a video
     const deleteComment = async (videoId, commentId) => {
-        const updatedComments = mainVideo.comments.filter(comment => comment.id !== commentId);
-        const previousComments = mainVideo.comments;
-
-        setMainVideo(prevMainVideo => ({
-            ...prevMainVideo,
-            comments: updatedComments
-        }));
-
         console.log(`Attempting to delete comment with ID ${commentId} from video with ID ${videoId}`);
-        
+    
         try {
-            const response = await axiosInstance.delete(`/videos/${videoId}/comments/${commentId}`, { params: { api_key: apiKey } });
-            console.log("Comment deleted successfully:", response.data);
+            const response = await axiosInstance.delete(`/videos/${videoId}/comments/${commentId}`);
+            if (response.status === 204) { 
+                console.log("Comment deleted successfully");
+                setMainVideo(prevMainVideo => ({
+                    ...prevMainVideo,
+                    comments: prevMainVideo.comments.filter(comment => comment.id !== commentId)
+                }));
+            }
         } catch (error) {
             console.error("Sorry, we can't delete that comment:", error);
-            setMainVideo(prevMainVideo => ({
-                ...prevMainVideo,
-                comments: previousComments
-            }))
+        }
+    };
+
+    // Function to handle liking a comment
+    const handleLikeComment = async () => {
+        try {
+            const response = await axiosInstance.put(`/videos/${mainVideo.id}/likes`);
+            if (response.status === 200) {
+                setMainVideo(prevMainVideo => ({
+                    ...prevMainVideo,
+                    likes: response.data.likes.toString() // Convert likes count to string
+                }));
+            }
+        } catch (error) {
+            console.error("Failed to like comment:", error);
         }
     };
 
@@ -164,6 +155,7 @@ const MainVideoPage = () => {
                                         mainVideo={mainVideo}
                                         TimeAgo={TimeAgo}
                                         GenerateRandomUsername={GenerateRandomUsername}
+                                        handleLikeComment={handleLikeComment}
                                     />
                                 </div>
                                 <div className="mainVideoPage__video-info-thumbnails-container">
@@ -171,7 +163,7 @@ const MainVideoPage = () => {
                                         <hr className="mainVideoPage__divider" />
                                     </div>
                                     <div className="mainVideoPage__video-info-thumbnails">
-                                        <SideVideos videos={videos} mainVideo={mainVideo} />
+                                        <SideVideos videos={videos} mainVideo={mainVideo} onVideoSelect={handleVideoSelect} />
                                     </div>
                                 </div>
                             </div>
