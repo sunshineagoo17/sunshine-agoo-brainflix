@@ -23,9 +23,9 @@ const App = () => {
         <Routes>
           {/* Redirect route path "/" to home */}
           <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<MainVideoPage />} />
-          <Route path="/video/:videoId" element={<MainVideoPage />} />
-          <Route path="/upload" element={<VideoUploadPage />} />
+          <Route path="/home" element={<MainVideoPage axiosInstance={axiosInstance} />} />
+          <Route path="/video/:videoId" element={<MainVideoPage axiosInstance={axiosInstance} />} />
+          <Route path="/upload" element={<VideoUploadPage axiosInstance={axiosInstance} />} />
           {/* Redirect 404 path */}
           <Route path="*" element={<Navigate to="/uh-oh" />} />
           {/* Handles 404 errors */}
