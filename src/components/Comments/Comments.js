@@ -80,17 +80,17 @@ const Comments = ({
             <form onBlur={handleFormBlur} onSubmit={handleCommentSubmit} className="comments__form-container">
                 <div className="comments__form-container">
                     <div className="comments__avatar-container">
-                       
                         <img src={AvatarImg} alt="Mohan Muruge" className="comments__avatar-img" />
                     </div>
-                    <div className="comments__form">
-                        
+
+                    <div className="comments__form">    
                         <label htmlFor="input-comment" className="comments__label">
                             Join the conversation
                         </label>
 
                         <textarea 
                             id="input-comment"
+                            // Dynamically applies CSS classes to the textarea based on the state of the comment input
                             className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""} ${isTextareaFocused ? "comments__focused" : ""} ${commentValue.trim() !== "" ? "comments--filled" : ""}`}
                             placeholder="Add a new comment"
                             aria-label="Enter your comment here"
@@ -146,45 +146,48 @@ const Comments = ({
                     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
                     .map(({ id, comment, timestamp, name }, index) => (
                         <div key={`${id}-${index}`} className="comments__item">
-                        <div className="comments__divider-container">
-                            <hr className="comments__divider" />
-                        </div>
+                            <div className="comments__divider-container">
+                                <hr className="comments__divider" />
+                            </div>
                     
-                        <div className="comments__list-container">
-                            <div className="comments__avatar" />
-                            <div className="comments__commenter-info-container">
-                                <div className="comments__commenter-info">
-                                    <div className="comments__commenter-name-container">
-                                        <p className="comments__username">{name}</p>
+                            <div className="comments__list-container">
+                                <div className="comments__avatar" />
+                                <div className="comments__commenter-info-container">
+                                    <div className="comments__commenter-info">
+                                        <div className="comments__commenter-name-container">
+                                            <p className="comments__username">{name}</p>
+                                        </div>
+                                        <div className="comments__commenter-timestamp-container">
+                                            <p className="comments__timestamp">
+                                                {TimeAgo(timestamp)}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="comments__commenter-timestamp-container">
-                                        <p className="comments__timestamp">
-                                            {TimeAgo(timestamp)}
-                                        </p>
+                                    
+                                    <div className="comments__single-container">
+                                        <p className="comments__text">{comment}</p>
                                     </div>
-                                </div>
-                                
-                                <div className="comments__single-container">
-                                    <p className="comments__text">{comment}</p>
-                                </div>
 
-                                <div className="comments__delete-button-container">
-                                    <button
-                                        type="button"
-                                        aria-label="Delete comment"
-                                        className="comments__delete-button"
-                                        onClick={(event) => handleDeleteComment(event, id)}
-                                    >
-                                        <img
-                                            src={DeleteIcon}
-                                            alt="Delete button"
-                                            className="comments__delete-icon"
-                                        />
-                                    </button>
+                                    <div className="comments__actions">
+                                        <button className="comments__like-button" onClick={() => handleLikeComment(id)}> 
+                                            <img src={LikeIcon} alt="Like" className="comments__like-icon" />
+                                        </button>
+                                        <button
+                                            type="button"
+                                            aria-label="Delete comment"
+                                            className="comments__delete-button"
+                                            onClick={(event) => handleDeleteComment(event, id)}
+                                        >
+                                            <img
+                                                src={DeleteIcon}
+                                                alt="Delete button"
+                                                className="comments__delete-icon"
+                                            />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 ))}
             </div>
             {showErrorAlert && (
