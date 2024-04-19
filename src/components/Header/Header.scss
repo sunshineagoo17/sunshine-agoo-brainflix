@@ -189,7 +189,7 @@
     &__upload-button--right {
         @include button-style(9.85rem, 2.5rem);
         @include heading-style;
-        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
+        transition: background-color .3s, transform .3s; 
 
         &:hover,
         &:active {
@@ -197,7 +197,7 @@
         }
 
         &:active {
-            transform: scale(.95); // Scales down the button on active state
+            transform: scale(.95); 
         }
 
         @include tablet {
@@ -215,7 +215,7 @@
         min-width: 18rem;
         max-width: 100%;
         @include heading-style;
-        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
+        transition: background-color .3s, transform .3s;
 
         &:hover,
         &:active {
@@ -223,7 +223,7 @@
         }
 
         &:active {
-            transform: scale(.95); // Scales down the button on active state
+            transform: scale(.95); 
         }
     }
 
