@@ -12,6 +12,11 @@
         display: flex;
         justify-content: center;
         position: relative;
+
+        :fullscreen &, // Targeting when the container is in fullscreen
+        :-webkit-full-screen & { // For webkit browsers
+            @include block-item(100vw, 100vh);
+        }
     }
 
     &__main-video-image {
@@ -24,6 +29,12 @@
 
         @include desktop {
             height: 29.7rem
+        }
+
+        :fullscreen &, 
+        :-webkit-full-screen & { 
+            @include block-item(100%, auto);
+            object-fit: contain; 
         }
     }
 
@@ -48,6 +59,29 @@
                 gap: 1.15rem;
             }
         }
+
+        :fullscreen &, 
+        :-webkit-full-screen & { 
+            @include block-item(75%, .93rem);
+            position: fixed;
+            bottom: 1.875rem;
+            left: 50%;
+            border-radius: .25rem;
+            transform: translateX(-50%); 
+            z-index: 1000; 
+            
+            @include tablet {
+                @include block-item(80%, 2.25rem);
+            }
+
+            @include desktop {
+                @include block-item(65%, 2.25rem);
+            }
+
+            @include large-desktop {
+                @include block-item(42%, 2.25rem);
+            }
+        }
     }
 
     &__play-overlay {
@@ -61,17 +95,49 @@
         @include tablet {
             @include block-item(2.75rem, 2.25rem);
         }
+
+        :fullscreen &,
+        :-webkit-full-screen & {
+            background-color: (rgba($tertiary, .5));
+        }
     }
 
     &__play-button {
-        @include block-item(.45rem, .45rem); 
+        background: url("../../assets/images/icons/play.svg");
+        background-size: contain; 
+        background-repeat: no-repeat;
+        border: none;
+        outline: none;
+        background-position: center;
+        background-color: transparent;
         cursor: pointer;
+        @include block-item(.45rem, .45rem); 
             
         @include tablet {
             @include block-item(.85rem, .85rem); 
 
             @include desktop {
                 @include block-item(.9rem, .9rem); 
+            }
+        }
+    }
+
+    &__pause-button {
+        background: url("../../assets/images/icons/pause.svg");
+        background-size: contain; 
+        background-repeat: no-repeat;
+        border: none;
+        outline: none;
+        background-position: center;
+        background-color: transparent;
+        cursor: pointer;
+        @include block-item(.7rem, .7rem); 
+            
+        @include tablet {
+            @include block-item(1.25rem, 1.25rem); 
+
+            @include desktop {
+                @include block-item(1.4rem, 1.4rem); 
             }
         }
     }
@@ -94,6 +160,11 @@
                 padding: 0 .95rem;
             }
         }
+        
+        :fullscreen &,
+        :-webkit-full-screen & {
+            background-color: (rgba($tertiary, .5));
+        }
     }
 
     &__scrub-duration {
@@ -106,21 +177,91 @@
         }
     }
 
-    &__scrub-divider {
-        width: 10.2rem;
-        border: none;
-        border-top: .125rem solid $quinary;
-        border-radius: .25rem;
+    &__scrub-line-container {
+        @include block-item(79%, .15rem);
+        position: relative;
+        background-color: (rgba($quinary, .5)); 
+        border-radius: .125rem;
+
+        @include tablet {
+            @include block-item(88%, .25rem);
+        }
+
+        @include desktop {
+            @include block-item(90%, .25rem);
+        }
+
+        :fullscreen &, 
+        :-webkit-full-screen & {
+            @include block-item(74%, .15rem);
+
+            @include tablet {
+                @include block-item(86.5%, .25rem);
+            }
+    
+            @include desktop {
+                @include block-item(89%, .25rem);
+            }
+        }
+    }
+
+    &__close-fullscreen-button {
+        :fullscreen &, 
+        :-webkit-full-screen & {
+        @include block-item(.75rem, .75rem); 
+        cursor: pointer;
+        display: block;
+
+            @include tablet {
+                @include block-item(1.5rem, 1.5rem);
+
+                @include desktop {
+                    @include block-item(1.65rem, 1.65rem);
+                }
+            }
+        }
+    }
+    
+    &__scrub--played {
+        position: absolute;
+        height: 100%;
+        border-radius: .125rem;
+        background-color: $secondary; 
+        z-index: 1; 
+    }
+
+    &__scrub--buffered {
+        position: absolute;
+        height: 100%;
+        border-radius: .125rem;
+        background-color: $tertiary; 
+        z-index: 0; 
+    }
+
+    &__scrub--remaining {
+        position: absolute;
+        height: 100%;
+        border-radius: .125rem;
+        background-color: $primary;
+        z-index: -1;
+    }
+
+    &__scrub-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 2; 
+    }
+
+    &__scrub-button-icon {
+        @include block-item(.5rem, .5rem);
+        display: flex;
+        justify-content: center;
         cursor: pointer;
 
         @include tablet {
-            width: 28.5rem;
-            border-top: .27rem solid $quinary;
-
-            @include desktop {
-                width: 35.5rem;
-                border-top: .25rem solid $quinary;
-            }
+            @include block-item(1rem, 1rem);
         }
     }
 
@@ -133,25 +274,17 @@
         padding: 0 .25rem;
         align-items: center;
 
+        :fullscreen &,
+        :-webkit-full-screen & {
+            background-color: (rgba($tertiary, .5));
+        }
+
         @include tablet {
             justify-content: space-around;
             @include block-item(4.5rem, 2.25rem);
 
             @include tablet {
                 justify-content: space-evenly;
-            }
-        }
-    }
-
-    &__volume-up-button {
-        @include block-item(.875rem, .875rem); 
-        cursor: pointer;
-
-        @include tablet {
-            @include block-item(1.7rem, 1.7rem);
-
-            @include desktop {
-                @include block-item(1.75rem, 1.75rem);
             }
         }
     }
@@ -165,6 +298,166 @@
 
             @include desktop {
                 @include block-item(1.4rem, 1.4rem);
+            }
+        }
+    }
+
+    &__volume-control {
+        position: relative; 
+        display: inline-block;
+    }
+
+    &__volume-up-button {
+        position: relative;
+        z-index: 10;
+        @include block-item(.875rem, .875rem);
+        cursor: pointer;
+
+        @include tablet {
+            @include block-item(1.7rem, 1.7rem);
+
+            @include desktop {
+                @include block-item(1.75rem, 1.75rem);
+            }
+        }
+
+        :fullscreen &,
+        :-webkit-full-screen & {
+            @include block-item(.75rem, .75rem);
+        
+            @include tablet {
+                @include block-item(1.5rem, 1.5rem);
+    
+                @include desktop {
+                    @include block-item(1.65rem, 1.65rem);
+                }
+            }
+        }
+    }
+
+    &__volume-scrub-container {
+        @include block-item(.85rem, 3.625rem);
+        display: none; 
+        position: absolute;
+        top: 0; 
+        left: 50%; 
+        transform: translateX(-50%) translateY(calc(-100% - .3rem)); 
+        background-color: (rgba($quinary, .5));  
+        border-radius: .25rem;
+        
+        @include tablet {
+            @include block-item(1.25rem, 4.625rem);
+
+            @include desktop {
+                @include block-item(1.25rem, 5.625rem);
+            }
+        }
+
+        &:hover {
+            display: block; 
+        }
+
+        :fullscreen &,
+        :-webkit-full-screen & {
+            @include block-item(.85rem, 3.625rem);
+            background-color: (rgba($tertiary, .2));
+        
+            @include tablet {
+                @include block-item(1.25rem, 5.625rem);
+    
+                @include desktop {
+                    @include block-item(1.25rem, 5.625rem);
+                }
+            }
+        }
+    }
+
+    &__volume-scrub {
+        @include block-item(.15rem, 95%);
+        position: absolute;
+        bottom: 0; 
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $secondary; 
+        cursor: pointer; 
+        border-radius: .25rem;
+        z-index: 2;
+
+        @include tablet {
+            @include block-item(.25rem, 95%);
+
+            @include desktop {
+                @include block-item(.25rem, 95%);
+            }
+        }
+
+        :fullscreen &,
+        :-webkit-full-screen & {
+            @include block-item(.15rem, 95%);
+        
+            @include tablet {
+                @include block-item(.25rem, 95%);
+    
+                @include desktop {
+                    @include block-item(.25rem, 95%);
+                }
+            }
+        }
+    }
+
+    &__remaining-volume {
+        @include block-item(.15rem, 100%);
+        position: absolute;
+        bottom: 0;
+        left: 43%;
+        background-color: $tertiary;
+        z-index: 1;
+        border-radius: .25rem;
+
+        @include tablet {
+            @include block-item(.25rem, 100%);
+        }
+    
+        :fullscreen &,
+        :-webkit-full-screen & {
+            @include block-item(.15rem, 100%);
+            left: 43%;
+        
+            @include tablet {
+                @include block-item(.25rem, 100%);
+                left: 42.25%;
+    
+                @include desktop {
+                    left: 41.5%;
+                
+                    @include large-desktop {
+                        left: 41%;
+                    }
+                }
+            }
+        }
+
+    }
+
+    &__scrub-handle {
+        position: absolute;
+        z-index: 3;
+        bottom: 0;
+        left: 50%; 
+        transform: translateX(-50%);
+        cursor: pointer;
+         @include block-item(.5rem, .5rem);
+       
+        @include tablet {
+            @include block-item(1rem, 1rem);
+        }
+
+        :fullscreen &,
+        :-webkit-full-screen & {
+            @include block-item(.5rem, .5rem);
+        
+            @include tablet {
+                @include block-item(1rem, 1rem);
             }
         }
     }
