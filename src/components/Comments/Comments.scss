@@ -146,7 +146,7 @@
         @include heading-style;
         @include button-style(14.75rem, 2.24rem);
         align-items: center;
-        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
+        transition: background-color .3s, transform .3s; 
     
         &:hover,
         &:active {
@@ -154,7 +154,7 @@
         }
 
         &:active {
-            transform: scale(.95); // Scales down the button on active state
+            transform: scale(.95); 
         }
     }
 
@@ -164,7 +164,7 @@
         @include tablet {
             display: block;
             margin-top: .4rem;
-            margin-left: 1.55rem;
+            margin-left: 1.9rem;
         }
 
         @include desktop {
@@ -176,7 +176,7 @@
         @include heading-style;
         @include button-style(10rem, 2.5rem);
         align-items: center;
-        transition: background-color .3s, transform .3s; // Added transition effect for button interaction
+        transition: background-color .3s, transform .3s;
 
         &:hover,
         &:active {
@@ -184,7 +184,7 @@
         }
 
         &:active {
-            transform: scale(.95); // Scales down the button on active state
+            transform: scale(.95); 
         }
 
         @include tablet {
@@ -368,7 +368,7 @@
 
         @include tablet {
             width: 10rem;
-            padding-left: .9rem;
+            padding-left: 1rem;
         
             @include desktop {
                 padding-left: .7rem;
@@ -380,7 +380,7 @@
         padding-left: .7rem;
 
         @include tablet {
-            padding-left: .9rem;
+            padding-left: 1rem;
         }
 
         @include desktop {
@@ -389,14 +389,21 @@
         }
     }
 
-    &__delete-button-container {
+    &__actions {
         display: flex;
-        justify-content: flex-end;
-        margin-top: .5rem;
+        justify-content: space-between;
+        margin: .5rem -.4rem 0 .4rem;
+
+        @include tablet {
+            margin-left: .7rem;
+        }
 
         @include desktop {
-            margin-top: .6rem;
-            margin-right: -.25rem;
+            margin: .6rem -.25rem 0 1.8rem;
+        }
+
+        @include large-desktop {
+            margin-left: 1.8rem;
         }
     }
 
@@ -406,6 +413,17 @@
     }
 
     &__delete-icon {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    &__like-button {
+        background-color: transparent;
+        border: none;
+    }
+
+    &__like-icon {
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -429,7 +447,7 @@
         justify-content: space-between;
         align-items: center;
         position: fixed; 
-        z-index: 1000; // Ensures it's above other content 
+        z-index: 1000;
         top: 3rem; 
         left: 50%;
         transform: translateX(-50%);
@@ -439,7 +457,7 @@
         padding: 1rem;
         color: $primary;
         width: 16.2rem;
-        box-shadow: 0 .25rem .375rem rgba(0,0,0,.5); 
+        box-shadow: 0 .25rem .375rem rgba($quinary, .5); 
 
         @include tablet {
             top: 3rem;
@@ -468,7 +486,7 @@
         padding: .313rem .625rem;
 
         &:active {
-            transform: scale(.95); // Scales down the button on active state
+            transform: scale(.95); 
         }
    
         &:hover,
