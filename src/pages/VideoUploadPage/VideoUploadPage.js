@@ -6,21 +6,24 @@ import Loader from "../../components/Loader/Loader";
 
 import "./VideoUploadPage.scss";
 
-const VideoUploadPage = () => {
+const VideoUploadPage = ({ axiosInstance }) => {
     const navigate = useNavigate();
 
     // State hooks for managing form fields, hover state, validation errors, and submission status 
     const [showAlert, setShowAlert] = useState(false);
     const [showErrorAlert, setShowErrorAlert] = useState(false);
     const [titleValue, setTitleValue] = useState("");
-    const [descriptionValue, setDescriptionValue] = useState("");
-    const [isHovered, setIsHovered] = useState(false);
     const [isTitleEmpty, setIsTitleEmpty] = useState(false);
-    const [isDescriptionEmpty, setIsDescriptionEmpty] = useState(false);
     const [isTitleFocused, setIsTitleFocused] = useState(false);
+    const [descriptionValue, setDescriptionValue] = useState("");
+    const [isDescriptionEmpty, setIsDescriptionEmpty] = useState(false);
     const [isDescriptionFocused, setIsDescriptionFocused] = useState(false);
+    const [isFileSelected, setIsFileSelected] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [isLoading , setIsLoading] = useState(true);
+    const [posterImage, setPosterImage] = useState(null);
+    const [selectedFileName, setSelectedFileName] = useState("No file chosen");
     
     // Effect hook to manage loader visibility based on page load status
     useEffect(() => {
@@ -47,10 +50,24 @@ const VideoUploadPage = () => {
         setIsDescriptionEmpty(false); 
     };
 
+    // Handler to update the selected file name when a file is chosen
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setPosterImage(file);
+            setSelectedFileName(file.name);
+            setIsFileSelected(true);  // Set true when file is selected
+        } else {
+            setPosterImage(null);
+            setSelectedFileName("No file chosen");
+            setIsFileSelected(false);  // Set false when no file is selected
+        }
+    };
+
     // Focus handlers to visually indicate focus on input fields
     const handleTitleAreaFocus = () => setIsTitleFocused(true);
     const handleDescriptionAreaFocus = () => setIsDescriptionFocused(true);
-    
+
     // Handler to reset focus states and validation states when moving away from the form fields
     const handleFormBlur = (e) => {
         if (!e.currentTarget.contains(e.relatedTarget) && !showAlert) {
@@ -61,31 +78,52 @@ const VideoUploadPage = () => {
                 setIsDescriptionEmpty(!descriptionValue.trim());
             }
         }
-    };
+    }; 
 
     // Submission handler to validate the form fields and show alert on success
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Reset the error alert state on each submit attempt
-        setShowErrorAlert(false);
+        const isTitleValid = titleValue.trim() !== "";
+        const isDescriptionValid = descriptionValue.trim() !== "";
+        const currentFileSelected = posterImage != null;
     
-        const isTitleValid = titleValue.trim();
-        const isDescriptionValid = descriptionValue.trim();
-        
         setIsTitleEmpty(!isTitleValid);
         setIsDescriptionEmpty(!isDescriptionValid);
+        setIsFileSelected(currentFileSelected);
     
-        if (!isTitleValid || !isDescriptionValid) {
+        if (!isTitleValid || !isDescriptionValid || !currentFileSelected) {
             setFormSubmitted(true);
-            setShowErrorAlert(true); 
-            console.log("Both title and description are required.");
+            setShowErrorAlert(true);
+            console.log("All fields including an image are required.");
             return;
         }
 
-        // Shows success alert and navigates away after a delay
-        setShowAlert(true);
-        setTimeout(() => navigate("/home"), 4000);
+        setIsLoading(true);
+    
+        // Proceed with form submission if all validations pass
+        const formData = new FormData();
+        formData.append("title", titleValue.trim());
+        formData.append("description", descriptionValue.trim());
+        formData.append("posterImage", posterImage);
+    
+        try {
+            const response = await axiosInstance.post("/videos", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+            console.log("Video uploaded successfully:", response.data);
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+                navigate("/home");
+            }, 3000);
+        } catch (error) {
+            console.error("Failed to upload video:", error);
+            alert("Failed to upload video: " + error.message);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleMouseEnter = () => setIsHovered(true);
@@ -93,13 +131,23 @@ const VideoUploadPage = () => {
 
     // Closes the success alert and navigates to homepage
     const handleCloseAlert = () => {
-        setShowAlert(false);
+        setShowErrorAlert(false);
+        setIsDescriptionEmpty(false);
+        setIsTitleEmpty(false);
+        setIsFileSelected(!!posterImage);
         navigate("/home");
     }
 
     // Cancel button handler to navigate to home without form submission
     const handleCancel = () => {
         navigate("/home");
+    };
+
+    const handleErrorAlertClose = () => {
+        setShowErrorAlert(false);
+        setIsDescriptionEmpty(false);
+        setIsTitleEmpty(false);
+        setIsFileSelected(true); 
     };
 
     return (
@@ -129,8 +177,30 @@ const VideoUploadPage = () => {
                                             Video Thumbnail   
                                         </label>
                                     </div>
+
                                     <div className="videoUploadPage__thumbnail-container">
-                                        <img src={DefaultThumbnail} alt="biker video thumbnail" className="videoUploadPage__thumbnail" /> 
+                                        <img
+                                            src={posterImage ? URL.createObjectURL(posterImage) : DefaultThumbnail}
+                                            alt="biker video thumbnail"
+                                            className="videoUploadPage__thumbnail"
+                                        />
+                                    </div>
+
+                                    {/* Input field for uploading custom poster image */}
+                                    <div className="videoUploadPage__thumbnail-upload-container">
+                                    <label htmlFor="videoThumbnail" className="videoUploadPage__file-button">Choose Thumbnail</label>
+                                    <input
+                                        type="file"
+                                        id="videoThumbnail"
+                                        accept="image/*"
+                                        onChange={handleImageChange}
+                                        className="videoUploadPage__file-input"
+                                    />
+                                    <span className={`videoUploadPage__file-name ${
+                                        !isFileSelected && formSubmitted ? "videoUploadPage__error" : ""
+                                    }`}>
+                                        {selectedFileName}
+                                    </span>
                                     </div>
                                 </div>
 
@@ -237,15 +307,11 @@ const VideoUploadPage = () => {
                         {showErrorAlert && (
                             <div className="videoUploadPage__alert--error">
                                 <p className="videoUploadPage__alert-text--error">
-                                    Title and description are required.
+                                    All fields including an image are required.
                                 </p>
                                 <button 
                                     className="videoUploadPage__alert-button--error" 
-                                    onClick={() => {
-                                        setShowErrorAlert(false);
-                                        setIsDescriptionEmpty(false);
-                                        setIsTitleEmpty(false);
-                                    }}
+                                    onClick={handleErrorAlertClose}
                                     aria-label="Close"
                                 >
                                     Close
