@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./SideVideos.scss";
 
-const SideVideos = ({ videos, mainVideo }) => {
+const SideVideos = ({ videos, mainVideo, onVideoSelect }) => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     
     // UseLayoutEffect to handle dynamic screen width updates on window resize
@@ -52,12 +52,15 @@ const SideVideos = ({ videos, mainVideo }) => {
 
                 {/* List of side video thumbnails */}
                 {filteredVideos.map((video) => (
-                    <div key={video.id} className="sideVideos__thumbnail">
+                    <div key={video.id} className="sideVideos__thumbnail" onClick={() => onVideoSelect(video.id)}>
                         <Link 
                             to={`/video/${video.id}`}
                             className="sideVideos__thumbnail-link"
                             aria-label={`Watch ${video.title}`}
-                            onClick={handleSideVideoClick}
+                            onClick={(e) => {
+                                e.stopPropagation(); // Prevent the Link's default action when the div is clicked
+                                handleSideVideoClick();
+                            }}
                         > 
                             <div className="sideVideos__thumbnail-info">
                                 {/* Created and added an inner wrapper for this specific video - to match the mockup */}
