@@ -144,7 +144,7 @@ const Comments = ({
             <div className="comments__list">
                 {mainVideo && mainVideo.comments && mainVideo.comments
                     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-                    .map(({ id, comment, timestamp, name }, index) => (
+                    .map(({ id, comment, timestamp, name, likes }, index) => (
                         <div key={`${id}-${index}`} className="comments__item">
                             <div className="comments__divider-container">
                                 <hr className="comments__divider" />
@@ -169,8 +169,9 @@ const Comments = ({
                                     </div>
 
                                     <div className="comments__actions">
-                                        <button className="comments__like-button" onClick={() => handleLikeComment(id)}> 
+                                        <button className="comments__like-button" onClick={() => handleLikeComment(id)}>
                                             <img src={LikeIcon} alt="Like" className="comments__like-icon" />
+                                            <span className="comments__like-count">{likes.toLocaleString()} likes</span> 
                                         </button>
                                         <button
                                             type="button"

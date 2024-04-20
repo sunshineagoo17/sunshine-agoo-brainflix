@@ -429,6 +429,18 @@
         cursor: pointer;
     }
 
+    &__like-count {
+        @include body-copy-style;
+        margin-left: .5rem;
+        font-size: .8rem;
+        color: $tertiary;
+
+        @include tablet {
+            font-size: .85rem;
+            margin-left: .75rem;
+        }
+    }
+
     &__error {
         border: .125rem solid $nonary;
     }
