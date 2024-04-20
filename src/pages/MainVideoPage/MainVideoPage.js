@@ -120,8 +120,8 @@ const MainVideoPage = ({ axiosInstance }) => {
         }
     };
 
-    // Function to handle liking a comment
-    const handleLikeComment = async () => {
+    // Function to handle liking a video
+    const handleLikeVideo = async () => {
         try {
             const response = await axiosInstance.put(`/videos/${mainVideo.id}/likes`);
             if (response.status === 200) {
@@ -147,6 +147,7 @@ const MainVideoPage = ({ axiosInstance }) => {
                                     <VideoInfo
                                         mainVideo={mainVideo}
                                         TimeAgo={TimeAgo} 
+                                        handleLikeVideo={handleLikeVideo}
                                     />
                                     <Comments
                                         comments={mainVideo?.comments || []}
@@ -155,7 +156,6 @@ const MainVideoPage = ({ axiosInstance }) => {
                                         mainVideo={mainVideo}
                                         TimeAgo={TimeAgo}
                                         GenerateRandomUsername={GenerateRandomUsername}
-                                        handleLikeComment={handleLikeComment}
                                     />
                                 </div>
                                 <div className="mainVideoPage__video-info-thumbnails-container">

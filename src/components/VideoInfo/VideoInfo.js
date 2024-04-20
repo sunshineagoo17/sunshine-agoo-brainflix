@@ -3,7 +3,7 @@ import "./VideoInfo.scss";
 import ViewsIcon from "../../assets/images/icons/views.svg";
 import LikesIcon from "../../assets/images/icons/likes.svg";
 
-const VideoInfo = ({ mainVideo, TimeAgo }) => {
+const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo }) => {
     // Checks if there's a video to display, otherwise stops the function early
     if (!mainVideo) return null;
 
@@ -35,7 +35,7 @@ const VideoInfo = ({ mainVideo, TimeAgo }) => {
                         <p className="videoInfo__views">{mainVideo.views}</p>
                     </div>
                     <div className="videoInfo__video-likes-container">
-                        <img src={LikesIcon} alt="Likes Icon" className="videoInfo__likes-icon"/>
+                        <img src={LikesIcon} alt="Likes Icon" className="videoInfo__likes-icon" onClick={handleLikeVideo}/>
                         <p className="videoInfo__likes">{mainVideo.likes}</p>
                     </div>
                 </div>
