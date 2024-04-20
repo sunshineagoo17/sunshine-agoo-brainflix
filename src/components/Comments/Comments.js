@@ -169,7 +169,7 @@ const Comments = ({
                                     </div>
 
                                     <div className="comments__actions">
-                                        <button className="comments__like-button" onClick={() => handleLikeComment(id)}>
+                                        <button className="comments__like-button" onClick={() => handleLikeComment(mainVideo.id, id)}>
                                             <img src={LikeIcon} alt="Like" className="comments__like-icon" />
                                             <span className="comments__like-count">{likes.toLocaleString()} likes</span> 
                                         </button>

@@ -127,11 +127,27 @@ const MainVideoPage = ({ axiosInstance }) => {
             if (response.status === 200) {
                 setMainVideo(prevMainVideo => ({
                     ...prevMainVideo,
-                    likes: response.data.likes.toString() // Convert likes count to string
+                    likes: response.data.likes.toString() 
                 }));
             }
         } catch (error) {
             console.error("Failed to like comment:", error);
+        }
+    };
+
+    const handleLikeComment = async (videoId, commentId) => {
+        try {
+            const response = await axios.put(`/videos/${videoId}/comments/${commentId}/likes`);
+            if (response.status === 200) {
+                // Assuming the response includes the entire updated comment
+                setMainVideo(prevMainVideo => {
+                    const updatedComments = prevMainVideo.comments.map(comment => 
+                        comment.id === commentId ? { ...comment, likes: response.data.likes } : comment);
+                    return { ...prevMainVideo, comments: updatedComments };
+                });
+            }
+        } catch (error) {
+            console.error("Failed to like the comment:", error);
         }
     };
 
@@ -156,6 +172,7 @@ const MainVideoPage = ({ axiosInstance }) => {
                                         mainVideo={mainVideo}
                                         TimeAgo={TimeAgo}
                                         GenerateRandomUsername={GenerateRandomUsername}
+                                        handleLikeComment={handleLikeComment}
                                     />
                                 </div>
                                 <div className="mainVideoPage__video-info-thumbnails-container">
