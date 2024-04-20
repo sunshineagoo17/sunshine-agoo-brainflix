@@ -119,8 +119,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
                 navigate("/home");
             }, 3000);
         } catch (error) {
-            console.error("Failed to upload video:", error);
-            alert("Failed to upload video: " + error.message);
+            console.error("Failed to upload video:", error.message);
         } finally {
             setIsLoading(false);
         }
@@ -131,7 +130,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
 
     // Closes the success alert and navigates to homepage
     const handleCloseAlert = () => {
-        setShowErrorAlert(false);
+        setShowAlert(false);
         setIsDescriptionEmpty(false);
         setIsTitleEmpty(false);
         setIsFileSelected(!!posterImage);

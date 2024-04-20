@@ -463,7 +463,8 @@
         margin-top: 1.25rem;
         padding: 1rem;
         color: $primary;
-        box-shadow: 0 .25rem .375rem rgba(0,0,0,.5); 
+        box-shadow: 0 .25rem .375rem rgba($quinary, .5); 
+        animation: fadeIn 0.3s ease-out;
 
         @include tablet {
             top: 3.85rem;
@@ -492,6 +493,17 @@
 
         @include tablet {
             width: 20.5rem;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            top: 0;
+        }
+        to {
+            opacity: 1;
+            top: 3%;
         }
     }
 
