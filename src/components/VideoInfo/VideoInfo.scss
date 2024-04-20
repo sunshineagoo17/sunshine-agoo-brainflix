@@ -140,6 +140,7 @@
     &__views-icon,
     &__likes-icon {
         @include block-item(auto, 1rem);
+        cursor: pointer;
 
         @include tablet {
             margin: 0;
