@@ -70,45 +70,29 @@ const Hero = ({ mainVideo }) => {
         }
     }, []);        
 
-    // Volume scrub click handler
-    const handleVolumeScrubClick = useCallback((e) => {
+    const calculateAndAdjustVolume = useCallback((clientY) => {
         const volumeContainerRect = volumeScrubRef.current.getBoundingClientRect();
         const volumeContainerHeight = volumeContainerRect.height;
-        const mouseY = e.clientY;
         const volumeContainerTop = volumeContainerRect.top;
-        
+    
         // Calculate the clicked position relative to the top of the volume scrub container
-        const clickedPosition = mouseY - volumeContainerTop;
-      
+        const clickedPosition = clientY - volumeContainerTop;
+    
         let volumeLevel = 100 - ((clickedPosition / volumeContainerHeight) * 100);
-
-        volumeLevel = Math.min(100, volumeLevel);
-        volumeLevel = Math.max(0, volumeLevel);
-
+        volumeLevel = Math.max(0, Math.min(100, volumeLevel));
+    
         adjustVolume(volumeLevel);
-
-        setVolumePercent(volumeLevel);
     }, [adjustVolume]);
-
+    
+    const handleVolumeScrubClick = useCallback((e) => {
+        calculateAndAdjustVolume(e.clientY);
+    }, [calculateAndAdjustVolume]);
+    
     const handleVolumeScrub = useCallback((e) => {
         if (isScrubbing.current) {
-            const volumeContainer = document.querySelector(".hero__volume-scrub-container");
-            const volumeContainerRect = volumeContainer.getBoundingClientRect();
-            const volumeContainerHeight = volumeContainerRect.height;
-            const mouseY = e.clientY;
-            const volumeContainerTop = volumeContainerRect.top;
-            
-            // Calculate the clicked position relative to the top of the volume scrub container
-            const clickedPosition = mouseY - volumeContainerTop;
-            
-            let volumeLevel = 100 - ((clickedPosition / volumeContainerHeight) * 100);
-      
-            volumeLevel = Math.min(100, volumeLevel);
-            volumeLevel = Math.max(0, volumeLevel);
-    
-            adjustVolume(volumeLevel);
+            calculateAndAdjustVolume(e.clientY);
         }
-    }, [adjustVolume]);    
+    }, [calculateAndAdjustVolume, isScrubbing]);
 
     const handleVolumeMouseDown = useCallback((e) => {
         e.preventDefault();
@@ -191,13 +175,13 @@ const Hero = ({ mainVideo }) => {
         if (!document.fullscreenElement) {
             if (videoContainer.requestFullscreen) {
                 videoContainer.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                    console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
                 });
             }
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen().catch(err => {
-                    alert(`Error attempting to exit full-screen mode: ${err.message} (${err.name})`);
+                    console.error(`Error attempting to exit full-screen mode: ${err.message} (${err.name})`);
                 });
             }
         }
@@ -245,6 +229,15 @@ const Hero = ({ mainVideo }) => {
             video.removeEventListener('ended', handleEnded);
         };
     }, [videoRef]);   
+
+    useEffect(() => {
+        // Cleanup timeout when component unmounts
+        return () => {
+            if (volumeScrubTimeout.current) {
+                clearTimeout(volumeScrubTimeout.current);
+            }
+        };
+    }, []);    
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
