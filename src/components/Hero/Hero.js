@@ -204,12 +204,28 @@ const Hero = ({ mainVideo }) => {
     };    
 
     useEffect(() => {
+        // Reset video states when video source changes
+        if (videoRef.current) {
+            videoRef.current.load(); 
+            videoRef.current.volume = 1; // Reset volume to max or previously saved state
+            setIsPlaying(false);
+            setCurrentTime(0);
+            setPlayedPercent(0);
+            setIsMuted(false);
+            setVolumePercent(100);
+        }
+    }, [mainVideo.video]); 
+
+    useEffect(() => {
         const video = videoRef.current;
+        if (!video) return;
 
         const handleTimeUpdate = () => {
             const played = (video.currentTime / video.duration) * 100;
+            setCurrentTime(video.currentTime);
             setPlayedPercent(played);
 
+            // Update buffered percent
             if (video.buffered.length > 0) {
                 const bufferEnd = video.buffered.end(video.buffered.length - 1);
                 const buffered = (bufferEnd / video.duration) * 100;
@@ -218,30 +234,17 @@ const Hero = ({ mainVideo }) => {
         };
 
         const handleEnded = () => {
-            setIsPlaying(false); 
+            setIsPlaying(false);
         };
 
-        video.addEventListener("timeupdate", handleTimeUpdate);
-        video.addEventListener("ended", handleEnded);
+        video.addEventListener('timeupdate', handleTimeUpdate);
+        video.addEventListener('ended', handleEnded);
 
         return () => {
-            video.removeEventListener("timeupdate", handleTimeUpdate);
-            video.removeEventListener("ended", handleEnded);
+            video.removeEventListener('timeupdate', handleTimeUpdate);
+            video.removeEventListener('ended', handleEnded);
         };
-    }, [videoRef, setIsPlaying]);
-
-    useEffect(() => {
-        setIsPlaying(false);
-        setCurrentTime(0); 
-        setPlayedPercent(0);
-        setIsMuted(false);    
-        setVolumePercent(100);     
-
-        if (videoRef.current) {
-            videoRef.current.load();  // This will reload the video element with new source, ensuring it is ready to play
-            videoRef.current.volume = 1; 
-        }
-    }, [mainVideo]);    
+    }, [videoRef]);   
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
