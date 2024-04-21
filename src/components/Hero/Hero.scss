@@ -417,6 +417,11 @@
 
         @include tablet {
             @include block-item(.25rem, 100%);
+            left: 42%;
+        
+            @include desktop {
+                left: 41%;
+            }
         }
     
         :fullscreen &,
@@ -426,13 +431,13 @@
         
             @include tablet {
                 @include block-item(.25rem, 100%);
-                left: 42.25%;
+                left: 41.25%;
     
                 @include desktop {
                     left: 41.5%;
                 
                     @include large-desktop {
-                        left: 41%;
+                        left: 40%;
                     }
                 }
             }
