@@ -28,23 +28,47 @@ const Hero = ({ mainVideo }) => {
         videoRef.current.volume = clampedVolumeLevel / 100;
         setVolumePercent(clampedVolumeLevel);
         setIsMuted(clampedVolumeLevel === 0);
-    }, []);
+    
+        // Show the volume scrub container when adjusting volume
+        setIsHoveringVolume(true);
+        // Clear and reset the timeout to hide the container
+        clearTimeout(volumeScrubTimeout.current);
+        volumeScrubTimeout.current = setTimeout(() => {
+            setIsHoveringVolume(false);
+        }, 3000);
+    }, [setVolumePercent, setIsMuted]);    
 
     const toggleVolume = useCallback(() => {
         const newVolume = isMuted || volumePercent === 0 ? 100 : 0;
         adjustVolume(newVolume);
     
-        // Delay hiding the volume scrub container and its children
-        setTimeout(() => {
+        // Clear any existing timeout to prevent unexpected hiding
+        clearTimeout(volumeScrubTimeout.current);
+
+        // Reset the timeout
+        volumeScrubTimeout.current = setTimeout(() => {
             setIsHoveringVolume(false);
         }, 3000);
-    }, [adjustVolume, isMuted, volumePercent]);    
+    }, [adjustVolume, isMuted, volumePercent]);   
 
     const handleVolumeMouseEnter = useCallback(() => {
         setIsHoveringVolume(true);
-        // Clear any existing timeout to prevent flickering
         clearTimeout(volumeScrubTimeout.current);
-    }, []);    
+    }, []);
+    
+    const handleVolumeMouseLeave = useCallback((e) => {
+        // Enhanced check for leaving towards unrelated elements
+        const isLeavingVolumeScrub = e.relatedTarget && e.relatedTarget.classList &&
+            (e.relatedTarget.classList.contains("hero__volume-scrub-container") ||
+             e.relatedTarget.classList.contains("hero__volume-scrub") ||
+             e.relatedTarget.classList.contains("hero__scrub-handle"));
+    
+        if (!isLeavingVolumeScrub) {
+            volumeScrubTimeout.current = setTimeout(() => {
+                setIsHoveringVolume(false);
+            }, 3000); 
+        }
+    }, []);        
 
     // Volume scrub click handler
     const handleVolumeScrubClick = useCallback((e) => {
@@ -65,21 +89,6 @@ const Hero = ({ mainVideo }) => {
 
         setVolumePercent(volumeLevel);
     }, [adjustVolume]);
-
-    const handleVolumeMouseLeave = useCallback((e) => {
-        // Check if the mouse is leaving the volume scrub container or its children
-        const isLeavingVolumeScrub = e.relatedTarget && e.relatedTarget.classList &&
-        (e.relatedTarget.classList.contains("hero__volume-scrub-container") ||
-        e.relatedTarget.classList.contains("hero__volume-scrub") ||
-        e.relatedTarget.classList.contains("hero__scrub-handle"));
-    
-        // If not leaving the volume scrub container or its children, hide it
-        if (!isLeavingVolumeScrub) {
-            volumeScrubTimeout.current = setTimeout(() => {
-                setIsHoveringVolume(false);
-            }, 3000); 
-        }
-    }, []);
 
     const handleVolumeScrub = useCallback((e) => {
         if (isScrubbing.current) {
