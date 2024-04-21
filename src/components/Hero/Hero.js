@@ -106,6 +106,8 @@ const Hero = ({ mainVideo }) => {
 
     const handleScrub = useCallback((e) => {
         const scrubBar = document.querySelector(".hero__scrub-overlay");
+        if (!scrubBar) return;
+        
         const scrubWidth = scrubBar.offsetWidth;
         const clickedPosition = e.clientX - scrubBar.getBoundingClientRect().left;
         const scrubTime = (clickedPosition / scrubWidth) * videoRef.current.duration;
