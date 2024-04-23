@@ -63,6 +63,7 @@
         :fullscreen &, 
         :-webkit-full-screen & { 
             @include block-item(75%, .93rem);
+            max-width: 20rem;
             position: fixed;
             bottom: 1.875rem;
             left: 50%;
@@ -72,14 +73,16 @@
             
             @include tablet {
                 @include block-item(80%, 2.25rem);
+                max-width: 45rem;
             }
 
             @include desktop {
                 @include block-item(65%, 2.25rem);
+                max-width: 52.5rem;
             }
 
             @include large-desktop {
-                @include block-item(42%, 2.25rem);
+                @include block-item(52%, 2.25rem);
             }
         }
     }
