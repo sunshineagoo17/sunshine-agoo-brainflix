@@ -17,11 +17,17 @@ const Hero = ({ mainVideo }) => {
     const [bufferedPercent, setBufferedPercent] = useState(0); 
     const [volumePercent, setVolumePercent] = useState(100);
     const [isHoveringVolume, setIsHoveringVolume] = useState(false);
+    const [videoKey, setVideoKey] = useState(Date.now());
 
     const videoRef = useRef(null);
     const isScrubbing = useRef(false);
     const volumeScrubTimeout = useRef(null);
     const volumeScrubRef = useRef(null);
+
+    useEffect(() => {
+        setVideoKey(Date.now());
+        setIsPlaying(false);
+    }, [mainVideo]);
 
     const adjustVolume = useCallback((volumeLevel) => {
         const clampedVolumeLevel = Math.max(0, Math.min(100, volumeLevel));
@@ -252,6 +258,7 @@ const Hero = ({ mainVideo }) => {
             <div className={`hero__main-video ${isFullscreen ? "fullscreen" : ""}`}>
                 {/* Main video */}
                 <video 
+                    key={videoKey}
                     controls={false}
                     className="hero__main-video-image"
                     poster={mainVideo?.image}
