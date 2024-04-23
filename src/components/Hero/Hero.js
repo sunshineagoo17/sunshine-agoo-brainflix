@@ -265,6 +265,9 @@ const Hero = ({ mainVideo }) => {
                     aria-label={mainVideo?.title}
                     src={mainVideo?.video}
                     ref={videoRef}
+                    onEnded={() => {
+                        setIsPlaying(false);
+                    }}
                     onTimeUpdate={() => {
                         const current = videoRef.current.currentTime;
                         const duration = videoRef.current.duration;
