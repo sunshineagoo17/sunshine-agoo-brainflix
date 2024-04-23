@@ -1,15 +1,21 @@
+import { useState } from "react";
+
 import "./VideoInfo.scss";
 
 import ViewsIcon from "../../assets/images/icons/views.svg";
 import LikesIcon from "../../assets/images/icons/likes.svg";
 
 const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo }) => {
-    // Checks if there's a video to display, otherwise stops the function early
+    const [isHovered, setIsHovered] = useState(false); 
+
+    // If there's no video to display, stop the function early
     if (!mainVideo) return null;
 
     const formattedTimestamp = TimeAgo(mainVideo.timestamp);
-
     const numOfComments = mainVideo.comments ? mainVideo.comments.length : 0;
+
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => setIsHovered(false);
 
     return (
         <section className="videoInfo">
@@ -35,7 +41,15 @@ const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo }) => {
                         <p className="videoInfo__views">{mainVideo.views}</p>
                     </div>
                     <div className="videoInfo__video-likes-container">
-                        <img src={LikesIcon} alt="Likes Icon" className="videoInfo__likes-icon" onClick={handleLikeVideo}/>
+                        <img 
+                            src={LikesIcon}
+                            alt="Likes Icon"
+                            className={`videoInfo__likes-icon ${isHovered ? "videoInfo__likes-icon--hovered" : ""}`}
+                            title="Like the video"
+                            onClick={handleLikeVideo}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                        />
                         <p className="videoInfo__likes">{mainVideo.likes}</p>
                     </div>
                 </div>

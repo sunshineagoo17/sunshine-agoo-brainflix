@@ -147,6 +147,11 @@
         }
     }
 
+    &__likes-icon:hover {
+        filter: brightness(0.95) invert(1); 
+        transition: filter .3s ease;
+    }
+
     &__views,
     &__likes {
         @include body-copy-style;

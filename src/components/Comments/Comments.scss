@@ -416,6 +416,11 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
+
+        &:hover {
+            filter: brightness(0.95) invert(1); 
+            transition: filter .3s ease;
+        }
     }
 
     &__like-button {
@@ -427,6 +432,11 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
+
+        &:hover {
+            filter: brightness(0.95) invert(1); 
+            transition: filter .3s ease;
+        }
     }
 
     &__like-count {

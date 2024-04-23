@@ -170,7 +170,14 @@ const Comments = ({
 
                                     <div className="comments__actions">
                                         <button className="comments__like-button" onClick={() => handleLikeComment(mainVideo.id, id)}>
-                                            <img src={LikeIcon} alt="Like" className="comments__like-icon" />
+                                            <img 
+                                                src={LikeIcon}
+                                                alt="Like"
+                                                className="comments__like-icon" 
+                                                title="Like the comment"
+                                                onMouseEnter={handleMouseEnter}
+                                                onMouseLeave={handleMouseLeave}
+                                            />
                                             <span className="comments__like-count">{likes.toLocaleString()} likes</span> 
                                         </button>
                                         <button
@@ -183,6 +190,9 @@ const Comments = ({
                                                 src={DeleteIcon}
                                                 alt="Delete button"
                                                 className="comments__delete-icon"
+                                                title="Delete the comment"
+                                                onMouseEnter={handleMouseEnter}
+                                                onMouseLeave={handleMouseLeave}
                                             />
                                         </button>
                                     </div>
