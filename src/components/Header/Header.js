@@ -29,7 +29,7 @@ const Header = () => {
     return (
         <header className="nav">
     
-            <Link to="/home" aria-label="Homepage" className="nav__link"><img src={BrainFlixLogo} alt="BrainFlix logo" className="nav__logo" /></Link>
+            <Link to="/" aria-label="Homepage" className="nav__link"><img src={BrainFlixLogo} alt="BrainFlix logo" className="nav__logo" /></Link>
             
             <div className="nav__search-list">
                 <div className="nav__search-container">

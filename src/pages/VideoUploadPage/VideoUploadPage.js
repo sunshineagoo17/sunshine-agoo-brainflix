@@ -116,7 +116,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
             setShowAlert(true);
             setTimeout(() => {
                 setShowAlert(false);
-                navigate("/home");
+                navigate("/");
             }, 3000);
         } catch (error) {
             console.error("Failed to upload video:", error.message);
@@ -134,12 +134,12 @@ const VideoUploadPage = ({ axiosInstance }) => {
         setIsDescriptionEmpty(false);
         setIsTitleEmpty(false);
         setIsFileSelected(!!posterImage);
-        navigate("/home");
+        navigate("/");
     }
 
     // Cancel button handler to navigate to home without form submission
     const handleCancel = () => {
-        navigate("/home");
+        navigate("/");
     };
 
     const handleErrorAlertClose = () => {

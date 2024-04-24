@@ -103,7 +103,7 @@ const NotFoundPage = () => {
                             <p className="notFoundPage__body-copy">
                                 {/* Displaying the selected message from the current option */}
                                 {currentOption?.copy} Don't worry, you can find plenty of other awesome things to check out on our{" "} 
-                                <Link to="/home" onClick={handleNextOptionClick} className="notFoundPage__homepage-link" aria-label="Go back to Homepage">
+                                <Link to="/" onClick={handleNextOptionClick} className="notFoundPage__homepage-link" aria-label="Go back to Homepage">
                                     homepage
                                 </Link>
                                 .
