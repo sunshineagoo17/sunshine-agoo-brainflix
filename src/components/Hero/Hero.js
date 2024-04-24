@@ -30,9 +30,13 @@ const Hero = ({ mainVideo, handleVideoViews }) => {
     };
 
     useEffect(() => {
-        setVideoKey(Date.now());
-        setIsPlaying(false);
-    }, [mainVideo]);
+        // Only update the key if the video source has changed
+        if (videoRef.current && mainVideo.video !== videoRef.current.getAttribute("src")) {
+            setVideoKey(Date.now());
+            setIsPlaying(false);
+            setCurrentTime(0); 
+        }
+    }, [mainVideo.video]);
 
     const adjustVolume = useCallback((volumeLevel) => {
         const clampedVolumeLevel = Math.max(0, Math.min(100, volumeLevel));
