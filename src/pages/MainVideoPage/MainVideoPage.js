@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -154,7 +153,7 @@ const MainVideoPage = ({ axiosInstance }) => {
 
     const handleLikeComment = async (videoId, commentId) => {
         try {
-            const response = await axios.put(`/videos/${videoId}/comments/${commentId}/likes`);
+            const response = await axiosInstance.put(`/videos/${videoId}/comments/${commentId}/likes`);
             if (response.status === 200) {
                 setMainVideo(prevMainVideo => {
                     const updatedComments = prevMainVideo.comments.map(comment => 
