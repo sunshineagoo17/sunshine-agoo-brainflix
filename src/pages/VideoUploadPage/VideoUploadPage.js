@@ -19,7 +19,6 @@ const VideoUploadPage = ({ axiosInstance }) => {
     const [isDescriptionEmpty, setIsDescriptionEmpty] = useState(false);
     const [isDescriptionFocused, setIsDescriptionFocused] = useState(false);
     const [isFileSelected, setIsFileSelected] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [isLoading , setIsLoading] = useState(true);
     const [posterImage, setPosterImage] = useState(null);
@@ -124,9 +123,6 @@ const VideoUploadPage = ({ axiosInstance }) => {
             setIsLoading(false);
         }
     };
-
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
 
     // Closes the success alert and navigates to homepage
     const handleCloseAlert = () => {
@@ -261,9 +257,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
                             
                             <div className="videoUploadPage__buttons-container">
                                 <div className="videoUploadPage__button-publish-container">
-                                    <button className={`videoUploadPage__button-publish ${isHovered ? "hover" : ""}`}
-                                            onMouseEnter={handleMouseEnter}
-                                            onMouseLeave={handleMouseLeave}
+                                    <button className="videoUploadPage__button-publish"
                                             type="submit"
                                             aria-label="Publish"
                                     >
@@ -277,9 +271,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
                                 </div>
                                 
                                 <div className="videoUploadPage__button-cancel-container">
-                                    <button className={`videoUploadPage__button-cancel ${isHovered ? "hover" : ""}`}
-                                            onMouseEnter={handleMouseEnter}
-                                            onMouseLeave={handleMouseLeave}
+                                    <button className="videoUploadPage__button-cancel"
                                             onClick={handleCancel}
                                             type="button"
                                             aria-label="Cancel"

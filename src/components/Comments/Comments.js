@@ -16,7 +16,6 @@ const Comments = ({
 
     // State management for comment input and UI interactions
     const [commentValue, setCommentValue] = useState("");
-    const [isHovered, setIsHovered] = useState(false);
     const [isCommentEmpty, setIsCommentEmpty] = useState(false);
     const [isTextareaFocused, setIsTextareaFocused] = useState(false);
     const [showErrorAlert, setShowErrorAlert] = useState(false);
@@ -63,9 +62,6 @@ const Comments = ({
         }
     };
 
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
-
     const handleDeleteComment = async (event, commentId) => {
         event.preventDefault();
         event.stopPropagation();
@@ -105,9 +101,7 @@ const Comments = ({
                        
                         <div className="comments__button-container--bottom">
                             <button
-                                className={`comments__button--bottom ${isHovered ? "hover" : ""}`}
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
+                                className="comments__button--bottom"
                                 aria-label="Submit comment"
                             >
                                 <div className="comments__button-icon-container">
@@ -122,9 +116,7 @@ const Comments = ({
                   
                     <div className="comments__button-container--right">
                         <button
-                            className={`comments__button--right ${isHovered ? "hover" : ""}`}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
+                            className="comments__button--right"
                             aria-label="Submit comment"
                         >
                             <div className="comments__button-icon-container">
@@ -172,8 +164,7 @@ const Comments = ({
                                             aria-label="Like comment"
                                             className="comments__like-button"
                                             onClick={() => handleLikeComment(mainVideo.id, id)}
-                                            onMouseEnter={handleMouseEnter}
-                                            onMouseLeave={handleMouseLeave}>
+                                        >
                                             <svg 
                                                 width="19"
                                                 height="17"
@@ -185,7 +176,7 @@ const Comments = ({
                                                 <path d="M10.4712 4.005L9.9725 6.53375C9.8675 7.05 10.0075 7.58375 10.34 7.98625C10.6725 8.38875 11.1625 8.625 11.6875 8.625H16.5V9.57L14.2513 14.75H7.1725C7.015 14.75 6.875 14.61 6.875 14.4525V7.5925L10.4712 4.005V4.005ZM11.25 0.75L5.64125 6.35875C5.30875 6.69125 5.125 7.1375 5.125 7.60125V14.4525C5.125 15.5812 6.04375 16.5 7.1725 16.5H14.26C14.8813 16.5 15.45 16.1763 15.765 15.6513L18.1012 10.27C18.1975 10.0513 18.25 9.815 18.25 9.57V8.625C18.25 7.6625 17.4625 6.875 16.5 6.875H11.6875L12.4925 2.80625C12.5363 2.61375 12.51 2.40375 12.4225 2.22875C12.2213 1.835 11.9675 1.47625 11.6525 1.16125L11.25 0.75ZM2.5 6.875H0.75V16.5H2.5C2.98125 16.5 3.375 16.1063 3.375 15.625V7.75C3.375 7.26875 2.98125 6.875 2.5 6.875Z"/>
                                             </svg>
                                             <span className="comments__like-count">
-                                                {likes.toLocaleString()} {likes <= 1 ? "like" : "likes"}    
+                                                {likes.toLocaleString()} {likes <= 1 ? "like" : "likes"}
                                             </span> 
                                         </button>
                                         <button
@@ -193,8 +184,7 @@ const Comments = ({
                                             aria-label="Delete comment"
                                             className="comments__delete-button"
                                             onClick={(event) => handleDeleteComment(event, id)}
-                                            onMouseEnter={handleMouseEnter}
-                                            onMouseLeave={handleMouseLeave}>
+                                        >
                                             <svg 
                                                 width="14"
                                                 height="18"

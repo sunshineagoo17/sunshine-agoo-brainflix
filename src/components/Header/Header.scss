@@ -28,6 +28,10 @@
 
         @include tablet {
             margin-bottom: 0;
+        
+            &:active {
+                transform: scale(.95); 
+            }
         }
     }
 

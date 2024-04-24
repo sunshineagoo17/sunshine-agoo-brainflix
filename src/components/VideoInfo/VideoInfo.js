@@ -1,16 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import "./VideoInfo.scss";
 
 import ViewsIcon from "../../assets/images/icons/views.svg";
 
-const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo, handleVideoViews }) => {
-    const [isHovered, setIsHovered] = useState(false); 
-
-    useEffect(() => {
-        // Reset isHovered state when mainVideo changes
-        setIsHovered(false);
-    }, [mainVideo]);
+const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo, handleVideoViews }) => { 
 
     useEffect(() => {
         const videoElement = document.querySelector("video");
@@ -33,9 +27,6 @@ const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo, handleVideoViews }) =>
 
     const formattedTimestamp = TimeAgo(mainVideo.timestamp);
     const numOfComments = mainVideo.comments ? mainVideo.comments.length : 0;
-
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
 
     return (
         <section className="videoInfo">
@@ -66,11 +57,9 @@ const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo, handleVideoViews }) =>
                             height="16"
                             viewBox="0 0 17 16"
                             aria-label="Like video"
-                            className={`videoInfo__likes-icon ${isHovered ? "videoInfo__likes-icon--hovered" : ""}`}
+                            className="videoInfo__likes-icon"
                             alt="Likes Icon"
                             onClick={handleLikeVideo}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
                         >
                             <title>Like the video</title>
                             <path d="M12.325 0C10.846 0 9.4265 0.682105 8.5 1.76C7.5735 0.682105 6.154 0 4.675 0C2.057 0 0 2.03789 0 4.63158C0 7.81474 2.89 10.4084 7.2675 14.3495L8.5 15.4526L9.7325 14.3411C14.11 10.4084 17 7.81474 17 4.63158C17 2.03789 14.943 0 12.325 0Z"/>

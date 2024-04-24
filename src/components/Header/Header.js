@@ -10,8 +10,7 @@ import AvatarImg from "../../assets/images/pictures/Mohan-muruge.jpg";
 
 const Header = () => {
     const [searchValue, setSearchValue] = useState(""); 
-    const [userIsTyping, setUserIsTyping] = useState(false); 
-    const [isHovered, setIsHovered] = useState(false); 
+    const [userIsTyping, setUserIsTyping] = useState(false);  
     const location = useLocation(); 
 
     // Clears the search input and resets typing status when navigating to a different route
@@ -52,9 +51,7 @@ const Header = () => {
                 {/* Upload button - for desktop and tablet only */}
                 <Link to="/upload" className="nav__upload-link">
                     <div className="nav__upload-button-container--right">
-                        <button className={`nav__upload-button--right ${isHovered ? "hover" : ""}`}
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
+                        <button className="nav__upload-button--right"
                             aria-label="Upload"
                         >
                             <div className="nav__upload-icon-container">
@@ -75,9 +72,7 @@ const Header = () => {
             {/* Upload button - for mobile  */}
             <div className="nav__upload-button-container--bottom">
                 <Link to="/upload" aria-label="Upload Video">
-                    <button className={`nav__upload-button--bottom ${isHovered ? "hover" : ""}`}
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
+                    <button className="nav__upload-button--bottom"
                             aria-label="Upload"
                     >
                         <div className="nav__upload-icon-container">
