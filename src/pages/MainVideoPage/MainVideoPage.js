@@ -136,11 +136,27 @@ const MainVideoPage = ({ axiosInstance }) => {
         }
     };
 
+    // Function to handle video views
+    const handleVideoViews = async () => {
+        console.log("Updating video views...");
+        try {
+            const response = await axiosInstance.put(`/videos/${mainVideo.id}/views`);
+            if (response.status === 200) {
+                // Ensure that the views count is updated by fetching the updated video data
+                const updatedVideoResponse = await axiosInstance.get(`/videos/${mainVideo.id}`);
+                if (updatedVideoResponse.status === 200) {
+                    setMainVideo(updatedVideoResponse.data);
+                }
+            }
+        } catch (error) {
+            console.error("Failed to update views count:", error);
+        }
+    };    
+
     const handleLikeComment = async (videoId, commentId) => {
         try {
             const response = await axios.put(`/videos/${videoId}/comments/${commentId}/likes`);
             if (response.status === 200) {
-                // Assuming the response includes the entire updated comment
                 setMainVideo(prevMainVideo => {
                     const updatedComments = prevMainVideo.comments.map(comment => 
                         comment.id === commentId ? { ...comment, likes: response.data.likes } : comment);
@@ -158,13 +174,17 @@ const MainVideoPage = ({ axiosInstance }) => {
                 <div className="mainVideoPage"> 
                     {mainVideo && (
                         <div className="mainVideoPage">
-                            <Hero mainVideo={mainVideo} />
+                            <Hero 
+                                mainVideo={mainVideo}
+                                handleVideoViews={handleVideoViews}
+                            />
                             <div className="mainVideoPage__video-info-container">
                                 <div className="mainVideoPage__video-info-text">
                                     <VideoInfo
                                         mainVideo={mainVideo}
                                         TimeAgo={TimeAgo} 
                                         handleLikeVideo={handleLikeVideo}
+                                        handleVideoViews={handleVideoViews}
                                     />
                                     <Comments
                                         comments={mainVideo?.comments || []}

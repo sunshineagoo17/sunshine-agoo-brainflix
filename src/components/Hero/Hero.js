@@ -7,7 +7,7 @@ import FullscreenButton from "../../assets/images/icons/fullscreen.svg";
 import VolumeOffButton from "../../assets/images/icons/volume_off.svg";
 import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
 
-const Hero = ({ mainVideo }) => {
+const Hero = ({ mainVideo, handleVideoViews }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -23,6 +23,11 @@ const Hero = ({ mainVideo }) => {
     const isScrubbing = useRef(false);
     const volumeScrubTimeout = useRef(null);
     const volumeScrubRef = useRef(null);
+
+    const handleVideoEnd = () => {
+        setIsPlaying(false);
+        handleVideoViews(); // Call handleVideoViews when the video ends
+    };
 
     useEffect(() => {
         setVideoKey(Date.now());
@@ -170,11 +175,11 @@ const Hero = ({ mainVideo }) => {
         };
     
         document.addEventListener("fullscreenchange", updateFullscreenState);
-        document.addEventListener("webkitfullscreenchange", updateFullscreenState); // For Safari
+        document.addEventListener("webkitfullscreenchange", updateFullscreenState); 
     
         return () => {
             document.removeEventListener("fullscreenchange", updateFullscreenState);
-            document.removeEventListener("webkitfullscreenchange", updateFullscreenState); // For Safari
+            document.removeEventListener("webkitfullscreenchange", updateFullscreenState); 
         };
     }, []);    
 
@@ -199,7 +204,7 @@ const Hero = ({ mainVideo }) => {
         // Reset video states when video source changes
         if (videoRef.current) {
             videoRef.current.load(); 
-            videoRef.current.volume = 1; // Reset volume to max or previously saved state
+            videoRef.current.volume = 1; 
             setIsPlaying(false);
             setCurrentTime(0);
             setPlayedPercent(0);
@@ -225,18 +230,21 @@ const Hero = ({ mainVideo }) => {
             }
         };
 
-        const handleEnded = () => {
+        const handleVideoEnd = () => {
             setIsPlaying(false);
+            handleVideoViews(); // Call handleVideoViews when the video ends
         };
 
-        video.addEventListener('timeupdate', handleTimeUpdate);
-        video.addEventListener('ended', handleEnded);
+        if (video) {
+            video.addEventListener('ended', handleVideoEnd);
+            video.addEventListener('timeupdate', handleTimeUpdate);
 
-        return () => {
-            video.removeEventListener('timeupdate', handleTimeUpdate);
-            video.removeEventListener('ended', handleEnded);
-        };
-    }, [videoRef]);   
+            return () => {
+                video.removeEventListener('ended', handleVideoEnd);
+                video.removeEventListener('timeupdate', handleTimeUpdate);
+            };
+        }
+    }, [handleVideoViews, videoRef]); 
 
     useEffect(() => {
         // Cleanup timeout when component unmounts
@@ -245,7 +253,7 @@ const Hero = ({ mainVideo }) => {
                 clearTimeout(volumeScrubTimeout.current);
             }
         };
-    }, []);    
+    }, []);  
 
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
@@ -267,6 +275,8 @@ const Hero = ({ mainVideo }) => {
                     ref={videoRef}
                     onEnded={() => {
                         setIsPlaying(false);
+                        handleVideoEnd();
+                        console.log("Video ended")
                     }}
                     onTimeUpdate={() => {
                         const current = videoRef.current.currentTime;

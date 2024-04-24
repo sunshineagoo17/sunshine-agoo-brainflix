@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./VideoInfo.scss";
 
 import ViewsIcon from "../../assets/images/icons/views.svg";
 
-const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo }) => {
+const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo, handleVideoViews }) => {
     const [isHovered, setIsHovered] = useState(false); 
+
+    useEffect(() => {
+        // Reset isHovered state when mainVideo changes
+        setIsHovered(false);
+    }, [mainVideo]);
+
+    useEffect(() => {
+        const videoElement = document.querySelector("video");
+
+        const handleVideoEnd = () => {
+            handleVideoViews(); 
+        };
+
+        if (videoElement) {
+            videoElement.addEventListener("ended", handleVideoEnd);
+            console.log("Event listener attached");
+
+            return () => {
+                videoElement.removeEventListener("ended", handleVideoEnd);
+            };
+        }
+    }, [handleVideoViews]);
 
     // If there's no video to display, stop the function early
     if (!mainVideo) return null;
