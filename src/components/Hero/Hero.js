@@ -302,6 +302,7 @@ const Hero = ({ mainVideo, handleVideoViews }) => {
                     </div>
                     <div className="hero__scrub-overlay" onClick={handleScrub}>
                         <div className="hero__scrub-line-container">
+                            {/* Dynamically set the width of the played, buffered, and remaining progress bars based on video playback. The scrub button position is also dynamically adjusted based on the played percentage */}
                             <div className="hero__scrub--played" style={{ width: `${playedPercent}%` }}></div>
                             <div className="hero__scrub--buffered" style={{ width: `${bufferedPercent}%` }}></div>
                             <div className="hero__scrub--remaining" style={{ width: `${100 - bufferedPercent}%` }}></div>
@@ -349,6 +350,7 @@ const Hero = ({ mainVideo, handleVideoViews }) => {
                             style={{ display: isHoveringVolume ? "block" : "none" }}
                             onMouseDown={handleVolumeMouseDown}>
                             <div className="hero__volume-scrub"
+                                // Dynamically set the height of the volume scrub based on the current volume percentage
                                 style={{ height: `${volumePercent}%` }}>
                                 <img src={ScrubButton} alt="Scrub Handle" aria-label="Adjust volume" className="hero__scrub-handle"
                                     style={{ bottom: `calc(${volumePercent}% - .2rem)` }} />
