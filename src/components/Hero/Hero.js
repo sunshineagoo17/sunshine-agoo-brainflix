@@ -276,7 +276,6 @@ const Hero = ({ mainVideo, handleVideoViews }) => {
                     onEnded={() => {
                         setIsPlaying(false);
                         handleVideoEnd();
-                        console.log("Video ended")
                     }}
                     onTimeUpdate={() => {
                         const current = videoRef.current.currentTime;

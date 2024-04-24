@@ -138,7 +138,6 @@ const MainVideoPage = ({ axiosInstance }) => {
 
     // Function to handle video views
     const handleVideoViews = async () => {
-        console.log("Updating video views...");
         try {
             const response = await axiosInstance.put(`/videos/${mainVideo.id}/views`);
             if (response.status === 200) {

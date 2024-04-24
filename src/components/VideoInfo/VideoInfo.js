@@ -21,7 +21,6 @@ const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo, handleVideoViews }) =>
 
         if (videoElement) {
             videoElement.addEventListener("ended", handleVideoEnd);
-            console.log("Event listener attached");
 
             return () => {
                 videoElement.removeEventListener("ended", handleVideoEnd);
