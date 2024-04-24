@@ -147,9 +147,17 @@
         }
     }
 
-    &__likes-icon:hover {
-        filter: brightness(0.95) invert(1); 
-        transition: filter .3s ease;
+    &__likes-icon {
+        fill: $tertiary;
+        
+        &:hover {
+            fill: $secondary;
+        }
+
+        &:active {
+            transform: scale(.90); 
+            fill: $senary;
+        }
     }
 
     &__views,

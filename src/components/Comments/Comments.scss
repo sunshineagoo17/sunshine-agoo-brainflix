@@ -416,10 +416,16 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
+        fill: $tertiary;
+        transition: fill 0.3s ease; 
 
         &:hover {
-            filter: brightness(0.95) invert(1); 
-            transition: filter .3s ease;
+            fill: $secondary;
+        }
+
+        &:active {
+            transform: scale(.90); 
+            fill: $senary;
         }
     }
 
@@ -432,10 +438,16 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
+        fill: $tertiary;
+        transition: fill 0.3s ease; 
 
         &:hover {
-            filter: brightness(0.95) invert(1); 
-            transition: filter .3s ease;
+            fill: $secondary;
+        }
+
+        &:active {
+            transform: scale(.90); 
+            fill: $senary;
         }
     }
 
