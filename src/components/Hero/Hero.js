@@ -299,7 +299,7 @@ const Hero = ({ mainVideo }) => {
                             <div className="hero__scrub-button" style={{ left: `${playedPercent}%` }}
                                 onMouseDown={handleMouseDown}
                             >
-                                <img src={ScrubButton} alt="Scrub Button" aria-label="Scrub" className="hero__scrub-button-icon"/>
+                                <img src={ScrubButton} alt="Scrub Button" aria-label="Adjust video position" className="hero__scrub-button-icon"/>
                             </div>
                         </div>
                         
@@ -324,7 +324,7 @@ const Hero = ({ mainVideo }) => {
                             className="hero__fullscreen-button"
                             src={FullscreenButton}
                             alt="Fullscreen Button"
-                            aria-label="Fullscreen video"
+                            aria-label="Enter Fullscreen"
                             onClick={toggleFullscreen}
                         />
                     )}
@@ -332,6 +332,7 @@ const Hero = ({ mainVideo }) => {
                         <img
                             className="hero__volume-up-button"
                             src={isMuted || volumePercent === 0 ? VolumeOffButton : VolumeUpButton}
+                            aria-label={isMuted || volumePercent === 0 ? "Unmute" : "Mute"}
                             alt="Volume Button"
                             onClick={toggleVolume}
                         />
@@ -340,7 +341,7 @@ const Hero = ({ mainVideo }) => {
                             onMouseDown={handleVolumeMouseDown}>
                             <div className="hero__volume-scrub"
                                 style={{ height: `${volumePercent}%` }}>
-                                <img src={ScrubButton} alt="Scrub Handle" className="hero__scrub-handle"
+                                <img src={ScrubButton} alt="Scrub Handle" aria-label="Adjust volume" className="hero__scrub-handle"
                                     style={{ bottom: `calc(${volumePercent}% - .2rem)` }} />
                             </div>
                             <div className="hero__remaining-volume">
