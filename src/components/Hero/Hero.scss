@@ -112,7 +112,6 @@
         border: none;
         outline: none;
         background-position: center;
-        background-color: transparent;
         cursor: pointer;
         @include block-item(.45rem, .45rem); 
             
@@ -132,7 +131,6 @@
         border: none;
         outline: none;
         background-position: center;
-        background-color: transparent;
         cursor: pointer;
         @include block-item(.7rem, .7rem); 
             
@@ -142,6 +140,23 @@
             @include desktop {
                 @include block-item(1.4rem, 1.4rem); 
             }
+        }
+    }
+
+    &__close-fullscreen-button,
+    &__fullscreen-button,
+    &__volume-up-button,
+    &__volume-off-button,
+    &__play-button,
+    &__pause-button {
+    transition: opacity 0.3s ease;
+
+        &:hover {
+            filter: grayscale(100%) brightness(70%);
+        }
+
+        &:active {
+            transform: scale(.90); 
         }
     }
 
