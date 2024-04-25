@@ -56,25 +56,47 @@ const MainVideoPage = ({ axiosInstance }) => {
         }
     }, [navigate, axiosInstance]);
 
-    const fetchData = useCallback(async () => {
-        try {
-            const response = await axiosInstance.get("/videos");
-            setVideos(response.data);
-            if (videoId) {
-                updateMainVideo(videoId);
-            } else if (response.data.length > 0) {
-                updateMainVideo(response.data[0].id);
-            }
-        } catch (error) {
-            console.error("Error fetching videos:", error.response || error);
-        } finally {
-            setIsLoading(false);
-        }
-    }, [axiosInstance, videoId, updateMainVideo]);  
-
+   // Inside the useEffect for fetching videos
     useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            try {
+                const response = await axiosInstance.get("/videos");
+                setVideos(response.data);
+                // If there's no videoId in the URL, select the first video as the main video
+                if (!videoId && response.data.length > 0) {
+                    setMainVideo(response.data[0]);
+                }
+            } catch (error) {
+                console.error("Error fetching videos:", error.response || error);
+                navigate("/uh-oh");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
         fetchData();
-    }, [fetchData]);
+    }, [axiosInstance, videoId, navigate]);
+
+    // Inside the useEffect for fetching individual video details
+    useEffect(() => {
+        const fetchVideoDetails = async () => {
+            if (videoId) {
+                setIsLoading(true);
+                try {
+                    const response = await axiosInstance.get(`/videos/${videoId}`);
+                    setMainVideo(response.data);
+                } catch (error) {
+                    console.error("Error fetching main video details:", error);
+                    navigate("/uh-oh");
+                } finally {
+                    setIsLoading(false);
+                }
+            }
+        };
+
+        fetchVideoDetails();
+    }, [videoId, axiosInstance, navigate]);
 
     const handleVideoSelect = (videoId) => {
         updateMainVideo(videoId);
