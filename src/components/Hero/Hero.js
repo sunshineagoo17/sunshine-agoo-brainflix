@@ -7,7 +7,7 @@ import FullscreenButton from "../../assets/images/icons/fullscreen.svg";
 import VolumeOffButton from "../../assets/images/icons/volume_off.svg";
 import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
 
-const Hero = ({ mainVideo, handleVideoViews }) => {
+const Hero = ({ mainVideo }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -26,13 +26,16 @@ const Hero = ({ mainVideo, handleVideoViews }) => {
 
     const handleVideoEnd = () => {
         setIsPlaying(false);
-        handleVideoViews(); // Call handleVideoViews when the video ends
     };
 
     useEffect(() => {
-        setVideoKey(Date.now());
-        setIsPlaying(false);
-    }, [mainVideo]);
+        // Only update the key if the video source has changed
+        if (videoRef.current && mainVideo.video !== videoRef.current.getAttribute("src")) {
+            setVideoKey(Date.now());
+            setIsPlaying(false);
+            setCurrentTime(0); 
+        }
+    }, [mainVideo.video]);
 
     const adjustVolume = useCallback((volumeLevel) => {
         const clampedVolumeLevel = Math.max(0, Math.min(100, volumeLevel));
@@ -232,19 +235,18 @@ const Hero = ({ mainVideo, handleVideoViews }) => {
 
         const handleVideoEnd = () => {
             setIsPlaying(false);
-            handleVideoViews(); // Call handleVideoViews when the video ends
         };
 
         if (video) {
-            video.addEventListener('ended', handleVideoEnd);
-            video.addEventListener('timeupdate', handleTimeUpdate);
+            video.addEventListener("ended", handleVideoEnd);
+            video.addEventListener("timeupdate", handleTimeUpdate);
 
             return () => {
-                video.removeEventListener('ended', handleVideoEnd);
-                video.removeEventListener('timeupdate', handleTimeUpdate);
+                video.removeEventListener("ended", handleVideoEnd);
+                video.removeEventListener("timeupdate", handleTimeUpdate);
             };
         }
-    }, [handleVideoViews, videoRef]); 
+    }, [videoRef]); 
 
     useEffect(() => {
         // Cleanup timeout when component unmounts

@@ -155,23 +155,7 @@ const MainVideoPage = ({ axiosInstance }) => {
         } catch (error) {
             console.error("Failed to like comment:", error);
         }
-    };
-
-    // Function to handle video views
-    const handleVideoViews = async () => {
-        try {
-            const response = await axiosInstance.put(`/videos/${mainVideo.id}/views`);
-            if (response.status === 200) {
-                // Ensure that the views count is updated by fetching the updated video data
-                const updatedVideoResponse = await axiosInstance.get(`/videos/${mainVideo.id}`);
-                if (updatedVideoResponse.status === 200) {
-                    setMainVideo(updatedVideoResponse.data);
-                }
-            }
-        } catch (error) {
-            console.error("Failed to update views count:", error);
-        }
-    };    
+    }; 
 
     const handleLikeComment = async (videoId, commentId) => {
         try {
@@ -196,7 +180,6 @@ const MainVideoPage = ({ axiosInstance }) => {
                         <div className="mainVideoPage">
                             <Hero 
                                 mainVideo={mainVideo}
-                                handleVideoViews={handleVideoViews}
                             />
                             <div className="mainVideoPage__video-info-container">
                                 <div className="mainVideoPage__video-info-text">
@@ -204,7 +187,6 @@ const MainVideoPage = ({ axiosInstance }) => {
                                         mainVideo={mainVideo}
                                         TimeAgo={TimeAgo} 
                                         handleLikeVideo={handleLikeVideo}
-                                        handleVideoViews={handleVideoViews}
                                     />
                                     <Comments
                                         comments={mainVideo?.comments || []}

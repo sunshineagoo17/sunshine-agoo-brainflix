@@ -1,26 +1,8 @@
-import { useEffect } from "react";
-
 import "./VideoInfo.scss";
 
 import ViewsIcon from "../../assets/images/icons/views.svg";
 
-const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo, handleVideoViews }) => { 
-
-    useEffect(() => {
-        const videoElement = document.querySelector("video");
-
-        const handleVideoEnd = () => {
-            handleVideoViews(); 
-        };
-
-        if (videoElement) {
-            videoElement.addEventListener("ended", handleVideoEnd);
-
-            return () => {
-                videoElement.removeEventListener("ended", handleVideoEnd);
-            };
-        }
-    }, [handleVideoViews]);
+const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo }) => { 
 
     // If there's no video to display, stop the function early
     if (!mainVideo) return null;
