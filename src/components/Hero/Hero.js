@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, memo } from "react";
 import "./Hero.scss";
 
 import CloseFullscreenButton from "../../assets/images/icons/close_fullscreen.svg";
@@ -7,7 +7,7 @@ import FullscreenButton from "../../assets/images/icons/fullscreen.svg";
 import VolumeOffButton from "../../assets/images/icons/volume_off.svg";
 import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
 
-const Hero = ({ mainVideo }) => {
+const Hero = memo(({ mainVideo, handleVideoViews }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -26,6 +26,7 @@ const Hero = ({ mainVideo }) => {
 
     const handleVideoEnd = () => {
         setIsPlaying(false);
+        handleVideoViews();
     };
 
     useEffect(() => {
@@ -366,6 +367,11 @@ const Hero = ({ mainVideo }) => {
         </div>
     </section>
     );
-};
+}, (prevProps, nextProps) => {
+    // This function determines whether to re-render the component
+    return prevProps.mainVideo.video === nextProps.mainVideo.video &&
+           prevProps.mainVideo.image === nextProps.mainVideo.image &&
+           prevProps.mainVideo.title === nextProps.mainVideo.title;
+});
 
 export default Hero;
