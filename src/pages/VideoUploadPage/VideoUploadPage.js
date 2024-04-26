@@ -347,7 +347,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
                         {showVideoIdErrorAlert && (
                             <div className="videoUploadPage__alert--error">
                                 <p className="videoUploadPage__alert-text--error">
-                                    Upoad failed: No valid video ID returned.
+                                    Upload failed: No valid video ID returned.
                                 </p>
                                 <button 
                                     className="videoUploadPage__alert-button--error" 
