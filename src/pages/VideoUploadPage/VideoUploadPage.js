@@ -23,6 +23,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
     const [isLoading , setIsLoading] = useState(true);
     const [posterImage, setPosterImage] = useState(null);
     const [selectedFileName, setSelectedFileName] = useState("No file chosen");
+    const [uploadedVideoId, setUploadedVideoId] = useState(null);
     
     // Effect hook to manage loader visibility based on page load status
     useEffect(() => {
@@ -96,18 +97,15 @@ const VideoUploadPage = ({ axiosInstance }) => {
         setIsTitleEmpty(!isTitleValid);
         setIsDescriptionEmpty(!isDescriptionValid);
         setIsFileSelected(isFileSelectedValid);
-
-        // Check if any validation fails
+    
         if (!isTitleValid || !isDescriptionValid || !isFileSelectedValid) {
             setFormSubmitted(true);
             setShowErrorAlert(true);
             console.log("All fields including an image are required.");
             return;
         }
-
-        setIsLoading(true);
     
-        // Proceed with form submission if all validations pass
+        setIsLoading(true);
         const formData = new FormData();
         formData.append("title", titleValue.trim());
         formData.append("description", descriptionValue.trim());
@@ -120,26 +118,37 @@ const VideoUploadPage = ({ axiosInstance }) => {
                 },
             });
             console.log("Video uploaded successfully:", response.data);
-            setShowAlert(true);
-            setTimeout(() => {
-                setShowAlert(false);
-                navigate("/");
-            }, 3000);
+            if (response.data && response.data.videoId) {
+                setShowAlert(true);
+                setUploadedVideoId(response.data.videoId);  // Save the video ID
+    
+                // Automatically close the alert and navigate after 3 seconds
+                setTimeout(() => {
+                    setShowAlert(false);
+                    navigate(`/video/${response.data.videoId}`);  // Navigate using the saved video ID
+                }, 3000);
+    
+            } else {
+                console.error("Upload successful, but no video ID returned:", response.data);
+                setShowErrorAlert(true);
+            }
         } catch (error) {
-            console.error("Failed to upload video:", error.message);
+            console.error("Failed to upload video:", error);
+            setShowErrorAlert(true);
         } finally {
             setIsLoading(false);
         }
     };
-
-    // Closes the success alert and navigates to homepage
+    
     const handleCloseAlert = () => {
         setShowAlert(false);
         setIsDescriptionEmpty(false);
         setIsTitleEmpty(false);
         setIsFileSelected(!!posterImage);
-        navigate("/");
-    }
+        if (uploadedVideoId) {
+            navigate(`/video/${uploadedVideoId}`);  // Navigate using the saved video ID
+        }
+    };
 
     // Cancel button handler to navigate to home without form submission
     const handleCancel = () => {
