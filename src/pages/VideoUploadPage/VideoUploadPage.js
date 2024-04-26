@@ -12,6 +12,8 @@ const VideoUploadPage = ({ axiosInstance }) => {
     // State hooks for managing form fields, hover state, validation errors, and submission status 
     const [showAlert, setShowAlert] = useState(false);
     const [showErrorAlert, setShowErrorAlert] = useState(false);
+    const [showVideoUploadErrorAlert, setshowVideoUploadErrorAlert] = useState(false);
+    const [showVideoIdErrorAlert, setshowVideoIdErrorAlert] = useState(false);
     const [titleValue, setTitleValue] = useState("");
     const [isTitleEmpty, setIsTitleEmpty] = useState(false);
     const [isTitleFocused, setIsTitleFocused] = useState(false);
@@ -129,12 +131,12 @@ const VideoUploadPage = ({ axiosInstance }) => {
                 }, 3000);
     
             } else {
-                console.error("Upload successful, but no video ID returned:", response.data);
-                setShowErrorAlert(true);
+                console.error("Upload failed: No valid video ID returned:", response.data);
+                setshowVideoIdErrorAlert(true);
             }
         } catch (error) {
             console.error("Failed to upload video:", error);
-            setShowErrorAlert(true);
+            setshowVideoUploadErrorAlert(true);
         } finally {
             setIsLoading(false);
         }
@@ -157,6 +159,8 @@ const VideoUploadPage = ({ axiosInstance }) => {
 
     const handleErrorAlertClose = () => {
         setShowErrorAlert(false);
+        setshowVideoIdErrorAlert(false);
+        setshowVideoUploadErrorAlert(false);
         setIsDescriptionEmpty(false);
         setIsTitleEmpty(false);
         setIsFileSelected(true); 
@@ -338,6 +342,39 @@ const VideoUploadPage = ({ axiosInstance }) => {
                                 </button>
                             </div>
                         )}
+
+                        {/* Error alert for missing title or description */}
+                        {showVideoIdErrorAlert && (
+                            <div className="videoUploadPage__alert--error">
+                                <p className="videoUploadPage__alert-text--error">
+                                    Upoad failed: No valid video ID returned.
+                                </p>
+                                <button 
+                                    className="videoUploadPage__alert-button--error" 
+                                    onClick={handleErrorAlertClose}
+                                    aria-label="Close"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        )}
+
+                        {/* Error in the file upload process */}
+                        {showVideoUploadErrorAlert && (
+                            <div className="videoUploadPage__alert--error">
+                                <p className="videoUploadPage__alert-text--error">
+                                    Apologies, we can't upload your video. Try again later.
+                                </p>
+                                <button 
+                                    className="videoUploadPage__alert-button--error" 
+                                    onClick={handleErrorAlertClose}
+                                    aria-label="Close"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        )}
+
                     </div>
                 </div>
             )}
