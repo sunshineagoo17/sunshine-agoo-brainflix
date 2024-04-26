@@ -73,7 +73,6 @@ const VideoUploadPage = ({ axiosInstance }) => {
         }
     };
 
-    // Focus handlers to visually indicate focus on input fields
     const handleTitleAreaFocus = () => setIsTitleFocused(true);
     const handleDescriptionAreaFocus = () => setIsDescriptionFocused(true);
 
@@ -122,12 +121,11 @@ const VideoUploadPage = ({ axiosInstance }) => {
             console.log("Video uploaded successfully:", response.data);
             if (response.data && response.data.videoId) {
                 setShowAlert(true);
-                setUploadedVideoId(response.data.videoId);  // Save the video ID
+                setUploadedVideoId(response.data.videoId); // Save the video ID
     
-                // Automatically close the alert and navigate after 3 seconds
                 setTimeout(() => {
                     setShowAlert(false);
-                    navigate(`/video/${response.data.videoId}`);  // Navigate using the saved video ID
+                    navigate(`/video/${response.data.videoId}`); // Navigate to the new video uploaded (instead of the homepage) for improved user experience
                 }, 3000);
     
             } else {
@@ -148,7 +146,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
         setIsTitleEmpty(false);
         setIsFileSelected(!!posterImage);
         if (uploadedVideoId) {
-            navigate(`/video/${uploadedVideoId}`);  // Navigate using the saved video ID
+            navigate(`/video/${uploadedVideoId}`); 
         }
     };
 
@@ -343,7 +341,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
                             </div>
                         )}
 
-                        {/* Error alert for missing title or description */}
+                        {/* Error alert for when the uploaded video fails to return a valid video ID */}
                         {showVideoIdErrorAlert && (
                             <div className="videoUploadPage__alert--error">
                                 <p className="videoUploadPage__alert-text--error">
@@ -359,7 +357,7 @@ const VideoUploadPage = ({ axiosInstance }) => {
                             </div>
                         )}
 
-                        {/* Error in the file upload process */}
+                        {/* Error alert for when the video upload fails unexpectedly */}
                         {showVideoUploadErrorAlert && (
                             <div className="videoUploadPage__alert--error">
                                 <p className="videoUploadPage__alert-text--error">
