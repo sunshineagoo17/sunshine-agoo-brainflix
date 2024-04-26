@@ -40,26 +40,33 @@ const VideoUploadPage = ({ axiosInstance }) => {
     const handleInputChange = (e) => {
         const value = e.target.value;
         setTitleValue(value);
-        setIsTitleEmpty(false); 
+        setIsTitleEmpty(value.trim() === "");
     };
 
     const handleTextareaChange = (e) => {
         const value = e.target.value;
         setDescriptionValue(value);
-        setIsDescriptionEmpty(false); 
+        setIsDescriptionEmpty(value.trim() === "");
     };
 
     // Handler to update the selected file name when a file is chosen
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        const isTitleValid = titleValue.trim() !== "";
+        const isDescriptionValid = descriptionValue.trim() !== "";
+
         if (file) {
             setPosterImage(file);
             setSelectedFileName(file.name);
-            setIsFileSelected(true);  // Set true when file is selected
+            setIsFileSelected(true); 
         } else {
             setPosterImage(null);
             setSelectedFileName("No file chosen");
-            setIsFileSelected(false);  // Set false when no file is selected
+            setIsFileSelected(false);  
+
+            // Trigger validation for title and description when no file is chosen
+            setIsTitleEmpty(!isTitleValid);
+            setIsDescriptionEmpty(!isDescriptionValid);
         }
     };
 
@@ -84,13 +91,14 @@ const VideoUploadPage = ({ axiosInstance }) => {
         e.preventDefault();
         const isTitleValid = titleValue.trim() !== "";
         const isDescriptionValid = descriptionValue.trim() !== "";
-        const currentFileSelected = posterImage != null;
+        const isFileSelectedValid = !!posterImage;
     
         setIsTitleEmpty(!isTitleValid);
         setIsDescriptionEmpty(!isDescriptionValid);
-        setIsFileSelected(currentFileSelected);
-    
-        if (!isTitleValid || !isDescriptionValid || !currentFileSelected) {
+        setIsFileSelected(isFileSelectedValid);
+
+        // Check if any validation fails
+        if (!isTitleValid || !isDescriptionValid || !isFileSelectedValid) {
             setFormSubmitted(true);
             setShowErrorAlert(true);
             console.log("All fields including an image are required.");
@@ -211,7 +219,13 @@ const VideoUploadPage = ({ axiosInstance }) => {
                                                 name="title"
                                                 aria-label="Enter video title"
                                                 placeholder="Add a title to your video"
-                                                className={`videoUploadPage__title-input ${titleValue.trim() ? "field--filled" : ""} ${isTitleEmpty && formSubmitted ? "videoUploadPage__error" : ""} ${isTitleFocused ? "title__focused" : ""}`}
+                                                className={`videoUploadPage__title-input ${
+                                                    titleValue.trim() ? "field--filled" : ""
+                                                } ${
+                                                    (isTitleEmpty && formSubmitted) || (showErrorAlert && !isFileSelected)
+                                                        ? "videoUploadPage__error"
+                                                        : ""
+                                                } ${isTitleFocused ? "title__focused" : ""}`}
                                                 value={titleValue}
                                                 onChange={handleInputChange}
                                                 onFocus={handleTitleAreaFocus}
@@ -234,7 +248,13 @@ const VideoUploadPage = ({ axiosInstance }) => {
                                                 id="videoDescription"
                                                 name="description"
                                                 placeholder="Add a description to your video"
-                                                className={`videoUploadPage__description-input ${descriptionValue.trim() ? "field--filled" : ""} ${isDescriptionEmpty && formSubmitted ? "videoUploadPage__error" : ""} ${isDescriptionFocused ? "description__focused" : ""}`}
+                                                className={`videoUploadPage__description-input ${
+                                                    descriptionValue.trim() ? "field--filled" : ""
+                                                } ${
+                                                    (isDescriptionEmpty && formSubmitted) || (showErrorAlert && !isFileSelected)
+                                                        ? "videoUploadPage__error"
+                                                        : ""
+                                                } ${isDescriptionFocused ? "description__focused" : ""}`}
                                                 value={descriptionValue}
                                                 aria-label="Enter video description"
                                                 onChange={handleTextareaChange}
