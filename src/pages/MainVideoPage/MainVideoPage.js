@@ -194,10 +194,7 @@ const MainVideoPage = ({ axiosInstance }) => {
                 <div className="mainVideoPage"> 
                     {mainVideo && (
                         <div className="mainVideoPage">
-                            <Hero 
-                                mainVideo={mainVideo}
-                                handleVideoViews={handleVideoViews}
-                            />
+                            <Hero key={mainVideo.id} mainVideo={mainVideo} handleVideoViews={handleVideoViews} />
                             <div className="mainVideoPage__video-info-container">
                                 <div className="mainVideoPage__video-info-text">
                                     <VideoInfo
