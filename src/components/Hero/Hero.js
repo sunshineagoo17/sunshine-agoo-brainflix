@@ -8,6 +8,7 @@ import VolumeOffButton from "../../assets/images/icons/volume_off.svg";
 import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
 
 const Hero = memo(({ mainVideo, handleVideoViews }) => {
+    // Destructure mainVideo props
     const { video, image, title } = mainVideo;
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
@@ -30,6 +31,7 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         handleVideoViews();
     };
 
+    // useEffect to handle video source changes
     useEffect(() => {
         // Only update the key if the video source has changed
         if (videoRef.current && video !== videoRef.current.getAttribute("src")) {
@@ -222,6 +224,7 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         }
     }, [video]); 
 
+    // Set up event listeners to update playback progress and handle video end
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
@@ -263,6 +266,7 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         };
     }, []);  
 
+    // Format duration in minutes and seconds
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
