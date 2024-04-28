@@ -100,8 +100,8 @@ const VideoUploadPage = ({ axiosInstance }) => {
         setIsFileSelected(isFileSelectedValid);
     
         if (!isTitleValid || !isDescriptionValid || !isFileSelectedValid) {
-            setFormSubmitted(true);
             setShowErrorAlert(true);
+            setFormSubmitted(true);
             console.log("All fields including an image are required.");
             return;
         }
