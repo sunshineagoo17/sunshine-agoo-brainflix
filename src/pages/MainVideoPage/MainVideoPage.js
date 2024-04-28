@@ -56,7 +56,7 @@ const MainVideoPage = ({ axiosInstance }) => {
         }
     }, [navigate, axiosInstance]);
 
-   // Inside the useEffect for fetching videos
+    // Fetch all videos once on component mount or when axiosInstance or navigate changes
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
@@ -78,7 +78,7 @@ const MainVideoPage = ({ axiosInstance }) => {
         fetchData();
     }, [axiosInstance, videoId, navigate]);
 
-    // Inside the useEffect for fetching individual video details
+    // Fetch details for a specific video when videoId changes or when axiosInstance or navigate changes
     useEffect(() => {
         const fetchVideoDetails = async () => {
             if (videoId) {
