@@ -8,6 +8,7 @@ import VolumeOffButton from "../../assets/images/icons/volume_off.svg";
 import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
 
 const Hero = memo(({ mainVideo, handleVideoViews }) => {
+    const { video, image, title } = mainVideo;
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -31,12 +32,12 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
 
     useEffect(() => {
         // Only update the key if the video source has changed
-        if (videoRef.current && mainVideo.video !== videoRef.current.getAttribute("src")) {
+        if (videoRef.current && video !== videoRef.current.getAttribute("src")) {
             setVideoKey(Date.now());
             setIsPlaying(false);
             setCurrentTime(0); 
         }
-    }, [mainVideo.video]);
+    }, [video]);
 
     const adjustVolume = useCallback((volumeLevel) => {
         const clampedVolumeLevel = Math.max(0, Math.min(100, volumeLevel));
@@ -188,21 +189,25 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     }, []);    
 
     const toggleFullscreen = () => {
-        const videoContainer = videoRef.current.parentNode; 
-        if (!document.fullscreenElement) {
-            if (videoContainer.requestFullscreen) {
-                videoContainer.requestFullscreen().catch(err => {
-                    console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-                });
+        const videoContainer = videoRef.current.parentNode;
+        try {
+            if (!document.fullscreenElement) {
+                if (videoContainer.requestFullscreen) {
+                    videoContainer.requestFullscreen().catch(err => {
+                        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                    });
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().catch(err => {
+                        console.error(`Error attempting to exit full-screen mode: ${err.message} (${err.name})`);
+                    });
+                }
             }
-        } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen().catch(err => {
-                    console.error(`Error attempting to exit full-screen mode: ${err.message} (${err.name})`);
-                });
-            }
+        } catch (err) {
+            console.error("Error toggling fullscreen mode:", err);
         }
-    };    
+    };  
 
     useEffect(() => {
         // Reset video states when video source changes
@@ -215,7 +220,7 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
             setIsMuted(false);
             setVolumePercent(100);
         }
-    }, [mainVideo.video]); 
+    }, [video]); 
 
     useEffect(() => {
         const video = videoRef.current;
@@ -272,9 +277,9 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
                     key={videoKey}
                     controls={false}
                     className="hero__main-video-image"
-                    poster={mainVideo?.image}
-                    aria-label={mainVideo?.title}
-                    src={mainVideo?.video}
+                    poster={image}
+                    aria-label={title}
+                    src={video}
                     ref={videoRef}
                     onEnded={() => {
                         setIsPlaying(false);
@@ -369,9 +374,9 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     );
 }, (prevProps, nextProps) => {
     // This function determines whether to re-render the component
-    return prevProps.mainVideo.video === nextProps.mainVideo.video &&
-           prevProps.mainVideo.image === nextProps.mainVideo.image &&
-           prevProps.mainVideo.title === nextProps.mainVideo.title;
+    return prevProps.video === nextProps.video &&
+           prevProps.image === nextProps.image &&
+           prevProps.title === nextProps.title;
 });
 
 export default Hero;

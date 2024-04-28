@@ -91,8 +91,8 @@
     
     &__search-bar {
         @include block-item(100%, .62rem);
-        min-width: 13rem;
         @include body-copy-style;
+        min-width: 13rem;
         padding: .78rem;
         background-color: $octonary;
         border: .063rem solid $septenary;
