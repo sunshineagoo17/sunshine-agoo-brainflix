@@ -85,7 +85,7 @@ const Comments = ({
                         <textarea 
                             id="input-comment"
                             // Dynamically applies CSS classes to the textarea based on the state of the comment input
-                            className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""} ${isTextareaFocused ? "comments__focused" : ""} ${commentValue.trim() !== "" ? "comments__filled" : ""}`}
+                            className={`comments__textarea ${isCommentEmpty ? "comments__error" : ""} ${isTextareaFocused ? "comments__focused" : ""} ${commentValue.trim() !== "" ? "comments--filled" : ""}`}
                             placeholder="Add a new comment"
                             aria-label="Enter your comment here"
                             autoComplete="off"

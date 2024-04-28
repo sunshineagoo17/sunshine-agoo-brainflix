@@ -20,9 +20,9 @@ const Header = () => {
     }, [location]); 
     
     // Updates search input state and determines if the user is currently typing
-    const handleSearchInputChange = event => {
-        const inputValue = event.target.value;
-        setUserIsTyping(inputValue.length > 0);
+    const handleSearchInputChange = ({ target: { value } }) => {
+        setSearchValue(value);
+        setUserIsTyping(value.length > 0);
     };
 
     return (
