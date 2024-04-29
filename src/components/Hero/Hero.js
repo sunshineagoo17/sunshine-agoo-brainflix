@@ -123,13 +123,15 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     }, [handleVolumeScrub]);
 
     const handleScrub = useCallback((e) => {
-        const scrubBar = document.querySelector(".hero__scrub-overlay");
+        const scrubBar = document.querySelector(".hero__scrub-line-container");
         if (!scrubBar) return;
-        
+    
         const scrubWidth = scrubBar.offsetWidth;
-        const clickedPosition = e.clientX - scrubBar.getBoundingClientRect().left;
+        const scrubOffset = scrubBar.getBoundingClientRect().left + window.scrollX;
+        const clickedPosition = e.clientX - scrubOffset;
         const scrubTime = (clickedPosition / scrubWidth) * videoRef.current.duration;
-        videoRef.current.currentTime = scrubTime;
+    
+        videoRef.current.currentTime = Math.min(Math.max(scrubTime, 0), videoRef.current.duration);
     }, []);
 
     const handleMouseMove = useCallback((e) => {
@@ -312,8 +314,8 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
                             onClick={togglePlay} 
                         />
                     </div>
-                    <div className="hero__scrub-overlay" onClick={handleScrub}>
-                        <div className="hero__scrub-line-container">
+                    <div className="hero__scrub-overlay">
+                        <div className="hero__scrub-line-container" onClick={handleScrub}>
                             {/* Dynamically set the width of the played, buffered, and remaining progress bars based on video playback. The scrub button position is also dynamically adjusted based on the played percentage */}
                             <div className="hero__scrub--played" style={{ width: `${playedPercent}%` }}></div>
                             <div className="hero__scrub--buffered" style={{ width: `${bufferedPercent}%` }}></div>
