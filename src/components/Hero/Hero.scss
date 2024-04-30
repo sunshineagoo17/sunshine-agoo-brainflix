@@ -391,7 +391,7 @@
         }
     }
 
-    &__volume-scrub {
+    &__volume-scrub-item {
         @include block-item(.15rem, 95%);
         position: absolute;
         bottom: 0; 
@@ -459,14 +459,14 @@
 
     }
 
-    &__scrub-handle {
+    &__volume-scrub-handle {
+        @include block-item(.5rem, .5rem);
         position: absolute;
         z-index: 3;
         bottom: 0;
         left: 50%; 
         transform: translateX(-50%);
         cursor: pointer;
-         @include block-item(.5rem, .5rem);
        
         @include tablet {
             @include block-item(1rem, 1rem);

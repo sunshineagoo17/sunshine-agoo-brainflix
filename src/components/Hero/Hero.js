@@ -363,10 +363,10 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
                         <div className="hero__volume-scrub-container" ref={volumeScrubRef} onClick={handleVolumeScrubClick}
                             style={{ display: isHoveringVolume ? "block" : "none" }}
                             onMouseDown={handleVolumeMouseDown}>
-                            <div className="hero__volume-scrub"
+                            <div className="hero__volume-scrub-item"
                                 // Dynamically set the height of the volume scrub based on the current volume percentage
                                 style={{ height: `${volumePercent}%` }}>
-                                <img src={ScrubButton} alt="Scrub Handle" aria-label="Adjust volume" className="hero__scrub-handle"
+                                <img src={ScrubButton} alt="Scrub Handle" aria-label="Adjust volume" className="hero__volume-scrub-handle"
                                     style={{ bottom: `calc(${volumePercent}% - .2rem)` }} />
                             </div>
                             <div className="hero__remaining-volume">
