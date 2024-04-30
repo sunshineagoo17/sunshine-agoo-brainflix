@@ -355,20 +355,21 @@
     }
 
     &__volume-scrub-container {
-        @include block-item(.85rem, 3.625rem);
+        @include block-item(.95rem, 3.625rem);
         display: none; 
         position: absolute;
         top: 0; 
         left: 50%; 
-        transform: translateX(-50%) translateY(calc(-100% - .1rem)); 
+        transform: translateX(-50%) translateY(-100%); 
         background-color: (rgba($quinary, .5));  
         border-radius: .25rem;
         
         @include tablet {
-            @include block-item(1.25rem, 4.625rem);
+            @include block-item(1.55rem, 4.825rem);
+            transform: translateX(-50%) translateY(calc(-100% - .2rem));
 
             @include desktop {
-                @include block-item(1.25rem, 5.625rem);
+                @include block-item(1.55rem, 5.625rem);
             }
         }
 
@@ -378,21 +379,18 @@
 
         :fullscreen &,
         :-webkit-full-screen & {
-            @include block-item(.85rem, 3.625rem);
+            @include block-item(.95rem, 3.625rem);
             background-color: (rgba($tertiary, .2));
         
             @include tablet {
-                @include block-item(1.25rem, 5.625rem);
-    
-                @include desktop {
-                    @include block-item(1.25rem, 5.625rem);
-                }
+                @include block-item(1.55rem, 5.625rem);
+                transform: translateX(-50%) translateY(calc(-100% - .3rem));
             }
         }
     }
 
     &__volume-scrub-item {
-        @include block-item(.15rem, 95%);
+        @include block-item(.15rem, 100%);
         position: absolute;
         bottom: 0; 
         left: 50%;
@@ -403,25 +401,21 @@
         z-index: 2;
 
         @include tablet {
-            @include block-item(.25rem, 95%);
-
-            @include desktop {
-                @include block-item(.25rem, 95%);
-            }
+            @include block-item(.25rem, 100%);
         }
 
         :fullscreen &,
         :-webkit-full-screen & {
-            @include block-item(.15rem, 95%);
+            @include block-item(.15rem, 100%);
         
             @include tablet {
-                @include block-item(.25rem, 95%);
+                @include block-item(.25rem, 100%);
             }
         }
     }
 
     &__remaining-volume {
-        @include block-item(.15rem, 95%);
+        @include block-item(.15rem, 90%);
         position: absolute;
         bottom: 0;
         left: 43%;
@@ -430,21 +424,21 @@
         border-radius: .25rem;
 
         @include tablet {
-            @include block-item(.25rem, 95%);
+            @include block-item(.22rem, 100%);
             left: 42%;
         
             @include desktop {
-                left: 41%;
+                left: 43%;
             }
         }
     
         :fullscreen &,
         :-webkit-full-screen & {
-            @include block-item(.15rem, 95%);
+            @include block-item(.15rem, 90%);
             left: 43%;
         
             @include tablet {
-                @include block-item(.25rem, 95%);
+                @include block-item(.25rem, 100%);
                 left: 41.25%;
     
                 @include desktop {
@@ -456,7 +450,6 @@
                 }
             }
         }
-
     }
 
     &__volume-scrub-handle {

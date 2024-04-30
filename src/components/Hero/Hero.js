@@ -10,6 +10,13 @@ import VolumeUpButton from "../../assets/images/icons/volume_up.svg";
 const Hero = memo(({ mainVideo, handleVideoViews }) => {
     // Destructure mainVideo props
     const { video, image, title } = mainVideo;
+    
+    const videoRef = useRef(null);
+    const isScrubbing = useRef(false);
+    const volumeScrubTimeout = useRef(null);
+    const volumeScrubRef = useRef(null);
+    const volumeHandleRef = useRef(null);
+
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -17,90 +24,151 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [playedPercent, setPlayedPercent] = useState(0);  
     const [bufferedPercent, setBufferedPercent] = useState(0); 
-    const [volumePercent, setVolumePercent] = useState(100);
+    const [volumePercent, setVolumePercent] = useState(90);
     const [isHoveringVolume, setIsHoveringVolume] = useState(false);
     const [videoKey, setVideoKey] = useState(Date.now());
 
-    const videoRef = useRef(null);
-    const isScrubbing = useRef(false);
-    const volumeScrubTimeout = useRef(null);
-    const volumeScrubRef = useRef(null);
+    useEffect(() => {
+        const updateVolumeControl = () => {
+            if (volumeHandleRef.current) {
+                console.log("Handle height updated:", volumeHandleRef.current.offsetHeight);
+            }
+        };
+    
+        window.addEventListener("resize", updateVolumeControl);
+        return () => window.removeEventListener("resize", updateVolumeControl);
+    }, []);
 
-    const handleVideoEnd = () => {
-        setIsPlaying(false);
-        handleVideoViews();
-    };
+    // Consolidated cleanup function
+    useEffect(() => {
+        const cleanup = () => {
+            clearTimeout(volumeScrubTimeout.current);
+        };
+        return cleanup;
+    }, []);
 
-    // useEffect to handle video source changes
     useEffect(() => {
         // Only update the key if the video source has changed
         if (videoRef.current && video !== videoRef.current.getAttribute("src")) {
+            videoRef.current.load(); 
+            videoRef.current.volume = 1; 
             setVideoKey(Date.now());
             setIsPlaying(false);
-            setCurrentTime(0); 
+            setCurrentTime(0);
+            setPlayedPercent(0);
+            setIsMuted(false);
+            setVolumePercent(90);
+            setDuration(0);
+            setBufferedPercent(0);
         }
     }, [video]);
 
-    const adjustVolume = useCallback((volumeLevel) => {
-        const clampedVolumeLevel = Math.max(0, Math.min(100, volumeLevel));
-        videoRef.current.volume = clampedVolumeLevel / 100;
-        setVolumePercent(clampedVolumeLevel);
-        setIsMuted(clampedVolumeLevel === 0);
+    // Toggle fullscreen functionality
+    useEffect(() => {
+        const updateFullscreenState = () => {
+            setIsFullscreen(document.fullscreenElement != null);
+        };
     
-        // Show the volume scrub container when adjusting volume
+        document.addEventListener("fullscreenchange", updateFullscreenState);
+        document.addEventListener("webkitfullscreenchange", updateFullscreenState); 
+    
+        return () => {
+            document.removeEventListener("fullscreenchange", updateFullscreenState);
+            document.removeEventListener("webkitfullscreenchange", updateFullscreenState); 
+        };
+    }, []);    
+
+    // Event listeners to update playback progress and handle video end
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const handleTimeUpdate = () => {
+            const played = (video.currentTime / video.duration) * 100;
+            setCurrentTime(video.currentTime);
+            setPlayedPercent(played);
+
+            // Update buffered percent
+            if (video.buffered.length > 0) {
+                const bufferEnd = video.buffered.end(video.buffered.length - 1);
+                const buffered = (bufferEnd / video.duration) * 100;
+                setBufferedPercent(buffered);
+            }
+        };
+
+        const handleVideoEnd = () => {
+            setIsPlaying(false);
+        };
+
+        if (video) {
+            video.addEventListener("ended", handleVideoEnd);
+            video.addEventListener("timeupdate", handleTimeUpdate);
+
+            return () => {
+                video.removeEventListener("ended", handleVideoEnd);
+                video.removeEventListener("timeupdate", handleTimeUpdate);
+            };
+        }
+    }, [videoRef]); 
+
+    const handleVideoEnd = useCallback(() => {
+        setIsPlaying(false);
+        handleVideoViews();
+    }, [handleVideoViews]);
+
+    const adjustVolume = useCallback((volumeLevelUI) => {
+        const actualVolumeLevel = volumeLevelUI / 90;
+        const clampedActualVolume = Math.max(0, Math.min(1, actualVolumeLevel));
+        if (videoRef.current) {
+            videoRef.current.volume = clampedActualVolume;
+        }
+        setVolumePercent(Math.max(0, Math.min(90, volumeLevelUI)));
+        setIsMuted(volumeLevelUI === 0);
         setIsHoveringVolume(true);
-        // Clear and reset the timeout to hide the container
-        clearTimeout(volumeScrubTimeout.current);
-        volumeScrubTimeout.current = setTimeout(() => {
-            setIsHoveringVolume(false);
-        }, 3000);
-    }, [setVolumePercent, setIsMuted]);    
+    }, []);    
 
     const toggleVolume = useCallback(() => {
         const newVolume = isMuted || volumePercent === 0 ? 100 : 0;
         adjustVolume(newVolume);
-    
-        // Clear any existing timeout to prevent unexpected hiding
-        clearTimeout(volumeScrubTimeout.current);
-
-        // Reset the timeout
-        volumeScrubTimeout.current = setTimeout(() => {
-            setIsHoveringVolume(false);
-        }, 3000);
-    }, [adjustVolume, isMuted, volumePercent]);   
+    }, [adjustVolume, isMuted, volumePercent]);
 
     const handleVolumeMouseEnter = useCallback(() => {
         setIsHoveringVolume(true);
-        clearTimeout(volumeScrubTimeout.current);
     }, []);
     
-    const handleVolumeMouseLeave = useCallback((e) => {
-        // Enhanced check for leaving towards unrelated elements
-        const isLeavingVolumeScrub = e.relatedTarget && e.relatedTarget.classList &&
-            (e.relatedTarget.classList.contains("hero__volume-scrub-container") ||
-             e.relatedTarget.classList.contains("hero__volume-scrub") ||
-             e.relatedTarget.classList.contains("hero__scrub-handle"));
+    const handleVolumeMouseLeave = useCallback(() => {
+        // Clear any existing timeout
+        clearTimeout(volumeScrubTimeout.current);
     
-        if (!isLeavingVolumeScrub) {
-            volumeScrubTimeout.current = setTimeout(() => {
-                setIsHoveringVolume(false);
-            }, 3000); 
-        }
-    }, []);        
+        // Set timeout to hide the volume controls after 3 seconds
+        volumeScrubTimeout.current = setTimeout(() => {
+            setIsHoveringVolume(false);
+        }, 3000);
+    }, []);
 
     const calculateAndAdjustVolume = useCallback((clientY) => {
-        const volumeContainerRect = volumeScrubRef.current.getBoundingClientRect();
-        const volumeContainerHeight = volumeContainerRect.height;
-        const volumeContainerTop = volumeContainerRect.top;
+        if (!volumeScrubRef.current || !volumeHandleRef.current) {
+            console.error("Refs are not set.");
+            return; 
+        }
     
-        // Calculate the clicked position relative to the top of the volume scrub container
-        const clickedPosition = clientY - volumeContainerTop;
+        const { top, height } = volumeScrubRef.current.getBoundingClientRect();
+        const handleHeight = volumeHandleRef.current.offsetHeight;
     
-        let volumeLevel = 100 - ((clickedPosition / volumeContainerHeight) * 100);
-        volumeLevel = Math.max(0, Math.min(100, volumeLevel));
+        if (height <= handleHeight) {
+            console.error("Container height is less than or equal to handle height.");
+            return; 
+        }
     
-        adjustVolume(volumeLevel);
-    }, [adjustVolume]);
+        const safeClickPosition = Math.max(clientY - top, handleHeight / 2);
+        const maxClickPosition = Math.min(safeClickPosition, height - handleHeight / 2);
+    
+        // Calculate volume as a percentage of the adjusted click position
+        const adjustedPosition = height - (maxClickPosition + handleHeight / 2);
+        const volumeLevelUI = 90 * (adjustedPosition / (height - handleHeight)); // Scale visually up to 90%
+    
+        adjustVolume(Math.max(0, Math.min(90, volumeLevelUI)));
+    }, [adjustVolume]);    
     
     const handleVolumeScrubClick = useCallback((e) => {
         calculateAndAdjustVolume(e.clientY);
@@ -140,16 +208,6 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         }
     }, [handleScrub]);
 
-    const handleMouseDown = useCallback((e) => {
-        e.preventDefault();
-        isScrubbing.current = true;
-        document.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseup", () => {
-            isScrubbing.current = false;
-            document.removeEventListener("mousemove", handleMouseMove);
-        }, { once: true });
-    }, [handleMouseMove]);
-
     useEffect(() => {
         const handleMouseUp = () => {
             if (isScrubbing.current) {
@@ -165,6 +223,37 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         };
     }, [handleMouseMove]);
 
+    const handleMouseDown = useCallback((e) => {
+        e.preventDefault();
+        isScrubbing.current = true;
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", () => {
+            isScrubbing.current = false;
+            document.removeEventListener("mousemove", handleMouseMove);
+        }, { once: true });
+    }, [handleMouseMove]);
+
+    const toggleFullscreen = useCallback(() => {
+        const videoContainer = videoRef.current.parentNode;
+        try {
+            if (!document.fullscreenElement) {
+                if (videoContainer.requestFullscreen) {
+                    videoContainer.requestFullscreen().catch(err => {
+                        console.error(`Error toggling fullscreen mode: ${err.message}`);
+                    });
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().catch(err => {
+                        console.error(`Error exiting fullscreen mode: ${err.message}`);
+                    });
+                }
+            }
+        } catch (err) {
+            console.error("Error toggling fullscreen mode:", err);
+        }
+    }, []); 
+
     // Toggle play/pause functionality
     const togglePlay = () => {
         if (videoRef.current) {
@@ -176,97 +265,6 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
             setIsPlaying(!isPlaying);
         }
     };
-
-    // Toggle fullscreen functionality
-    useEffect(() => {
-        const updateFullscreenState = () => {
-            setIsFullscreen(document.fullscreenElement != null);
-        };
-    
-        document.addEventListener("fullscreenchange", updateFullscreenState);
-        document.addEventListener("webkitfullscreenchange", updateFullscreenState); 
-    
-        return () => {
-            document.removeEventListener("fullscreenchange", updateFullscreenState);
-            document.removeEventListener("webkitfullscreenchange", updateFullscreenState); 
-        };
-    }, []);    
-
-    const toggleFullscreen = () => {
-        const videoContainer = videoRef.current.parentNode;
-        try {
-            if (!document.fullscreenElement) {
-                if (videoContainer.requestFullscreen) {
-                    videoContainer.requestFullscreen().catch(err => {
-                        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-                    });
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen().catch(err => {
-                        console.error(`Error attempting to exit full-screen mode: ${err.message} (${err.name})`);
-                    });
-                }
-            }
-        } catch (err) {
-            console.error("Error toggling fullscreen mode:", err);
-        }
-    };  
-
-    useEffect(() => {
-        // Reset video states when video source changes
-        if (videoRef.current) {
-            videoRef.current.load(); 
-            videoRef.current.volume = 1; 
-            setIsPlaying(false);
-            setCurrentTime(0);
-            setPlayedPercent(0);
-            setIsMuted(false);
-            setVolumePercent(100);
-        }
-    }, [video]); 
-
-    // Set up event listeners to update playback progress and handle video end
-    useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
-
-        const handleTimeUpdate = () => {
-            const played = (video.currentTime / video.duration) * 100;
-            setCurrentTime(video.currentTime);
-            setPlayedPercent(played);
-
-            // Update buffered percent
-            if (video.buffered.length > 0) {
-                const bufferEnd = video.buffered.end(video.buffered.length - 1);
-                const buffered = (bufferEnd / video.duration) * 100;
-                setBufferedPercent(buffered);
-            }
-        };
-
-        const handleVideoEnd = () => {
-            setIsPlaying(false);
-        };
-
-        if (video) {
-            video.addEventListener("ended", handleVideoEnd);
-            video.addEventListener("timeupdate", handleTimeUpdate);
-
-            return () => {
-                video.removeEventListener("ended", handleVideoEnd);
-                video.removeEventListener("timeupdate", handleTimeUpdate);
-            };
-        }
-    }, [videoRef]); 
-
-    useEffect(() => {
-        // Cleanup timeout when component unmounts
-        return () => {
-            if (volumeScrubTimeout.current) {
-                clearTimeout(volumeScrubTimeout.current);
-            }
-        };
-    }, []);  
 
     // Format duration in minutes and seconds
     const formatTime = (time) => {
@@ -367,7 +365,8 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
                                 // Dynamically set the height of the volume scrub based on the current volume percentage
                                 style={{ height: `${volumePercent}%` }}>
                                 <img src={ScrubButton} alt="Scrub Handle" aria-label="Adjust volume" className="hero__volume-scrub-handle"
-                                    style={{ bottom: `calc(${volumePercent}% - .2rem)` }} />
+                                    ref={volumeHandleRef}
+                                    style={{ bottom: `${volumePercent}%` }} />
                             </div>
                             <div className="hero__remaining-volume">
                             </div>
