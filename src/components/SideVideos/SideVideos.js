@@ -52,7 +52,7 @@ const SideVideos = ({ videos, mainVideo, onVideoSelect }) => {
 
                 {/* List of side video thumbnails */}
                 {filteredVideos.map((video) => (
-                    <div key={video.id} className="sideVideos__thumbnail" onClick={() => onVideoSelect(video.id)}>
+                    <div key={video.id} className="sideVideos__thumbnail">
                         <Link 
                             to={`/video/${video.id}`}
                             className="sideVideos__thumbnail-link"
@@ -60,6 +60,7 @@ const SideVideos = ({ videos, mainVideo, onVideoSelect }) => {
                             onClick={(e) => {
                                 e.stopPropagation(); // Prevent the Link's default action when the div is clicked
                                 handleSideVideoClick();
+                                onVideoSelect(video.id);
                             }}
                         > 
                             <div className="sideVideos__thumbnail-info">
