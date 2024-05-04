@@ -34,6 +34,7 @@ const VideoInfo = ({ mainVideo, TimeAgo, handleLikeVideo }) => {
                         <p className="videoInfo__views">{mainVideo.views}</p>
                     </div>
                     <div className="videoInfo__video-likes-container">
+                        {/* Like button */}
                         <svg 
                             width="17"
                             height="16"

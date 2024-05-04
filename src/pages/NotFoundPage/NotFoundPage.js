@@ -101,7 +101,7 @@ const NotFoundPage = () => {
 
                         <div className="notFoundPage__body-copy-container">
                             <p className="notFoundPage__body-copy">
-                                {/* Displaying the selected message from the current option */}
+                                {/* Displays the selected message from the current option */}
                                 {currentOption?.copy} Don't worry, you can find plenty of other awesome things to check out on our{" "} 
                                 <Link to="/" onClick={handleNextOptionClick} className="notFoundPage__homepage-link" aria-label="Go back to Homepage">
                                     homepage
@@ -111,7 +111,7 @@ const NotFoundPage = () => {
                         </div>
 
                         <div className="notFoundPage__graphic-container">
-                            {/* Displaying the selected image from the current option */}
+                            {/* Displays the selected image from the current option */}
                             <img src={currentOption?.image} alt="404 graphic" className="notFoundPage__graphic" />
                         </div>
 

@@ -36,8 +36,11 @@ function GenerateRandomUsername() {
 }
 
 const MainVideoPage = ({ axiosInstance }) => {
+    // Get videoId from URL params and navigate function for redirection
     const { videoId } = useParams();
     const navigate = useNavigate();
+
+    // State variables
     const [videos, setVideos] = useState([]);
     const [mainVideo, setMainVideo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);

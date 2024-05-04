@@ -11,12 +11,14 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     // Destructure mainVideo props
     const { video, image, title } = mainVideo;
     
+    // Refs for accessing DOM elements
     const videoRef = useRef(null);
     const isScrubbing = useRef(false);
     const volumeScrubTimeout = useRef(null);
     const volumeScrubRef = useRef(null);
     const volumeHandleRef = useRef(null);
 
+    // State variables for controlling video playback
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -28,6 +30,7 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     const [isHoveringVolume, setIsHoveringVolume] = useState(false);
     const [videoKey, setVideoKey] = useState(Date.now());
 
+    // Handles volume control updates on window resize
     useEffect(() => {
         const updateVolumeControl = () => {
             if (volumeHandleRef.current) {
@@ -47,8 +50,8 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         return cleanup;
     }, []);
 
+    // Handles video source changes
     useEffect(() => {
-        // Only update the key if the video source has changed
         if (videoRef.current && video !== videoRef.current.getAttribute("src")) {
             videoRef.current.load(); 
             videoRef.current.volume = 1; 
@@ -63,7 +66,7 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         }
     }, [video]);
 
-    // Toggle fullscreen functionality
+    // Handles fullscreen change events
     useEffect(() => {
         const updateFullscreenState = () => {
             setIsFullscreen(document.fullscreenElement != null);
@@ -78,7 +81,7 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         };
     }, []);    
 
-    // Event listeners to update playback progress and handle video end
+    // Handles video playback and buffer updates
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
@@ -88,7 +91,6 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
             setCurrentTime(video.currentTime);
             setPlayedPercent(played);
 
-            // Update buffered percent
             if (video.buffered.length > 0) {
                 const bufferEnd = video.buffered.end(video.buffered.length - 1);
                 const buffered = (bufferEnd / video.duration) * 100;
@@ -378,7 +380,7 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     </section>
     );
 }, (prevProps, nextProps) => {
-    // This function determines whether to re-render the component
+    // Determines whether to re-render the component
     return prevProps.video === nextProps.video &&
            prevProps.image === nextProps.image &&
            prevProps.title === nextProps.title;

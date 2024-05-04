@@ -23,7 +23,9 @@ const App = () => {
           <Routes>
             {/* Route "/" to the Main Video page */}
             <Route path="/" element={<MainVideoPage axiosInstance={axiosInstance} />} />
+            {/* Route to display a specific video */}
             <Route path="/video/:videoId" element={<MainVideoPage axiosInstance={axiosInstance} />} />
+            {/* Route to the video upload page */}
             <Route path="/upload" element={<VideoUploadPage axiosInstance={axiosInstance} />} />
             {/* Redirect 404 path */}
             <Route path="*" element={<Navigate to="/uh-oh" />} />

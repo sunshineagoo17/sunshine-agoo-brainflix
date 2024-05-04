@@ -132,8 +132,10 @@ const Comments = ({
             {/* List of comments */}
             <div className="comments__list">
                 {mainVideo && mainVideo.comments && mainVideo.comments
+                    // Sort comments by timestamp
                     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
                     .map(({ id, comment, timestamp, name, likes }, index) => (
+                        // Individual comment item
                         <div key={`${id}-${index}`} className="comments__item">
                             <div className="comments__divider-container">
                                 <hr className="comments__divider" />
@@ -201,6 +203,7 @@ const Comments = ({
                         </div>
                 ))}
             </div>
+            {/* Display error alert if the comment's empty */}
             {showErrorAlert && (
                 <div className="comments__alert--error">
                     <p className="comments__alert-text">

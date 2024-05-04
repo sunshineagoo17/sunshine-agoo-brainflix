@@ -6,7 +6,7 @@ import "./SideVideos.scss";
 const SideVideos = ({ videos, mainVideo, onVideoSelect }) => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
     
-    // UseLayoutEffect to handle dynamic screen width updates on window resize
+    // Handles dynamic screen width updates on window resize
     useLayoutEffect(() => {
         const handleResize = () => {
             setScreenWidth(window.innerWidth); 
@@ -87,7 +87,7 @@ const SideVideos = ({ videos, mainVideo, onVideoSelect }) => {
                         </Link>
                         
                         <div className="sideVideos__info">
-                            {/* Displays a truncated version of the video title to fit within the design limits. */}
+                            {/* Displays a truncated version of the video title to fit within the design limits */}
                             <h3 className={`sideVideos__title`}>
                                 {TruncateText(video.title, 40, screenWidth)}
                             </h3>
