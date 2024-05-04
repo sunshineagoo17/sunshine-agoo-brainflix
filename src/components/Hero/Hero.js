@@ -34,7 +34,6 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     useEffect(() => {
         const updateVolumeControl = () => {
             if (volumeHandleRef.current) {
-                console.log("Handle height updated:", volumeHandleRef.current.offsetHeight);
             }
         };
     
