@@ -196,7 +196,7 @@ const MainVideoPage = ({ axiosInstance }) => {
             {isLoading ? <Loader /> : (
                 <div className="mainVideoPage"> 
                     {mainVideo && (
-                        <div className="mainVideoPage">
+                        <div className="mainVideoPage__container">
                             <Hero key={mainVideo.id} mainVideo={mainVideo} handleVideoViews={handleVideoViews} />
                             <div className="mainVideoPage__video-info-container">
                                 <div className="mainVideoPage__video-info-text">

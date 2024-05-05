@@ -20,7 +20,8 @@ const Header = () => {
     }, [location]); 
     
     // Updates search input state and determines if the user is currently typing
-    const handleSearchInputChange = ({ target: { value } }) => {
+    const handleSearchInputChange = (e) => {
+        const value = e.target.value;
         setSearchValue(value);
         setUserIsTyping(value.length > 0);
     };
@@ -41,10 +42,7 @@ const Header = () => {
                         id="header-search"
                         className={`nav__search-bar ${searchValue ? "field--filled" : ""}`}
                         value={searchValue}
-                        onChange={(e) => {
-                            setSearchValue(e.target.value);
-                            handleSearchInputChange(e)
-                        }}
+                        onChange={handleSearchInputChange}
                     />
                 </div>
 

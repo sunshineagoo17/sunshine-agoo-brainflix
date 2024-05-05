@@ -30,17 +30,6 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
     const [isHoveringVolume, setIsHoveringVolume] = useState(false);
     const [videoKey, setVideoKey] = useState(Date.now());
 
-    // Handles volume control updates on window resize
-    useEffect(() => {
-        const updateVolumeControl = () => {
-            if (volumeHandleRef.current) {
-            }
-        };
-    
-        window.addEventListener("resize", updateVolumeControl);
-        return () => window.removeEventListener("resize", updateVolumeControl);
-    }, []);
-
     // Consolidated cleanup function
     useEffect(() => {
         const cleanup = () => {
@@ -157,7 +146,6 @@ const Hero = memo(({ mainVideo, handleVideoViews }) => {
         const handleHeight = volumeHandleRef.current.offsetHeight;
     
         if (height <= handleHeight) {
-            console.error("Container height is less than or equal to handle height.");
             return; 
         }
     
