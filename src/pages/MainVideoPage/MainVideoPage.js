@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
 import "./MainVideoPage.scss";
-
 import Hero from "../../components/Hero/Hero";
 import VideoInfo from "../../components/VideoInfo/VideoInfo";
 import Comments from "../../components/Comments/Comments";
@@ -36,21 +34,19 @@ function GenerateRandomUsername() {
 }
 
 const MainVideoPage = ({ axiosInstance }) => {
-    // Get videoId from URL params and navigate function for redirection
     const { videoId } = useParams();
     const navigate = useNavigate();
 
-    // State variables
     const [videos, setVideos] = useState([]);
     const [mainVideo, setMainVideo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    // Function to update the main video data
     const updateMainVideo = useCallback(async (videoId) => {
         setIsLoading(true);
         try {
             const response = await axiosInstance.get(`/videos/${videoId}`);
             setMainVideo(response.data);
+            console.log("Fetched mainVideo details:", response.data); // Log the fetched data
         } catch (error) {
             console.error("Error fetching main video details:", error);
             navigate("/uh-oh");
@@ -59,16 +55,14 @@ const MainVideoPage = ({ axiosInstance }) => {
         }
     }, [navigate, axiosInstance]);
 
-    // Fetch all videos once on component mount or when axiosInstance or navigate changes
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
                 const response = await axiosInstance.get("/videos");
                 setVideos(response.data);
-                // If there's no videoId in the URL, select the first video as the main video
                 if (!videoId && response.data.length > 0) {
-                    setMainVideo(response.data[0]);
+                    updateMainVideo(response.data[0].id);
                 }
             } catch (error) {
                 console.error("Error fetching videos:", error.response || error);
@@ -79,47 +73,29 @@ const MainVideoPage = ({ axiosInstance }) => {
         };
 
         fetchData();
-    }, [axiosInstance, videoId, navigate]);
+    }, [axiosInstance, videoId, navigate, updateMainVideo]);
 
-    // Fetch details for a specific video when videoId changes or when axiosInstance or navigate changes
     useEffect(() => {
-        const fetchVideoDetails = async () => {
-            if (videoId) {
-                setIsLoading(true);
-                try {
-                    const response = await axiosInstance.get(`/videos/${videoId}`);
-                    setMainVideo(response.data);
-                } catch (error) {
-                    console.error("Error fetching main video details:", error);
-                    navigate("/uh-oh");
-                } finally {
-                    setIsLoading(false);
-                }
-            }
-        };
-
-        fetchVideoDetails();
-    }, [videoId, axiosInstance, navigate]);
+        if (videoId) {
+            updateMainVideo(videoId);
+        }
+    }, [videoId, updateMainVideo]);
 
     const handleVideoSelect = (videoId) => {
-        updateMainVideo(videoId);
+        navigate(`/videos/${videoId}`);
     };
 
-    // Post a new comment and log the action
     const postComment = async (videoId, commentText, username) => {
         try {
             const commentPayload = { name: username, comment: commentText };
             const response = await axiosInstance.post(`/videos/${videoId}/comments`, commentPayload);
-            
             if (response.data && mainVideo.id === videoId) {
                 setMainVideo(prevMainVideo => ({
                     ...prevMainVideo,
                     comments: [response.data, ...prevMainVideo.comments]
                 }));
-
                 console.log(`Comment posted: Video ID: ${videoId}, Comment ID: ${response.data.id}`);
             }
-            
             return { success: true, comment: response.data };
         } catch (error) {
             console.error("Failed to post comment:", error);
@@ -127,10 +103,8 @@ const MainVideoPage = ({ axiosInstance }) => {
         }
     };    
 
-    // Deletes a specific comment from a video
     const deleteComment = async (videoId, commentId) => {
         console.log(`Attempting to delete comment with ID ${commentId} from video with ID ${videoId}`);
-    
         try {
             const response = await axiosInstance.delete(`/videos/${videoId}/comments/${commentId}`);
             if (response.status === 204) { 
@@ -145,7 +119,6 @@ const MainVideoPage = ({ axiosInstance }) => {
         }
     };
 
-    // Function to handle liking a video
     const handleLikeVideo = async () => {
         try {
             const response = await axiosInstance.put(`/videos/${mainVideo.id}/likes`);
@@ -160,12 +133,10 @@ const MainVideoPage = ({ axiosInstance }) => {
         }
     };
 
-    // Function to handle video views
     const handleVideoViews = async () => {
         try {
             const response = await axiosInstance.put(`/videos/${mainVideo.id}/views`);
             if (response.status === 200) {
-                // Ensure that the views count is updated by fetching the updated video data
                 const updatedVideoResponse = await axiosInstance.get(`/videos/${mainVideo.id}`);
                 if (updatedVideoResponse.status === 200) {
                     setMainVideo(updatedVideoResponse.data);
@@ -204,7 +175,6 @@ const MainVideoPage = ({ axiosInstance }) => {
                                         mainVideo={mainVideo}
                                         TimeAgo={TimeAgo} 
                                         handleLikeVideo={handleLikeVideo}
-                                        handleVideoViews={handleVideoViews}
                                     />
                                     <Comments
                                         comments={mainVideo?.comments || []}
